@@ -11,7 +11,7 @@
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                We Are Feane
+                Ăn không sợ BÉO!
               </h2>
             </div>
             <p>
@@ -21,7 +21,7 @@
               the middle of text. All
             </p>
             <a href="">
-              Read More
+              Xem Thêm
             </a>
           </div>
         </div>
