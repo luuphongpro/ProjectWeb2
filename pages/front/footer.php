@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-4 footer-col">
           <h4>
-            Giò mở cửa
+            Giờ mở cửa
           </h4>
           <p>
             Mỗi ngày

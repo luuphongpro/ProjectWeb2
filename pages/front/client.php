@@ -2,7 +2,7 @@
     <div class="container">
       <div class="heading_container heading_center psudo_white_primary mb_45">
         <h2>
-          What Says Our Customers
+          Đối tác của chúng tôi:
         </h2>
       </div>
       <div class="carousel-wrap row ">
@@ -11,17 +11,17 @@
             <div class="box">
               <div class="detail-box">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  3122410466-DCT1223
                 </p>
                 <h6>
-                  Moana Michell
+                  Huỳnh Gia Vĩ
                 </h6>
                 <p>
-                  magna aliqua
+                  20 tuổi, độc thân
                 </p>
               </div>
               <div class="img-box">
-                <img src="images/client1.jpg" alt="" class="box-img">
+                <img src="images/Vi.jpg" alt="" class="box-img">
               </div>
             </div>
           </div>
@@ -29,17 +29,71 @@
             <div class="box">
               <div class="detail-box">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                  3122410466-DCT1223
                 </p>
                 <h6>
-                  Mike Hamell
+                  Huỳnh Văn Phú
                 </h6>
                 <p>
-                  magna aliqua
+                  20 tuổi, độc thân
                 </p>
               </div>
               <div class="img-box">
-                <img src="images/client2.jpg" alt="" class="box-img">
+                <img src="images/Vi.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  3122410466-DCT1223
+                </p>
+                <h6>
+                  Nguyễn Quang Dương
+                </h6>
+                <p>
+                  20 tuổi, độc thân
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="images/Vi.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  3122410466-DCT1223
+                </p>
+                <h6>
+                  Huỳnh Phúc Thiên
+                </h6>
+                <p>
+                  20 tuổi, độc thân
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="images/Vi.jpg" alt="" class="box-img">
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  3122410452-DCT1222
+                </p>
+                <h6>
+                  Võ Anh Tuấn
+                </h6>
+                <p>
+                20 tuổi, độc thân
+                </p>
+              </div>
+              <div class="img-box">
+                <img src="images/Tuan.jpg" alt="" class="box-img">
               </div>
             </div>
           </div>
