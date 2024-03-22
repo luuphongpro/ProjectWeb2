@@ -16,13 +16,13 @@
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call +01 1234567890
+                  Call +84 0384762977
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  demo@gmail.com
+                  ankhongsobeo@gmail.com
                 </span>
               </a>
             </div>
@@ -31,10 +31,10 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <a href="" class="footer-logo">
-              Feane
+              Ăn không sợ BÉO!
             </a>
             <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+              Ăn là để thưởng thức!
             </p>
             <div class="footer_social">
               <a href="">
@@ -57,10 +57,10 @@
         </div>
         <div class="col-md-4 footer-col">
           <h4>
-            Opening Hours
+            Giò mở cửa
           </h4>
           <p>
-            Everyday
+            Mỗi ngày
           </p>
           <p>
             10.00 Am -10.00 Pm
@@ -70,9 +70,9 @@
       <div class="footer-info">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a><br><br>
+          <a href="https://html.design/">Ăn không sợ BÉO!</a><br><br>
           &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+          <a href="https://themewagon.com/" target="_blank">Ăn không sợ BÉO!</a>
         </p>
       </div>
     </div>

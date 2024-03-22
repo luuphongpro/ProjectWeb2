@@ -17,16 +17,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav  mx-auto ">
               <li class="nav-item active">
-                <a class="nav-link" href="index.php?chon&id=home" id="header_home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php?chon&id=home" id="header_home">Trang chủ <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="header_menu" href="index.php?chon&id=menu">Menu</a>
+                <a class="nav-link" id="header_menu" href="index.php?chon&id=menu">Thực đơn</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?chon&id=about" id="header_about">About</a>
+                <a class="nav-link" href="index.php?chon&id=about" id="header_about">Về chúng tôi</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php?chon&id=book" id="header_book">Book Table</a>
+                <a class="nav-link" href="index.php?chon&id=book" id="header_book">Đặt bàn</a>
               </li>
             </ul>
             <div class="user_option">
@@ -42,7 +42,7 @@
                 </button>
               </form>
               <a href="" class="order_online">
-                Order Online
+                Đặt hàng online
               </a>
             </div>
           </div>
@@ -63,11 +63,11 @@
                       Fast Food Restaurant
                     </h1>
                     <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                      Mua ngay kẻo lỡ!!!
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Order Now
+                        Đặt ngay!
                       </a>
                     </div>
                   </div>
@@ -84,11 +84,11 @@
                       Fast Food Restaurant
                     </h1>
                     <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                    Mua ngay kẻo lỡ!!!
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Order Now
+                        Đặt ngay!
                       </a>
                     </div>
                   </div>
@@ -105,11 +105,11 @@
                       Fast Food Restaurant
                     </h1>
                     <p>
-                      Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                    Mua ngay kẻo lỡ!!!
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
-                        Order Now
+                        Đặt ngay!
                       </a>
                     </div>
                   </div>

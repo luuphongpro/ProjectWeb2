@@ -2,7 +2,7 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Book A Table
+          Đặt bàn
         </h2>
       </div>
       <div class="row">
@@ -21,7 +21,7 @@
               <div>
                 <select class="form-control nice-select wide">
                   <option value="" disabled selected>
-                    How many persons?
+                    Số người?
                   </option>
                   <option value="">
                     2
@@ -43,7 +43,7 @@
               <div class="btn_box">
                 <!-- <input type="submit" value="Book Now" > -->
                 <button>
-                  Book Now
+                  Đặt ngay!
                 </button>
               </div>
               <input type="hidden" name="chon">
