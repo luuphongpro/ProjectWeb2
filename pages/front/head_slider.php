@@ -25,9 +25,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="index.php?chon&id=about" id="header_about">Về chúng tôi</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.php?chon&id=book" id="header_book">Đặt bàn</a>
-              </li>
             </ul>
             <div class="user_option">
               <a href="" class="user_link">

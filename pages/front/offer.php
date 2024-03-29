@@ -3,7 +3,7 @@
       <div class="container ">
         <div class="row">
           <div class="col-md-6  ">
-            <div class="box ">
+            <div class="box" style="width:auto; height:auto" >
               <div class="img-box">
                 <img src="images/o1.jpg" alt="">
               </div>
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="col-md-6  ">
-            <div class="box ">
+            <div class="box " style="width:auto; height:auto">
               <div class="img-box">
                 <img src="images/o2.jpg" alt="">
               </div>
