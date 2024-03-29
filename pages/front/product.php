@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
                 <li class="active" data-filter="*">All</li>
                 <li data-filter=".burger">Burger</li>
                 <li data-filter=".pizza">Pizza</li>
-                <li data-filter=".pasta">Pasta</li>
+                <li data-filter=".pasta">Combo</li>
                 <li data-filter=".fries">Fries</li>
               </ul>
 
@@ -41,17 +41,17 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<div class='col-sm-6 col-lg-4'>";
             echo "<div class='filters-content'>";
-                // echo "<div class='row grid'>";
+                // echo "<div class='about_section'>";
                     echo "<div class='box'>";
                         echo "<div class='detail-box'>";
                             echo "<div class='img-box'>";
                                 echo "<img src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' style='width: 100%; height: 100%;'>";
                             echo "</div>";
-                            echo "<h2>" . $row['TenSP'] . "</h2>";
+                            echo "<h2 style='margin-bottom: 20px; margin-top: 20px;'>" . $row['TenSP'] . "</h2>";
                             echo "<div class='options'>";
                                 echo "<p>Giá: " . number_format($row['GiaSP']) . " VNĐ</p>";
                                 echo "<a href=''><i class='fa-solid fa-cart-shopping' style='color:#ffff'></i></a>";
-                            echo "</div>";
+                                echo "</div>";
                             echo "<p>Số lượng còn lại: " . $row['SoLuongSP'] . "</p>";
                         // Các thông tin khác về sản phẩm có thể được thêm vào ở đây
                         echo "</div>";

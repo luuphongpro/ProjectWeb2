@@ -515,8 +515,8 @@ a:focus {
 }
 
 .box {
-  width: 280px;
-  height: 480px;
+  width: 300px;
+  height: 500px;
 }
 
 .food_section .box .img-box {
@@ -531,9 +531,9 @@ a:focus {
       -ms-flex-align: center;
           align-items: center;
   height: 215px;
-  border-radius: 0 0 0 45px;
+  border-radius:45px;
   margin: -1px;
-  padding: 25px;
+  /* padding: 25px; */
 }
 
 .food_section .box .img-box img {
@@ -541,11 +541,12 @@ a:focus {
   max-height: 100%;
   -webkit-transition: all .2s;
   transition: all .2s;
-  border-radius: 0 0 0 45px;
+  border-radius:45px;
 }
 
 .food_section .box .detail-box {
   padding: 25px;
+  background-color: #222831;
 }
 
 .food_section .box .detail-box h5 {
