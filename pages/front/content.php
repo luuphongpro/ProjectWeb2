@@ -4,7 +4,6 @@
             include './pages/front/offer.php';
             include './pages/front/product.php';
             include './pages/front/about.php';
-            include './pages/front/book.php';
             include './pages/front/client.php';
             
         }
@@ -13,9 +12,6 @@
         }
         if($_GET['id'] == 'about'){
             include './pages/front/about.php';
-        }
-        if($_GET['id'] == 'book'){
-            include './pages/front/book.php';
         }
     }
     $menu_id = isset($_GET['id']) ? $_GET['id']: '';
@@ -32,9 +28,6 @@
             break;
         case 'about':
             tesst = header_item.find('#header_about').parent().addClass('active');
-            break;
-        case 'book':
-            tesst = header_item.find('#header_book').parent().addClass('active');
             break;
         default:
             header_item.find('#header_home').parent().addClass('active');
