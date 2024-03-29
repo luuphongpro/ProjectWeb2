@@ -2,14 +2,14 @@
    if(isset($_GET['chon'])){
         if($_GET['id'] == 'home'){
             include './pages/front/offer.php';
-            include './pages/front/food.php';
+            include './pages/front/product.php';
             include './pages/front/about.php';
             include './pages/front/book.php';
             include './pages/front/client.php';
             
         }
         if($_GET['id'] == 'menu'){
-            include './pages/front/food.php';
+            include './pages/front/product.php';
         }
         if($_GET['id'] == 'about'){
             include './pages/front/about.php';

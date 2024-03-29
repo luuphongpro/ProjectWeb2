@@ -234,7 +234,7 @@ INSERT INTO `product` (`MaSP`, `TenSP`, `SoLuongSP`, `GiaSP`, `TTSP`, `IMG`, `ca
 ('B05', 'Hamburger Gà giòn cay', 100, 55000, '', 'b5_gagioncay.jpg', '001'),
 ('B06', 'Hamburger Gà nướng', 100, 55000, '', 'b6_ganuong.jpg', '001'),
 ('B07', 'Hamburger Bò tắm phô mai', 100, 75000, '', 'b7_botamphomai.jpg', '001'),
-('B08', 'Hamburger Bò phô mai & thịt xông khói', 100, 75000, '', 'b8_bophomaithitxongkhoi', '001'),
+('B08', 'Hamburger Bò phô mai & thịt xông khói', 100, 75000, '', 'b8_bophomaithitxongkhoi.jpg', '001'),
 ('B09', 'Hamburger Bò nướng phô mai', 100, 69000, '', 'b9_bonuongphomaijpg.jpg', '001'),
 ('B10', 'Hamburger Gà phô mai sốt BBQ', 100, 60000, '', 'b10_gaphomaisitbbq.jpg', '001'),
 ('B11', 'Hamburger Whopper phô mai & thịt xông khói', 100, 89000, '', 'b11_whopperphomaithitxongkhoi.jpg', '001'),
