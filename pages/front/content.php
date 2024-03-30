@@ -7,11 +7,15 @@
             include './pages/front/client.php';
             
         }
-        if($_GET['id'] == 'menu'){
+        elseif($_GET['id'] == 'menu'){
             include './pages/front/product.php';
         }
-        if($_GET['id'] == 'about'){
+        elseif($_GET['id'] == 'about'){
             include './pages/front/about.php';
+        }
+        elseif($_GET['id'] == 'dk'){
+            echo 'include dangky';
+            include './pages/front/dangky.php';
         }
     }
     if(!$_GET['id']=='dk'){
