@@ -14,7 +14,9 @@
             include './pages/front/about.php';
         }
     }
-    $menu_id = isset($_GET['id']) ? $_GET['id']: '';
+    if(!$_GET['id']=='dk'){
+        $menu_id = isset($_GET['id']) ? $_GET['id']: '';
+    }
   ?>
   <script>
     let menu_id = '<?php echo $menu_id; ?>';

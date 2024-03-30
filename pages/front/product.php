@@ -1,9 +1,9 @@
 <?php
 // Kết nối đến cơ sở dữ liệu
 $servername = "localhost";
-$username = "username"; // Thay username bằng tên người dùng của bạn
-$password = "password"; // Thay password bằng mật khẩu của bạn
-$dbname = "Web2";
+$username = "root"; // Thay username bằng tên người dùng của bạn
+$password = ""; // Thay password bằng mật khẩu của bạn
+$dbname = "web2";
 
 // Tạo kết nối
 $conn = new mysqli($servername, $username, $password, $dbname);
