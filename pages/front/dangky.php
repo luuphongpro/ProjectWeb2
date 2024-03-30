@@ -81,7 +81,7 @@
     // const closeElement=document.querySelector('.btn-close');
     const fcloseElemts=document.querySelectorAll('.btn-close');
     const modalElement=$('.modal');
-    // modalElement.style.display='flex';
+    modalElement.style.display='flex';
     inputLogin.onclick=function(){
         // document.querySelector(".modal").style.display="flex"
         inputRegister.classList.add("modal_content-header-item-default");
