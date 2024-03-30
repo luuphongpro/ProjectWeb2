@@ -117,14 +117,18 @@
                 user_login: 'phuhuynh.010104@gmail.com',
                 password_login: '123456'
             };
-            xhr.open('POST','http://localhost/ProjectWeb2/pages/xldangky.php?'+'user_login=123&password_login=456',true);
+            xhr.open('POST','http://localhost/ProjectWeb2/module/xldangky.php?'+'user_login=123&password_login=456',true);
             // window.location.href='index.php?chon=dangky&user_login='+data.user_login+"&password_login="+data.password_login;
             xhr.send();
-            xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Xử lý kết quả trả về từ máy chủ
+            xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Xử lý phản hồi từ server ở đây
+                console.log(xhr.responseText);
+            } else {
+                // Xử lý lỗi
+                console.error('Lỗi gửi dữ liệu:', xhr.statusText);
             }
-            };
+        };
         }
     })
     // Validator({
