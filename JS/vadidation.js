@@ -34,6 +34,26 @@ function Validator(option){
         }
         else {
             getParent(inputElement,'.form-group').classList.remove('invalid')
+            errorElement.innerHTML=''
+        }
+        return messErorr
+    }
+    function activeInput(inputElement,rule){
+        var messErorr
+        var rules=selectorRules[rule.selector]
+        for(var i=0;i<rules.length;i++){
+            switch (inputElement?.type){
+                case 'radio':
+                case 'checkbox':
+                    messErorr=rules[i](
+                        formElement.querySelector(rule.selector + ':checked')
+                    )
+                    break
+                default: messErorr=rules[i](inputElement.value)
+            }
+            if(messErorr){
+                break
+            }
         }
         return !messErorr
     }
@@ -43,7 +63,7 @@ function Validator(option){
         const btnSubElement=formElement.querySelector('.btn-login');
         option.rules.forEach((rule) =>{
             var inputElement=formElement.querySelector(rule.selector)   
-            var isValid=validate(inputElement,rule)
+            var isValid=activeInput(inputElement,rule)
             if(!isValid){
                 isFormValid=false
             }
@@ -53,18 +73,21 @@ function Validator(option){
         }
         else
             btnSubElement.classList.add('btn-default');
+        return isFormValid;
     }
     if(formElement){
         //Khi submit form
         formElement.onsubmit=function(e){
+            
             e.preventDefault()
-            var isFormValid=true
+            var isFormValid=enableSubmit()
             if(isFormValid){
                 // Submit bằng js
+                
                 if(typeof option.onSubmit === 'function'){
                     var enableInput=formElement.querySelectorAll('[name]:not([disabled])')
                     var valueForm=Array.from(enableInput).reduce((value,input) =>{
-                        switch (input.type){
+                        switch (input?.type){
                             case 'radio':
                                 value[input.name]=formElement.querySelector('input[name="' +input.name+'"]:checked').value
                                 break
@@ -86,6 +109,7 @@ function Validator(option){
                         }
                         return value
                     },{})
+                    this.reset();
                     option.onSubmit(valueForm)
                 }
                 // Submit mặc định của gg
@@ -105,15 +129,21 @@ function Validator(option){
             }
             var inputElements=formElement.querySelectorAll(rule.selector)   
             Array.from(inputElements).forEach((inputElement) =>{
-                inputElement.onblur=function(){
-                    validate(inputElement,rule)                    
-                }
-                inputElement.oninput=function(){
+                inputElement.addEventListener('input', function() {
                     enableSubmit()
                     const errorElement=getParent(inputElement,'.form-group').querySelector(option.errorElement)
                     errorElement.innerText=''
                     getParent(inputElement,'.form-group').classList.remove('invalid')
-                }
+                    // validate(inputElement, rule);
+                });
+                
+                inputElement.addEventListener('blur', function() {
+                    validate(inputElement, rule);
+                });
+                // inputElement.oninput=function(){                    
+                //     enableSubmit()
+                    
+                // }
             })
             
         })
@@ -149,6 +179,14 @@ Validator.isConfirmed=function(selector,valueConfirm){
         selector,
         test: function(value){
             return value == valueConfirm()? undefined : 'Dự liệu nhập vào không đúng'
+        }
+    }
+}
+Validator.isNumber=function(selector){
+    return {
+        selector,
+        test: function(value){
+            return !isNaN(value)? undefined : 'Số điện thoại không hợp lệ'
         }
     }
 }

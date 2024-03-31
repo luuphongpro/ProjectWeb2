@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
     <link href="CSS/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="./CSS/cssDangky.css">
+    <link rel="stylesheet" href="./CSS/responsive.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
@@ -24,12 +25,14 @@
     <?php 
         include './pages/front/head_slider.php';
         include './pages/front/content.php';
+        include './module/controller.php';
+        include './pages/front/dangky.php';
         // include_once './pages/front/offer.php';
         // include_once './pages/front/food.php';
         // include_once './pages/front/about.php';
         // include_once './pages/front/book.php';
         include_once './pages/front/footer.php';
-        ?>
+    ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
     <script src="JS/bootstrap.js"></script>

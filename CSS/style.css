@@ -162,7 +162,8 @@ a:focus {
 }
 
 .custom_nav-container .navbar-nav {
-  padding-left: 18%;
+  padding-left: 10%;
+  
 }
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
@@ -212,7 +213,16 @@ a:focus {
 .user_option .user_link:hover {
   color: #ffbe33;
 }
-
+.user_link>i {
+  margin-left: calc(50% - 8px);
+}
+.user_link {
+  width: 100px;
+  cursor: pointer;
+}
+.ten-dn p {
+  text-align: center;
+}
 .user_option .cart_link {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1012,4 +1022,34 @@ a:focus {
 .footer_section .footer-info p a {
   color: inherit;
 }
+.user-dn {
+  width: 150px;
+  height: 75px;
+  position: absolute;
+  bottom: 25px;
+  right: 235px;
+  border-radius: 5px;
+  display: none;
+}
+.user_link:hover .status{
+  display: block;
+  background-color: white;
+}
+.option-dn {
+  list-style-type: none;
+  padding-left: 0;
+}
+.option-item {
+  color: #333;
+  text-decoration: none;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -14,11 +14,10 @@
             include './pages/front/about.php';
         }
         if($_GET['id'] == 'dk'){
-            echo 'include dangky';
             include './pages/front/dangky.php';
         }
     }
-    if(!$_GET['id']=='dk'){
+    if($_GET['id']!='dk'){
         $menu_id = isset($_GET['id']) ? $_GET['id']: '';
     }
   ?>

@@ -27,9 +27,19 @@
               </li>
             </ul>
             <div class="user_option">
-              <a href="index.php?chon&id=dk" class="user_link">
+              <div class="user_link">
                 <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
+                <div class="ten-dn"></div>
+                <div class="user-dn">
+                  <ul class="option-dn">
+                    <li><a class="option-item" href="xxx">
+                    <i class="fa fa-user"></i> Trang cá nhân</a></li>
+                    <li><a class="option-item" href="xxx">
+                    <i class="fa fa-book"></i> Lịch sử đơn</a></li>
+                    <li><a class="user-logout option-item" href="index.php?chon&id=home"><i class="fa fa-sign-out"></i> Thoát</a></li>
+                  </ul>
+                </div>
+              </div>
               <a class="cart_link" href="#">
               <i class="fa-solid fa-cart-shopping" style="color:#ffff"></i>
               </a>
@@ -42,6 +52,7 @@
                 Đặt hàng online
               </a>
             </div>
+            
           </div>
         </nav>
       </div>
