@@ -17,6 +17,9 @@
             include './pages/front/dangky.php';
         }
     }
+    else{
+        include './pages/front/product.php';
+    }
     if($_GET['id']!='dk'){
         $menu_id = isset($_GET['id']) ? $_GET['id']: '';
     }

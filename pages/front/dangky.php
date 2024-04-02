@@ -116,11 +116,10 @@
         form:'#form-1',
         rules:[
         Validator.isRequired('#user-login'),
-        Validator.isNumber('#user-login'),
+        Validator.isSDT('#user-login'),
         Validator.isRequired('#password-login'),
         Validator.isRequired('#password-login'),
         Validator.isMinLength('#password-login',6),
-        Validator.isMinLength('#user-login',10),
         ],
         errorElement:'.form-message',
         onSubmit: (value) =>{
@@ -157,8 +156,7 @@
         form:'#form-2',
         rules:[
         Validator.isRequired('#user1-register'),
-        Validator.isNumber('#user1-register'),
-        Validator.isMinLength('#user1-register',10),
+        Validator.isSDT('#user1-register'),
         Validator.isRequired('#password-register'),
         Validator.isMinLength('#password-register',6),
         Validator.isConfirmed('#confirm_password',function(){
@@ -166,6 +164,7 @@
             
         }),
         Validator.isRequired('#username-register'),
+        Validator.isMaxLength('#username-register',10),
         ],
         errorElement:'.form-message',
         onSubmit: (value) =>{

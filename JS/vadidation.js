@@ -170,7 +170,15 @@ Validator.isMinLength=function(selector,min){
     return {
         selector,
         test: function(value){
-            return value.length >=min ? undefined : `Mật khẩu phải có ít nhất ${min} ký tự`
+            return value.length >=min ? undefined : `Phải nhập ít nhất ${min} ký tự`
+        }
+    }
+}
+Validator.isMaxLength=function(selector,max){
+    return {
+        selector,
+        test: function(value){
+            return value.length <=max ? undefined : `Nhập tối đa ${max} ký tự`
         }
     }
 }
@@ -187,6 +195,15 @@ Validator.isNumber=function(selector){
         selector,
         test: function(value){
             return !isNaN(value)? undefined : 'Số điện thoại không hợp lệ'
+        }
+    }
+}
+Validator.isSDT=function(selector){
+    return {
+        selector,
+        test: function(value){
+            const regex=/^0\d{9}$/;
+            return regex.test(value) ? undefined : `Số điện thoại không hợp lệ`
         }
     }
 }
