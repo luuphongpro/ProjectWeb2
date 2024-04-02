@@ -16,12 +16,12 @@
         if($_GET['id'] == 'dk'){
             include './pages/front/dangky.php';
         }
+        if($_GET['id']!='dk'){
+            $menu_id = isset($_GET['id']) ? $_GET['id']: '';
+        }
     }
     else{
         include './pages/front/product.php';
-    }
-    if($_GET['id']!='dk'){
-        $menu_id = isset($_GET['id']) ? $_GET['id']: '';
     }
   ?>
   <script>
