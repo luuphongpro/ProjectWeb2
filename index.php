@@ -11,6 +11,7 @@
     <link href="CSS/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="./CSS/cssDangky.css">
     <link rel="stylesheet" href="./CSS/responsive.css">
+    <link rel="stylesheet" href="./CSS/product_detail.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
@@ -37,5 +38,6 @@
     <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
     <script src="JS/bootstrap.js"></script>
     <script src="JS/cutom.js"></script>
+    <script src="JS/product_detail.js"></script>
 </body>
 </html>
