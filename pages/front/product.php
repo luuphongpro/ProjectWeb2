@@ -43,13 +43,35 @@ if ($result->num_rows > 0) {
                 </h2>
               </div>
 
-              <ul class="filters_menu">
-                <li class="active" data-filter="*">All</li>
-                <li data-filter=".burger">Burger</li>
-                <li data-filter=".pizza">Pizza</li>
-                <li data-filter=".pasta">Combo</li>
-                <li data-filter=".fries">Fries</li>
-              </ul>
+            <div class="searchBar">
+                <form class="filter">
+                    <div class="item ten">
+                        <label>Tên</label>
+                        <input name="name" type="text">
+                    </div>
+                    <div class="item submit">
+                        <button>Tìm kiếm</button>
+                    </div>
+                    <div class="item">
+                        <label>Danh mục</label>
+                        <select name="category">
+                            <option value="">---</option>
+                            <option value="Hamburger">Hamburger</option>
+                            <option value="Gà">Gà</option>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Nước">Nước</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label>Tối thiểu</label>
+                        <input name="minPrice" type="number">
+                    </div>
+                    <div class="item">
+                        <label>Tối đa</label>
+                        <input name="maxPrice" type="number">
+                    </div>
+                </form>
+            </div>
 
               <div class="row">';
     
