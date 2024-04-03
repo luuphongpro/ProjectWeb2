@@ -102,7 +102,7 @@ if ($result->num_rows > 0) {
          echo "<button type='button' class='close' onClick='closeProductInfo()'>+</button>";
  
          echo "<div class='left'>";
-         echo '<h2 style="font-family: \'Roboto Mono\', monospace; margin-bottom: 25px; margin-left: 30px;">Chi tiết sản phẩm</h2>';        
+         echo '<h2 style="font-family: \'Roboto Mono\', monospace; margin-bottom: 25px; margin-left: 70px; margin-bottom:30px; ">Chi tiết sản phẩm</h2>';        
          echo "<div class='img-box'>";
          echo "<img id='imgbig' src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' >";
          echo "</div>";
