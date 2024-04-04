@@ -106,6 +106,7 @@ if ($result->num_rows > 0) {
          echo "<div class='img-box'>";
          echo "<img id='imgbig' src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' >";
          echo "</div>";
+         echo "<p id='ttsp'>" . $row['TTSP'] ."</p>";
          echo "</div>";
  
          echo "<div class='right'>";
