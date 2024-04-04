@@ -150,6 +150,14 @@ if ($result->num_rows > 0) {
      }
  
      echo '</div></div></section>';
+     echo '<div style="display: flex; justify-content: center; align-items: center;">';
+     echo '<ul class ="pageNumber">';
+     echo '<li>Trang: </li>';
+     for ($i = 1; $i <= $pageTotal; $i++) {
+         echo '<li><a href="index.php?trang=' . $i . '">' . $i . '</a></li>';
+     }
+     echo '</ul>';
+     echo '</div>';
  } else {
      echo "Không có sản phẩm nào.";
  }
