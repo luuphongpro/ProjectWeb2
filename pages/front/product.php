@@ -150,6 +150,7 @@ if ($result->num_rows > 0) {
      }
  
      echo '</div></div></section>';
+
      echo '<div style="display: flex; justify-content: center; align-items: center;">';
      echo '<ul class ="pageNumber">';
      echo '<li>Trang: </li>';
@@ -165,7 +166,6 @@ if ($result->num_rows > 0) {
  // Đóng kết nối
  $conn->close();
  ?>
-     <script src="JS/product_detail.js"></script>
      
 <style>
     ul.pageNumber {
@@ -188,7 +188,7 @@ if ($result->num_rows > 0) {
     }
 </style>
 
-<script>
+<!-- <script>
     function loadPageScript() {
         var pageLinks = document.querySelectorAll('.pageNumber a');
         pageLinks.forEach(function(link) {
@@ -228,4 +228,4 @@ if ($result->num_rows > 0) {
     }
 
 
- </script>   
+ </script>    -->

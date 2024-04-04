@@ -59,11 +59,16 @@
   }
 
   p {
-    margin-top: 10px;
+    margin-top: none;
     font-size: 16px;
     font-weight: bold;
   }
-
+.fa-lg {
+  font-size: 1.25em;
+  line-height: .05em;
+  vertical-align: -.075em;
+  margin-bottom: 11px;
+}
   .close{
   position: absolute;
 	right: 25px;
@@ -106,10 +111,12 @@
     font-size: 25px;
     margin:10px 0;
   }
-  .right #share-buttons{
+  .right #share-buttons {
     display: flex;
+    justify-content: center;
     align-items: center;
-  }
+    margin-bottom: 20px;
+}
   .right #share-buttons i {
     width: 100%;
     font-size: 30px;
