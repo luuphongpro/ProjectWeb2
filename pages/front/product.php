@@ -125,15 +125,28 @@ if ($result->num_rows > 0) {
          echo "<input type='hidden' name='idp' id='idp' value='1'>";
          echo "<button class='addtocart' onclick=getquantity()>Thêm vào giỏ</button>";
  
-         echo "<div id='share-buttons'>";
-         echo "<a class='facebook' target='blank'><i class='fab fa-facebook'></i></a>";
-         echo "<a class='twitter' target='blank'><i class='fab fa-twitter'></i></a>";                                
-         echo "</div>";
+         echo '<div class="footer_social" style="font-size: 30px; margin-bottom: 15px; Color: #626071;">
+         <a href="">
+           <i class="fa fa-facebook" aria-hidden="true"></i>
+         </a>
+         <a href="">
+           <i class="fa fa-twitter" aria-hidden="true"></i>
+         </a>
+         <a href="">
+           <i class="fa fa-linkedin" aria-hidden="true"></i>
+         </a>
+         <a href="">
+           <i class="fa fa-instagram" aria-hidden="true"></i>
+         </a>
+         <a href="">
+           <i class="fa fa-pinterest" aria-hidden="true"></i>
+         </a>
+       </div>';
  
          echo "<div class='callphone'>";
          echo "<p>Gọi mua hàng:";
          echo "<a>1111.1111.111</a>";
-         echo "<span>(9h-16h)</span>";
+         echo "<span>(10h-10h)</span>";
          echo "</p>";
          echo "</div>";
  
