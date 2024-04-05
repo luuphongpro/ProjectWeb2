@@ -44,7 +44,7 @@
     display: none;
   }
   .info{
-    height: 600px;
+    height: 700px;
     width: 1000px;
     background-color: #fff;
     margin: 50px auto;
@@ -56,6 +56,8 @@
     z-index: 20;
     border-radius: 45px;
     gap:50px;
+    background-color: #CDCDC0;
+
   }
 
   p {
@@ -86,7 +88,10 @@
   .left{
     width: 450px;
     height: 100%;
-    align-self: center;
+    align-items: center;
+    background-color: #CDCDC0;
+    border-radius: 45px;
+
   }
   .left #imgbig{
     width: 70%;
@@ -98,11 +103,12 @@
     margin-left: 60px;
   }
   .left #ttsp{
-    border: 2px solid #b5ab74;
-    background-color: #b5ab74;
+    border: 2px solid #626071;
+    background-color: #DDBC95;
+    /* color: #626071; */
     width: 90%;
     height: auto;
-    max-height: 20%;
+    max-height: 40%;
     font-family: Roboto Mono, monospace;
     font-size: 20px;
     margin-top: 20px;
@@ -121,6 +127,8 @@
   .right{
     height: 100%;
     width: 450px;
+    background-color: #CDCDC0;
+    border-radius: 45px;
   }
   .right .right-flex{
     display: flex;
@@ -175,13 +183,14 @@
 	width: 80px;
 	height: 40px;
 	padding: 5px;
-  border-top: 1px solid #ced4da;
-  border-bottom: 1px solid #ced4da;
+  border-top: 2px solid #B38867;
+  border-bottom: 2px solid #B38867;
 	margin: 10px 0 20px;
 	text-align: center;
+  background-color: #CDCDC0;
 }
 .right .quantitydown{
-  border: 1px solid #ced4da;
+  border: 2px solid #B38867;
 	display: inline-block;
 	font-size: 16pt;
 	color: #000;
@@ -189,12 +198,12 @@
 	height: 40px;
 	border-right: none;
   border-radius: 999px 0 0 999px;
-	background-color: #fff;
+	background-color: #B38867;
 	outline: none;
 	cursor: pointer;
 }
 .right .quantityup{
-  border: 1px solid #ced4da;
+  border: 2px solid #B38867;
 	display: inline-block;
 	font-size: 16pt;
 	color: #000;
@@ -202,27 +211,27 @@
 	height: 40px;
 	border-radius: 0 999px 999px 0;
 	border-left: none;
-	background-color: #fff;
+	background-color: #B38867;
 	outline: none;
 	cursor: pointer;
 }
 .right .quantityup:active ,  .right .quantitydown:active{
-	background-color: #ff4700;
-	color: #fff;
+	background-color: #DDBC95;
+	color: #626071;
 }
 .right .addtocart{
 	display: block;
 	cursor: pointer;
 	font-size: 16pt;
 	padding: 10px 30px;
-	background-color: #088178;
-	color: #fff;
-	border: 2px solid #fff;
+	background-color: #DDBC95;
+	/* color: #e1d4bc; */
+	border: 2px solid #241703;
   border-radius: 30px;
   margin-bottom: 30px;
 }
 .right .addtocart:hover{
-	background-color: #033531;
+	background-color: #B38867;
 	color: #fff;
 	border: 2px solid #fff;
 }
