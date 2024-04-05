@@ -154,40 +154,77 @@ if ($result->num_rows > 0) {
 
      echo '<div style="display: flex; justify-content: center; align-items: center;">';
      echo '<ul class ="pageNumber">';
-     echo '<li>Trang: </li>';
-     for ($i = 1; $i <= $pageTotal; $i++) {
-         echo '<li><a href="index.php?trang=' . $i . '">' . $i . '</a></li>';
-     }
-     echo '</ul>';
-     echo '</div>';
- } else {
-     echo "Không có sản phẩm nào.";
- }
- 
- // Đóng kết nối
- $conn->close();
- ?>
-     
-<style>
-    ul.pageNumber {
-        display: flex;
-        margin: 50px;
-        list-style: none;
+     echo '<ul class ="pageNumber">';
+        //  echo '<li><b>Trang :   </b></li>';
+        for ($i = 1; $i <= $pageTotal; $i++) {
+            echo '<li ><a  class=" '. (($i == 1) ? ' activePT' : '') .' " href="index.php?trang=' . $i . '">' . $i . '</a></li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+    } else {
+        echo "Không có sản phẩm nào.";
+    }
+    
+    // Đóng kết nối
+    $conn->close();
+    ?>
+        <script src="JS/product_detail.js"></script>
+        
+    <style>
+
+        .pageNumber li :hover,
+        .activePT{
+            background-color: gray;
+        }
+
+
+        ul.pageNumber {
+            display: flex;
+            margin-bottom: 40px;
+            list-style: none;
+
+        }
+
+        ul.pageNumber li {
+            display: block;
+            margin-left: 0px;
+            background-color: black ;
+            padding: 9px 0px;
+
+        }
+
+        ul.pageNumber li a {
+            color : aqua;
+            text-decoration: none;
+            padding: 10px 17px;
+        }
+    </style>
+
+
+<script>
+    let select = document.querySelectorAll(".pageNumber li a ");
+    let active = 0;
+
+    function reloadActive() {
+        let currentPage = parseInt(<?php echo isset($_GET['trang']) ? $_GET['trang'] : 1; ?>);
+        let lastActive = document.querySelector(".pageNumber li a.activePT");
+        if (lastActive) {
+            lastActive.classList.remove("activePT");
+        }
+        select[currentPage - 1].classList.add("activePT");
     }
 
-    ul.pageNumber li {
-        display: block;
-        color: #000;
-        margin-left: 10px;
-    }
+    window.onload = function() {
+        reloadActive();
+    };
 
-    ul.pageNumber li a {
-        text-decoration: none;
-        background-color: burlywood;
-        padding: 5px 12px;
-        margin: 20px;
-    }
-</style>
+    select.forEach((li, key) => {
+        li.addEventListener("click", function() {
+            active = key;
+            reloadActive();
+        });
+    });
+</script>
 
 <!-- <script>
     function loadPageScript() {
