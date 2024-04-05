@@ -1,3 +1,33 @@
+            <div class="searchBar">
+                <form class="filter">
+                    <div class="item ten">
+                        <label>Tên</label>
+                        <input name="txtTimkiem" value="<?php if(isset($_GET['txtTimkiem'])){echo $_GET['txtTimkiem'];} ?>" type="text">
+                    </div>
+                    <div class="item submit">
+                        <input class="btnSearch" type="submit" name="timkiem" value="Tìm kiếm">
+                    </div>
+                    <div class="item">
+                        <label>Danh mục</label>
+                        <select name="category">
+                            <option value="">---</option>
+                            <option value="B">Hamburger</option>
+                            <option value="C">Gà</option>
+                            <option value="P">Pizza</option>
+                            <option value="D">Nước</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <label>Tối thiểu</label>
+                        <input name="minPrice" type="number">
+                    </div>
+                    <div class="item">
+                        <label>Tối đa</label>
+                        <input name="maxPrice" type="number">
+                    </div>
+                </form>
+            </div> 
+
 <?php
 // Kết nối đến cơ sở dữ liệu
 $servername = "localhost";
@@ -42,36 +72,6 @@ if ($result->num_rows > 0) {
                   Our Menu
                 </h2>
               </div>
-
-            <div class="searchBar">
-                <form class="filter">
-                    <div class="item ten">
-                        <label>Tên</label>
-                        <input name="name" type="text">
-                    </div>
-                    <div class="item submit">
-                        <button>Tìm kiếm</button>
-                    </div>
-                    <div class="item">
-                        <label>Danh mục</label>
-                        <select name="category">
-                            <option value="">---</option>
-                            <option value="Hamburger">Hamburger</option>
-                            <option value="Gà">Gà</option>
-                            <option value="Pizza">Pizza</option>
-                            <option value="Nước">Nước</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <label>Tối thiểu</label>
-                        <input name="minPrice" type="number">
-                    </div>
-                    <div class="item">
-                        <label>Tối đa</label>
-                        <input name="maxPrice" type="number">
-                    </div>
-                </form>
-            </div>
 
               <div class="row">';
      // Duyệt qua mỗi dòng dữ liệu
