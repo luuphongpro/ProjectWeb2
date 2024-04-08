@@ -69,10 +69,10 @@ function Validator(option){
             }
         })
         if(isFormValid){
-            btnSubElement.classList.remove('btn-default');
+            btnSubElement?.classList.remove('btn-default');
         }
         else
-            btnSubElement.classList.add('btn-default');
+            btnSubElement?.classList.add('btn-default');
         return isFormValid;
     }
     if(formElement){
@@ -133,7 +133,7 @@ function Validator(option){
                     enableSubmit()
                     const errorElement=getParent(inputElement,'.form-group').querySelector(option.errorElement)
                     errorElement.innerText=''
-                    getParent(inputElement,'.form-group').classList.remove('invalid')
+                    getParent(inputElement,'.form-group')?.classList.remove('invalid')
                     // validate(inputElement, rule);
                 });
                 
