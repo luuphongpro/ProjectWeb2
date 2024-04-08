@@ -5,7 +5,7 @@
                         <input name="txtTimkiem" value="<?php if(isset($_GET['txtTimkiem'])){echo $_GET['txtTimkiem'];} ?>" type="text">
                     </div>
                     <div class="item submit">
-                        <input class="btnSearch" type="submit" name="timkiem" value="Tìm kiếm">
+                        <input class="btnSearch" type="submit" name="timkiem">
                     </div>
                     <div class="item">
                         <label>Danh mục</label>
@@ -19,15 +19,14 @@
                     </div>
                     <div class="item">
                         <label>Tối thiểu</label>
-                        <input name="minPrice" type="number">
+                        <input name="minPrice" type="number" min = 0 value = "<?php if(isset($_GET['minPrice'])){echo $_GET['minPrice'];}?>">
                     </div>
                     <div class="item">
                         <label>Tối đa</label>
-                        <input name="maxPrice" type="number">
+                        <input name="maxPrice" type="number" min = 0 value = "<?php if(isset($_GET['maxPrice'])){echo $_GET['maxPrice'];} ?>">
                     </div>
                 </form>
             </div> 
-
 <?php
 // Kết nối đến cơ sở dữ liệu
 $servername = "localhost";
@@ -61,21 +60,22 @@ $begin = ($page - 1) * $perPage;
 
 // Truy vấn để lấy thông tin sản phẩm
 $sql = "SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
-$result = $conn->query($sql);
+$result = mysqli_query($conn, $sql);
 
 // Hiển thị sản phẩm nếu có
-if ($result->num_rows > 0) {
-    echo '<section class="food_section layout_padding-bottom">
-            <div class="container">
-              <div class="heading_container heading_center">
-                <h2>
-                  Our Menu
-                </h2>
-              </div>
+echo '<section class="food_section layout_padding-bottom">
+        <div class="container">
+        <div class="heading_container heading_center">
+        <h2>
+        Our Menu
+        </h2>
+        </div>
 
-              <div class="row">';
+        <div class="row container-product">';
+if ($result->num_rows > 0) {
      // Duyệt qua mỗi dòng dữ liệu
      $productIndex = 0;
+     
      while($row = $result->fetch_assoc()) {
          echo "<div class='col-sm-6 col-lg-4'>";
              echo "<div class='filters-content'>";
@@ -162,13 +162,14 @@ if ($result->num_rows > 0) {
  
          $productIndex++;
      }
- 
+    
+
+    
+
      echo '</div></div></section>';
 
      echo '<div style="display: flex; justify-content: center; align-items: center;">';
      echo '<ul class ="pageNumber">';
-     echo '<ul class ="pageNumber">';
-        //  echo '<li><b>Trang :   </b></li>';
         for ($i = 1; $i <= $pageTotal; $i++) {
             echo '<li ><a  class=" '. (($i == 1) ? ' activePT' : '') .' " href="index.php?trang=' . $i . '">' . $i . '</a></li>';
         }
