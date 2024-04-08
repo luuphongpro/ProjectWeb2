@@ -42,30 +42,28 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Truy vấn để lấy tổng số sản phẩm
+$perPage = 9;
 
+$sqltotal = "SELECT * FROM product";
+$tongsotrang = $conn->query($sqltotal);
+$leng = $tongsotrang->num_rows;
+$pageTotal = ceil($leng / $perPage);
+
+// Xác định trang hiện tại
+if(isset($_GET['trang'])){
+    $page = $_GET['trang'];
+} else {
+    $page = 1;
+}
+$begin = ($page - 1) * $perPage;
 
 // Truy vấn để lấy thông tin sản phẩm
-$sql = "SELECT * FROM product ORDER BY MaSP DESC";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
+$result = mysqli_query($conn, $sql);
 
 // Hiển thị sản phẩm nếu có
 if ($result->num_rows > 0) {
-    // Truy vấn để lấy tổng số sản phẩm
-$perPage = 9;
-
-    $sqltotal = "SELECT * FROM product";
-    $tongsotrang = $conn->query($sqltotal);
-    $leng = $tongsotrang->num_rows;
-    $pageTotal = ceil($leng / $perPage);
-
-    // Xác định trang hiện tại
-    if(isset($_GET['trang'])){
-        $page = $_GET['trang'];
-    } else {
-        $page = 1;
-    }
-    $begin = ($page - 1) * $perPage;
-    
     echo '<section class="food_section layout_padding-bottom">
             <div class="container">
               <div class="heading_container heading_center">
