@@ -1,4 +1,4 @@
-            <div class="searchBar">
+<div class="searchBar">
                 <form class="filter">
                     <div class="item ten">
                         <label>Tên</label>
@@ -63,7 +63,7 @@ $sql = "SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
 $result = mysqli_query($conn, $sql);
 
 // Hiển thị sản phẩm nếu có
-echo '<section class="food_section layout_padding-bottom">
+echo '<section class="food_section layout_padding-bottom" id="data-container">
         <div class="container">
         <div class="heading_container heading_center">
         <h2>
@@ -73,105 +73,102 @@ echo '<section class="food_section layout_padding-bottom">
 
         <div class="row container-product">';
 if ($result->num_rows > 0) {
-     // Duyệt qua mỗi dòng dữ liệu
-     $productIndex = 0;
-     
-     while($row = $result->fetch_assoc()) {
-         echo "<div class='col-sm-6 col-lg-4'>";
-             echo "<div class='filters-content'>";
-                 echo "<div class='box'>";
-                     echo "<div class='detail-box'>";
-                         echo "<div class='img-box'>";
-                             echo "<img src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' style='width: 100%; height: 100%;'>";
-                         echo "</div>";
-                         echo "<h2 style='margin-bottom: 20px; margin-top: 20px;'>" . $row['TenSP'] . "</h2>";
-                         echo "<div class='options'>";
-                             echo "<p>Giá: " . number_format($row['GiaSP']) . " VNĐ</p>";
-                             echo "<a href=''><i class='fa-solid fa-cart-shopping' style='color:#ffff'></i></a>";
-                         echo "</div>";
-                         echo "<p>Số lượng còn lại: " . $row['SoLuongSP'] . "</p>";
-                         echo "<button class='detail-button' data-product-index='" . $productIndex . "'>Chi tiết</button>";
-                     echo "</div>";
-                 echo "</div>";
-             echo "</div>";
-         echo "</div>";
- 
-         // echo "<div id='productInfo' class='productInfo  data-product-index='" . $productIndex . "'>";
-         echo "<div class='overlay' data-product-index='" . $productIndex . "'>";
-         echo "<div class='info' data-product-index='" . $productIndex . "'>";
-         echo "<button type='button' class='close' onClick='closeProductInfo()'>+</button>";
- 
-         echo "<div class='left'>";
-         echo '<h2 style="font-family: \'Roboto Mono\', monospace; margin-bottom: 25px; margin-left: 70px; margin-bottom:30px; ">Chi tiết sản phẩm</h2>';        
-         echo "<div class='img-box'>";
-         echo "<img id='imgbig' src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' >";
-         echo "</div>";
-         echo "<p id='ttsp'>" . $row['TTSP'] ."</p>";
-         echo "</div>";
- 
-         echo "<div class='right'>";
-         echo "<h2 style='margin-bottom: 20px; margin-top: 20px; font-size: 2.5rem;'>" . $row['TenSP'] . "</h2>";
-         echo "<h4>Giá: " . number_format($row['GiaSP']) . " VNĐ</h4>";
-         //
-         echo "<div class='right-flex'>";
-         echo "<h4>Số lượng</h4>";
- 
-         echo "<div>";
-         echo "<button class='quantitydown' onClick='quantitydown()'>-</button><input type='text' id='quantity' value='1'><button class='quantityup' onClick='quantityup()'>+</button>";
-         echo "</div>";
- 
-         echo "</div>";
-         //
-         echo "<input type='hidden' name='idp' id='idp' value='1'>";
-         echo "<button class='addtocart' onclick=getquantity()>Thêm vào giỏ</button>";
- 
-         echo '<div class="footer_social" style="font-size: 30px; margin-bottom: 15px; Color: #626071;">
-         <a href="">
-           <i class="fa fa-facebook" aria-hidden="true"></i>
-         </a>
-         <a href="">
-           <i class="fa fa-twitter" aria-hidden="true"></i>
-         </a>
-         <a href="">
-           <i class="fa fa-linkedin" aria-hidden="true"></i>
-         </a>
-         <a href="">
-           <i class="fa fa-instagram" aria-hidden="true"></i>
-         </a>
-         <a href="">
-           <i class="fa fa-pinterest" aria-hidden="true"></i>
-         </a>
-       </div>';
- 
-         echo "<div class='callphone'>";
-         echo "<p>Gọi mua hàng:";
-         echo "<a>1111.1111.111</a>";
-         echo "<span>(10h-10h)</span>";
-         echo "</p>";
-         echo "</div>";
- 
-         echo "<div class='r-note'><i class='fa-solid fa-truck-fast fa-lg'></i><p>Giao hàng tận nơi</p></div>";
-         echo "<div class='r-note'><i class='fa-solid fa-hand-holding-dollar fa-lg'></i><p>Ưu đãi mỗi ngày</p></div>";
-         echo "<div class='r-note'><i class='fa-regular fa-credit-card fa-lg'></i></i><p>Thanh toán COD,BANK,MOMO</p></div>";
- 
-         echo "</div>";
-         echo "</div>";
-         echo "</div>";
-         // echo "</div>"; 
- 
- 
-         $productIndex++;
-     }
+    // Duyệt qua mỗi dòng dữ liệu
+    $productIndex = 0;
     
+    while($row = $result->fetch_assoc()) {
+        echo "<div class='col-sm-6 col-lg-4'>";
+            echo "<div class='filters-content'>";
+                echo "<div class='box'>";
+                    echo "<div class='detail-box'>";
+                        echo "<div class='img-box'>";
+                            echo "<img src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' style='width: 100%; height: 100%;'>";
+                        echo "</div>";
+                        echo "<h2 style='margin-bottom: 20px; margin-top: 20px;'>" . $row['TenSP'] . "</h2>";
+                        echo "<div class='options'>";
+                            echo "<p>Giá: " . number_format($row['GiaSP']) . " VNĐ</p>";
+                            echo "<a href=''><i class='fa-solid fa-cart-shopping' style='color:#ffff'></i></a>";
+                        echo "</div>";
+                        echo "<p>Số lượng còn lại: " . $row['SoLuongSP'] . "</p>";
+                        echo "<button class='detail-button' data-product-index='" . $productIndex . "'>Chi tiết</button>";
+                    echo "</div>";
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
 
+        // echo "<div id='productInfo' class='productInfo  data-product-index='" . $productIndex . "'>";
+        echo "<div class='overlay' data-product-index='" . $productIndex . "'>";
+        echo "<div class='info' data-product-index='" . $productIndex . "'>";
+        echo "<button type='button' class='close' onClick='closeProductInfo()'>+</button>";
+
+        echo "<div class='left'>";
+        echo '<h2 style="font-family: \'Roboto Mono\', monospace; margin-bottom: 25px; margin-left: 70px; margin-bottom:30px; ">Chi tiết sản phẩm</h2>';        
+        echo "<div class='img-box'>";
+        echo "<img id='imgbig' src='./img/" . $row['IMG'] . "' alt='" . $row['TenSP'] . "' >";
+        echo "</div>";
+        echo "<p id='ttsp'>" . $row['TTSP'] ."</p>";
+        echo "</div>";
+
+        echo "<div class='right'>";
+        echo "<h2 style='margin-bottom: 20px; margin-top: 20px; font-size: 2.5rem;'>" . $row['TenSP'] . "</h2>";
+        echo "<h4>Giá: " . number_format($row['GiaSP']) . " VNĐ</h4>";
+        //
+        echo "<div class='right-flex'>";
+        echo "<h4>Số lượng</h4>";
+
+        echo "<div>";
+        echo "<button class='quantitydown' onClick='quantitydown()'>-</button><input type='text' id='quantity' value='1'><button class='quantityup' onClick='quantityup()'>+</button>";
+        echo "</div>";
+
+        echo "</div>";
+        //
+        echo "<input type='hidden' name='idp' id='idp' value='1'>";
+        echo "<button class='addtocart' onclick=getquantity()>Thêm vào giỏ</button>";
+
+        echo '<div class="footer_social" style="font-size: 30px; margin-bottom: 15px; Color: #626071;">
+        <a href="">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="">
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="">
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="">
+        <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="">
+        <i class="fa fa-pinterest" aria-hidden="true"></i>
+        </a>
+    </div>';
+
+        echo "<div class='callphone'>";
+        echo "<p>Gọi mua hàng:";
+        echo "<a>1111.1111.111</a>";
+        echo "<span>(10h-10h)</span>";
+        echo "</p>";
+        echo "</div>";
+
+        echo "<div class='r-note'><i class='fa-solid fa-truck-fast fa-lg'></i><p>Giao hàng tận nơi</p></div>";
+        echo "<div class='r-note'><i class='fa-solid fa-hand-holding-dollar fa-lg'></i><p>Ưu đãi mỗi ngày</p></div>";
+        echo "<div class='r-note'><i class='fa-regular fa-credit-card fa-lg'></i></i><p>Thanh toán COD,BANK,MOMO</p></div>";
+
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        // echo "</div>"; 
+
+
+        $productIndex++;
+    }
     
+    echo '</div></div></section>';
 
-     echo '</div></div></section>';
-
-     echo '<div style="display: flex; justify-content: center; align-items: center;">';
-     echo '<ul class ="pageNumber">';
+    echo '<div style="display: flex; justify-content: center; align-items: center;">';
+    echo '<ul class ="pageNumber">';
         for ($i = 1; $i <= $pageTotal; $i++) {
-            echo '<li ><a  class=" '. (($i == 1) ? ' activePT' : '') .' " href="index.php?trang=' . $i . '">' . $i . '</a></li>';
+            echo '<li ><a  class=" button-active '. (($i == 1) ? ' activePT' : '') .' " data-page="'.$i.'" href="index.php?trang=' . $i . '">' . $i . '</a></li>';
         }
         echo '</ul>';
         echo '</div>';
@@ -214,61 +211,28 @@ if ($result->num_rows > 0) {
         }
     </style>
 
+<!-- <script src="./JS/jquery-3.7.1.js"></script> -->
 
 <script>
-    let select = document.querySelectorAll(".pageNumber li a ");
-    let active = 0;
 
-    function reloadActive() {
-        let currentPage = parseInt(<?php echo isset($_GET['trang']) ? $_GET['trang'] : 1; ?>);
-        let lastActive = document.querySelector(".pageNumber li a.activePT");
-        if (lastActive) {
-            lastActive.classList.remove("activePT");
-        }
-        select[currentPage - 1].classList.add("activePT");
-    }
-
-    window.onload = function() {
-        reloadActive();
-    };
-
-    select.forEach((li, key) => {
-        li.addEventListener("click", function() {
-            active = key;
-            reloadActive();
-        });
+$(document).ready(function(){
+    $('.pageNumber').on('click', '.button-active', function(e){
+        e.preventDefault();
+        $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
+        $(this).addClass('activePT');
+        var url = this.getAttribute('href'); // Lấy URL của trang mới
+        loadPage(url);
+        handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
     });
-</script>
-
-<script>
-   document.addEventListener("DOMContentLoaded", function() {
-    loadPageScript();
+    function handlePage(page){
+        console.log("Trang "+page);
+        var dataContainer = document.getElementById('data-container');
+        dataContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
-function loadPageScript() {
-    var pageLinks = document.querySelectorAll('.pageNumber a');
-    pageLinks.forEach(function(link) {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-            var url = this.getAttribute('href'); // Lấy URL của trang mới
-            loadPage(url); // Gọi hàm để tải trang mới bằng AJAX
-        });
-    });
-
-    // Gắn sự kiện click cho nút chi tiết sản phẩm
-    var detailButtons = document.querySelectorAll('.detail-button');
-    detailButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của nút
-            var productIndex = this.getAttribute('data-product-index');
-            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
-            overlay.style.display = "block";
-            overlay.style.display = "flex";
-        });
-    });
-}
-
-// Hàm để tải trang mới bằng AJAX
+    
+// Hàm để tải nội dung của trang mới bằng AJAX
 function loadPage(url) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -278,10 +242,8 @@ function loadPage(url) {
             var parser = new DOMParser();
             var newDoc = parser.parseFromString(response, 'text/html');
             var newContent = newDoc.querySelector('.food_section');
-            var pagination = newDoc.querySelector('.pageNumber');
             document.querySelector('.food_section').innerHTML = newContent.innerHTML; // Cập nhật nội dung của phần sản phẩm
-            document.querySelector('.pageNumber').innerHTML = pagination.innerHTML; // Cập nhật phân trang
-            loadPageScript(); // Gọi lại hàm để gắn kết sự kiện click với các liên kết trang mới
+            bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
         } else {
             console.error('Request failed with status', xhr.status);
         }
@@ -291,4 +253,26 @@ function loadPage(url) {
     };
     xhr.send();
 }
- </script>   
+
+// Hàm để gắn kết sự kiện click với các nút chi tiết sản phẩm mới
+function bindDetailButtons() {
+    var detailButtons = document.querySelectorAll('.detail-button');
+    detailButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của nút
+            var productIndex = this.getAttribute('data-product-index');
+            // alert(productIndex);    
+            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
+            overlay.style.display = "flex"; // Hiển thị overlay
+            var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
+            info.style.display = "flex"; // Hiển thị overlay
+        });
+    });
+
+}
+
+
+bindDetailButtons(); // Gọi hàm bindDetailButtons() để gắn kết sự kiện click với các nút chi tiết sản phẩm ban đầu
+
+
+</script>   
