@@ -225,7 +225,6 @@ $(document).ready(function(){
         handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
     });
     function handlePage(page){
-        console.log("Trang "+page);
         var dataContainer = document.getElementById('data-container');
         dataContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -242,7 +241,7 @@ function loadPage(url) {
             var parser = new DOMParser();
             var newDoc = parser.parseFromString(response, 'text/html');
             var newContent = newDoc.querySelector('.food_section');
-            document.querySelector('.food_section').innerHTML = newContent.innerHTML; // Cập nhật nội dung của phần sản phẩm
+            $('.food_section').html(newContent);
             bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
         } else {
             console.error('Request failed with status', xhr.status);
@@ -259,9 +258,7 @@ function bindDetailButtons() {
     var detailButtons = document.querySelectorAll('.detail-button');
     detailButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của nút
             var productIndex = this.getAttribute('data-product-index');
-            // alert(productIndex);    
             var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
             overlay.style.display = "flex"; // Hiển thị overlay
             var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
@@ -271,8 +268,6 @@ function bindDetailButtons() {
 
 }
 
-
 bindDetailButtons(); // Gọi hàm bindDetailButtons() để gắn kết sự kiện click với các nút chi tiết sản phẩm ban đầu
-
 
 </script>   
