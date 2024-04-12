@@ -126,7 +126,7 @@
             if(value){
                 console.log(value)
                 xhr=new XMLHttpRequest();
-                xhr.open('POST','http://localhost/ProjectWeb2/module/xldangnhap.php');
+                xhr.open('POST','./module/xldangnhap.php');
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.send('user_login='+value.user_login+'&password_login='+value.password_login);
                 xhr.onload = function () {
@@ -170,7 +170,7 @@
         onSubmit: (value) =>{
             const data=JSON.stringify(value);
             xhr=new XMLHttpRequest();
-            xhr.open('POST','http://localhost/ProjectWeb2/module/xldangky.php');
+            xhr.open('POST','./module/xldangky.php');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.send('jsonData='+data);
             xhr.onload = function () {
