@@ -18,11 +18,11 @@
                         </select>
                     </div>
                     <div class="item">
-                        <label>Tối thiểu</label>
+                        <label>Giá tối thiểu</label>
                         <input name="minPrice" type="number" min = 0 value = "<?php if(isset($_GET['minPrice'])){echo $_GET['minPrice'];}?>">
                     </div>
                     <div class="item">
-                        <label>Tối đa</label>
+                        <label>Giá tối đa</label>
                         <input name="maxPrice" type="number" min = 0 value = "<?php if(isset($_GET['maxPrice'])){echo $_GET['maxPrice'];} ?>">
                     </div>
                 </form>

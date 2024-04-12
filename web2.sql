@@ -30,6 +30,7 @@ USE `web2`;
 --
 
 CREATE TABLE `account` (
+  `TenND`varchar(10),
   `SĐT` varchar(10) NOT NULL,
   `MaQuyen` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
@@ -41,8 +42,8 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
-('0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin');
+INSERT INTO `account` (`TenND`,`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
+('Admin','0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@');
 
 -- --------------------------------------------------------
 
