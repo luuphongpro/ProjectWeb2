@@ -1,6 +1,6 @@
 <?php 
-    include './controller.php';
-    $conn = new controller;
+    include './connect.php';
+    $conn = new connect;
     $conn->constructor();
     $perPage = 9;
     if(isset($_GET['trang'])){
