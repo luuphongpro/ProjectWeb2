@@ -30,7 +30,11 @@ USE `web2`;
 --
 
 CREATE TABLE `account` (
+<<<<<<< HEAD
+  `TenND`varchar(10),
+=======
   `TenND` varchar(10) DEFAULT NULL,
+>>>>>>> d13f3678a561349edc62139b40e5da168c209067
   `SĐT` varchar(10) NOT NULL,
   `MaQuyen` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
@@ -42,8 +46,13 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
+<<<<<<< HEAD
+INSERT INTO `account` (`TenND`,`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
+('Admin','0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@');
+=======
 INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
 ('Admin', '0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@');
+>>>>>>> d13f3678a561349edc62139b40e5da168c209067
 
 -- --------------------------------------------------------
 

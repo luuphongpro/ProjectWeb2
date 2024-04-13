@@ -27,9 +27,9 @@
                         Quản lý sản phẩm <i class="ti-angle-down"></i>
                     </div>
                     <ul class="menudrop-qlsanpham">
-                        <li class="item-menu"><i class="ti-plus"></i> Thêm sản phẩm</li>
+                        <!-- <li class="item-menu"><i class="ti-plus"></i> Thêm sản phẩm</li>
                         <li class="item-menu"><i class="ti-plus"></i> Sửa sản phẩm</li>
-                        <li class="item-menu"><i class="ti-plus"></i> Xóa sản phẩm</li>
+                        <li class="item-menu"><i class="ti-plus"></i> Xóa sản phẩm</li> -->
                     </ul>
 
                 </div>
@@ -84,6 +84,8 @@
                     <div class="model-content">
                     </div>
                 </div> -->
+                
+
 
             </div>
         </div>
@@ -94,5 +96,6 @@
     <script src="./JS/vadidation.js"></script>
     <script src="./JS/jquery-3.4.1.min.js"></script>
     <script src="./JS/admin.js"></script>
+    <script src="./JS/qlsanpham.js"></script>
 </body>
 </html>

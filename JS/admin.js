@@ -16,12 +16,12 @@ function init(index){
         })
     })
 }
-init(1);
-$("#qlsanpham").click(function(){
-    if(!$(this).hasClass("disabled")){
-        $(".menudrop-qlsanpham").toggle("active")
-    }
-})
+init(0);
+// $("#qlsanpham").click(function(){
+//     if(!$(this).hasClass("disabled")){
+//         $(".menudrop-qlsanpham").toggle("active")
+//     }
+// })
 $("#donhang").click(function(){
     if(!$(this).hasClass("disabled")){
         $(".menudrop-donhang").toggle("active")
