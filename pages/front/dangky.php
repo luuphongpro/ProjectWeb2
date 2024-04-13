@@ -80,15 +80,12 @@
 </div>
 <script src="js/vadidation.js"></script>
 <script>
-    const inputLogin=document.querySelector("#Login");
-    const inputRegister=document.querySelector("#Register");
-    const modalLogin=document.querySelector(".modal_content-login");
-    const modalRegister=document.querySelector(".modal_content-register");
-    const fcloseElemts=document.querySelectorAll('.btn-close');
     $(".user_link").click(function(event) {
-        console.log(event.target)
-        if(!$(event.target).hasClass("option-dn")){
-        $(".modal-login").css("display", "flex");
+        var userlogin=JSON.parse(localStorage.getItem("UseLogin"));
+        if(!userlogin?.flag){
+            if(!$(event.target).hasClass("option-dn")){
+            $(".modal-login").css("display", "flex");
+            }
         }
     });
     $('#Login').click(() =>{

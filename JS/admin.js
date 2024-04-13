@@ -33,3 +33,4 @@ $("#taikhoan").click(function(){
     }
 })
 //Khi show chức năng, phải render vào #right-content trách bị trùng giao diện giữa mọi người
+
