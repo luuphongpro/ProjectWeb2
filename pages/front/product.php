@@ -1,32 +1,32 @@
 <div class="searchBar">
-                <form class="filter">
-                    <div class="item ten">
-                        <label>Tên</label>
-                        <input name="txtTimkiem" value="<?php if(isset($_GET['txtTimkiem'])){echo $_GET['txtTimkiem'];} ?>" type="text">
-                    </div>
-                    <div class="item submit">
-                        <input class="btnSearch" type="submit" name="timkiem">
-                    </div>
-                    <div class="item">
-                        <label>Danh mục</label>
-                        <select name="category">
-                            <option value="">---</option>
-                            <option value="B">Hamburger</option>
-                            <option value="C">Gà</option>
-                            <option value="P">Pizza</option>
-                            <option value="D">Nước</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <label>Giá tối thiểu</label>
-                        <input name="minPrice" type="number" min = 0 value = "<?php if(isset($_GET['minPrice'])){echo $_GET['minPrice'];}?>">
-                    </div>
-                    <div class="item">
-                        <label>Giá tối đa</label>
-                        <input name="maxPrice" type="number" min = 0 value = "<?php if(isset($_GET['maxPrice'])){echo $_GET['maxPrice'];} ?>">
-                    </div>
-                </form>
-            </div> 
+    <form class="filter">
+        <div class="item ten">
+            <label>Tên</label>
+            <input name="txtTimkiem" value="<?php if(isset($_GET['txtTimkiem'])){echo $_GET['txtTimkiem'];} ?>" type="text">
+        </div>
+        <div class="item submit">
+            <input class="btnSearch" type="submit" name="timkiem">
+        </div>
+        <div class="item">
+            <label>Danh mục</label>
+            <select name="category">
+                <option value="">---</option>
+                <option value="B">Hamburger</option>
+                <option value="C">Gà</option>
+                <option value="P">Pizza</option>
+                <option value="D">Nước</option>
+            </select>
+        </div>
+        <div class="item">
+            <label>Giá tối thiểu</label>
+            <input name="minPrice" type="number" min = 0 value = "<?php if(isset($_GET['minPrice'])){echo $_GET['minPrice'];}?>">
+        </div>
+        <div class="item">
+            <label>Giá tối đa</label>
+            <input name="maxPrice" type="number" min = 0 value = "<?php if(isset($_GET['maxPrice'])){echo $_GET['maxPrice'];} ?>">
+        </div>
+    </form>
+</div> 
 <?php
 // Kết nối đến cơ sở dữ liệu
 $servername = "localhost";
@@ -211,7 +211,6 @@ if ($result->num_rows > 0) {
         }
     </style>
 
-<!-- <script src="./JS/jquery-3.7.1.js"></script> -->
 
 <script>
 

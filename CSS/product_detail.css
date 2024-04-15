@@ -57,7 +57,6 @@
     border-radius: 45px;
     gap:50px;
     background-color: #CDCDC0;
-
   }
 
   p {
@@ -75,7 +74,7 @@
   position: absolute;
 	right: 25px;
 	top: 20px;
-	font-size: 200pt;
+	font-size: 40pt;
 	transform: rotate(45deg);
 	background-color: transparent;
 	cursor: pointer;

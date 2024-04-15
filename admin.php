@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="./fonts/themify-icons-font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="./CSS/bootstrap.css">
     <link rel="stylesheet" href="./CSS/admin.css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
     <title>Document</title>
 </head>
 <body>
@@ -84,18 +86,16 @@
                     <div class="model-content">
                     </div>
                 </div> -->
-                
-
-
             </div>
         </div>
     </div>
-    <?php 
+    <?php
         include './pages/front/footer.php';
     ?>
     <script src="./JS/vadidation.js"></script>
     <script src="./JS/jquery-3.4.1.min.js"></script>
     <script src="./JS/admin.js"></script>
     <script src="./JS/qlsanpham.js"></script>
+    <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
 </body>
 </html>
