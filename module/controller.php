@@ -20,9 +20,9 @@ class sanpham{
         return $result;
 
     }
-    function locsanpham($category){
+    function locsanpham($tensp,$category){
         $this->conn -> constructor();
-        $strSQL = "SELECT * FROM product WHERE MaTL = '.$category.' ";
+        $strSQL = "SELECT * FROM product WHERE MaTL LIKE '.$category.' && category LIKE '.$tensp." ;
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;

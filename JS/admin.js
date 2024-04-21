@@ -34,7 +34,7 @@ $("#taikhoan").click(function(){
 })
 //Khi show chức năng, phải render vào #right-content trách bị trùng giao diện giữa mọi người
 
-$("#qlsanpham").click((e) =>{ 
-    $("#right-content").load("./pages/admin/qlsanpham.php",function(){
-    })
-});
+// $("#qlsanpham").click((e) =>{ 
+//     $("#right-content").load("./pages/admin/qlsanpham.php",function(){
+//     })
+// });
