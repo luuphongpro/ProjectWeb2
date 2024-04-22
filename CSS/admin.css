@@ -7,11 +7,12 @@ i {
     display: inline;
 }
 body {
+    /* background-color: #999999; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* width: 80%; */
 }
 #rapper-admin {
-    width: 90%;
+    /* width: 100%; */
     margin-right: auto;
     margin-left: auto;
     /* height: 700px; */

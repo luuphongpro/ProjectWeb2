@@ -13,15 +13,51 @@ class sanpham{
         return $result;
     }
     function timsanpham($id){
+        $this->conn -> constructor();
+        $strSQL = "SELECT * FROM product WHERE MaSP = '.$id.' ";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
 
     }
-    function locsanpham($category){
+    function locsanpham($tensp,$category){
+        $this->conn -> constructor();
+        $strSQL = "SELECT * FROM product WHERE MaTL LIKE '.$category.' && category LIKE '.$tensp." ;
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
 
     }
-    function xoasanpham(){
+    function xoasanpham($id){
+        $this->conn -> constructor();
+        $strSQL = "DELETE FROM product WHERE MaSP = '.$id.' ";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
 
     }
 
+    function suasanpham($id){
+        $this->conn -> constructor();
+        $strSQL = "UPDATE product
+                    VALUE TenSP = ".$id['']." , SoLuongSP = ".$id['']." , GiaSP = ".$id['']." , TTSP = ".$id['']." , IMG = ".$id['']." , categoryID =".$id['']." 
+                     WHERE MaSP = '.$id.' ";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+
+    }
+    function themsanpham($data){
+        $this->conn -> constructor();
+        $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId`)
+                    VALUE ('".$data['masp']."', '".$data['tensp']."', '".$data['soluong']."', '".$data['cost']."', '".$data['ttsp']."', '".$data['img']."', '".$data['theloai']."')  ";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+
+    }
+
+    
 
 }
 class taikhoan{
@@ -44,4 +80,4 @@ class taikhoan{
         return $result;
     }
 }
-?>
+?>;
