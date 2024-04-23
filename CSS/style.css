@@ -923,6 +923,8 @@ a:focus {
   color: #ffffff;
   padding: 75px 0 40px 0;
   text-align: center;
+  font-weight: bold;
+  color: white;
 }
 
 .footer_section h4 {

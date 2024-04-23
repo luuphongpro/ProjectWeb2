@@ -194,7 +194,7 @@ td, th {
     border: 2px solid whitesmoke;
     padding: 16px 5px;
     margin: 20px 0;
-    background-color: whitesmoke; 
+    background-color: #DDBC95; 
 }
 
 #searchBar {
@@ -203,9 +203,25 @@ td, th {
     align-self: flex-end; /* Đặt searchBar sang phía bên phải */
     padding: 20px 5px;
     margin: 20px 0;
-    background-color: whitesmoke; 
+    background-color: #DDBC95; 
 }
-
+#sbm_search{
+    border-radius: 30px;
+    width: 100px;
+    background-color:#B38867;
+}
+#theloaisp{
+    border-radius: 30px;
+    /* width: 200px; */
+    background-color:#B38867;
+}
+#tensp{
+    border-radius: 20px;
+    width: 200px;
+    background-color:#B38867;
+    color: white;
+    padding-left: 10px;
+}
 #searchForm{
     display: flex;
 }

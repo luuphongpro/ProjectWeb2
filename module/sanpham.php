@@ -119,11 +119,11 @@
         ';
                     while($row = $result->fetch_assoc()){
                         echo '
-                            <tr>
+                            <tr  style="color: #222222; font-weight: bold;">
                                 <th scope="row">'.$row['MaSP'].'</th>
                                 <td>'.$row['TenSP'].'</td>
                                 <td><img class= "img" src="./img/'.$row['IMG'].'" alt="Ảnh sản phẩm"></td>
-                                <td style="color: goldenrod;">'.$row['SoLuongSP'].'</td>
+                                <td>'.$row['SoLuongSP'].'</td>
                                 <td>'.$row['GiaSP'].'</td>
                                 <td>'.$row['categoryId'].'</td>
                                 <td style="display:none">'.$row['TTSP'].'</td>
