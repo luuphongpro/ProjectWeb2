@@ -25,7 +25,7 @@
 .info{
     height: 700px;
     width: 1000px;
-    background-color: #fff;
+    background-color: #7FC7D9;
     margin: 50px auto;
     padding: 50px 20px 20px;
     position: relative;
@@ -53,7 +53,7 @@
 .fix_info{
     height: 700px;
     width: 1000px;
-    background-color: #fff;
+    background-color: #7FC7D9;
     margin: 50px auto;
     padding: 50px 20px 20px;
     position: relative;
@@ -122,8 +122,8 @@ td, th {
     display : flex ;
     flex-wrap : wrap;
     border-radius: 7px; 
-    border: 2px solid whitesmoke;
-    background-color: whitesmoke; 
+    border: 2px solid #7FC7D9;
+    background-color: #7FC7D9; 
 }
 
 #add_detail_Product input[type="submit"] {
@@ -133,6 +133,9 @@ td, th {
     bottom: 50px; /* Đặt khoảng cách từ dưới cùng của phần tử cha là 20px */
     left: 50%; /* Đặt trung tâm theo trục ngang */
     transform: translateX(-38%); /* Di chuyển phần tử sang trái 50% của chính nó */
+    background-color: #365486;
+    color: #DCF2F1;
+    font-weight: bold;
 }
 
 
@@ -140,8 +143,8 @@ td, th {
 .textcss{
     display: flex;
     flex-wrap: wrap;
-    border: 2px solid whitesmoke;
-    background-color: whitesmoke; 
+    border: 2px solid #7FC7D9;
+    background-color: #7FC7D9; 
     border-radius: 10px;
 }
 
@@ -158,6 +161,9 @@ td, th {
     position: absolute;
     bottom: 70px; /* Đặt khoảng cách từ dưới cùng của phần tử cha là 20px */
     left: 50%; /* Đặt trung tâm theo trục ngang */
+    background-color: #365486;
+    color: #DCF2F1;
+    font-weight: bold;
     transform: translateX(-38%); /* Di chuyển phần tử sang trái 50% của chính nó */
 }
 
@@ -172,7 +178,9 @@ td, th {
     border-radius: 5px;
 }   
  
-
+#display_old_image, #fix_masp, #fix_theloai, #fix_tensp{
+background-color: #DCF2F1;
+}
 
 
 #add_detail_Product div {
@@ -194,7 +202,7 @@ td, th {
     border: 2px solid whitesmoke;
     padding: 16px 5px;
     margin: 20px 0;
-    background-color: #DDBC95; 
+    background-color: #f5d4ab; 
 }
 
 #searchBar {
@@ -203,22 +211,22 @@ td, th {
     align-self: flex-end; /* Đặt searchBar sang phía bên phải */
     padding: 20px 5px;
     margin: 20px 0;
-    background-color: #DDBC95; 
+    background-color: #f5d4ab; 
 }
 #sbm_search{
     border-radius: 30px;
     width: 100px;
-    background-color:#B38867;
+    background-color:#deb494;
 }
 #theloaisp{
     border-radius: 30px;
     /* width: 200px; */
-    background-color:#B38867;
+    background-color:#deb494 ;
 }
 #tensp{
     border-radius: 20px;
     width: 200px;
-    background-color:#B38867;
+    background-color:#deb494;
     color: white;
     padding-left: 10px;
 }
@@ -237,16 +245,32 @@ td, th {
     height: 140px;
     vertical-align: top;
 }   
+#ttsp_detail,#masp_detail,#tensp_detail,#soluong_detail,#cost_detail,#img_detail,#theloai_detail{
+    background-color: #DCF2F1;
+}
 #fix_ttsp{
     width: 300px;
     height: 140px;
     vertical-align: top;
+    background-color: #DCF2F1;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    padding: 10px;
 }
 
+#fix_ttsp::-webkit-scrollbar { 
+    width: 0 !important;
+    display: none; 
+  }
 #fix_tensp{
     width: 260px;
+    background-color: #DCF2F1;
+
 }
 
 #fix_cost{
     width: 260px;
+    background-color: #DCF2F1;
+
 }
