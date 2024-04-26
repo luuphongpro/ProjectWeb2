@@ -22,7 +22,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color: #ecd8ad;">
     <?php 
         include './pages/front/head_slider.php';
         include './pages/front/content.php';
