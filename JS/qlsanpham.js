@@ -110,10 +110,10 @@ function validateForm() {
     }
 
     // Kiểm tra các trường khác không được bỏ trống
-    if (masp.trim() === '') {
-        err_masp.style.display = "block";
-        hasError = true;
-    }
+    // if (masp.trim() === '') {
+    //     err_masp.style.display = "block";
+    //     hasError = true;
+    // }
     if (tensp.trim() === '') {
         err_tensp.style.display = "block";
         hasError = true;

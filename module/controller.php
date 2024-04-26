@@ -22,20 +22,20 @@ class sanpham{
     }
     function locsanpham($tensp,$category){
         $this->conn -> constructor();
-        $strSQL = "SELECT * FROM product WHERE MaTL LIKE '.$category.' && category LIKE '.$tensp." ;
+        $strSQL = "SELECT * FROM product WHERE MaTL LIKE '.$category.' && category LIKE '.$tensp.'" ;
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
 
     }
     function xoasanpham($id){
-        $this->conn -> constructor();
-        $strSQL = "DELETE FROM product WHERE MaSP = '.$id.' ";
-        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->constructor();
+        $strSQL = "DELETE FROM product WHERE MaSP = '" . $id . "'";
+        $result = $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
-        // return $result;
-
+        return $result;
     }
+    
 
     function suasanpham($data){
         $this->conn->constructor();
@@ -62,6 +62,17 @@ class sanpham{
         return $result;
 
     }
+
+    function countProductsByCategory($category){
+        $this->conn->constructor();
+        $strSQL = "SELECT COUNT(*) AS count FROM product WHERE categoryId = ".$category." ";
+        $result = $this->conn->excuteSQL($strSQL);
+        $row = mysqli_fetch_assoc($result);
+        $count = $row['count'];
+        $this->conn->disconnect();
+        return $count;         
+    }
+    
 
     
 

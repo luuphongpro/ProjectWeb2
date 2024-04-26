@@ -32,7 +32,7 @@
                             <form id = "add_detail_Product" method = "get" action ="./module/process_product_form.php" onsubmit = "return validateForm()">
                                 <div>
                                     <label for ="masp_detail"><b>Mã sản phẩm: </b></label><br>
-                                    <input id = "masp_detail" name = "masp_detail" type ="text">
+                                    <input id = "masp_detail" name = "masp_detail" type ="text" readonly>
                                     <p id = "err_masp" style ="display : none ; color : red" >Mã sản phẩm không được bỏ trống</p>
                                 </div>
                                 <div>
@@ -60,8 +60,8 @@
                                     <select id = "theloai_detail" name = "theloai_detail">
                                         <option value = 001 >Hamburger</option>
                                         <option value = 002 selected>Pizza</option>
-                                        <option value = 003>Chicken</option>
-                                        <option value = 004>Drink</option>
+                                        <option value = 003 >Chicken</option>
+                                        <option value = 004 >Drink</option>
                                     </select>
                                 </div>
                                 <div>
@@ -142,7 +142,12 @@
                                         <a class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
                                     </div>
                                     <div>
-                                        <a href = "./module/process_product_form.php?deteteMaSP='.$row['MaSP'].'"><i class="fa-solid fa-trash"></i> </a>  
+                                        <form class="deleteForm" action="./module/process_product_form.php" method="GET">
+                                            <input type="hidden" name="deleteMaSP" id="deleteMaSP" value="'.$row['MaSP'].'">
+                                            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                                                <a><i class="fa-solid fa-trash"></i></a>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr> ';
@@ -226,4 +231,14 @@
         console.log("submit success");
         return validateFixForm();
     };
+    var deleteForms = document.getElementsByClassName('deleteForm');
+    for (var i = 0; i < deleteForms.length; i++) {
+        deleteForms[i].addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var confirmation = confirm("Are you sure you want to delete this product?"); // Ask for confirmation
+            if (confirmation) {
+                this.submit(); // If confirmed, submit the form
+            }
+        });
+    }
 </script>
