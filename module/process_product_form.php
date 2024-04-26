@@ -204,11 +204,30 @@
     }
 
     if(isset($_GET["btn_fix"])){
+        echo "đã vào";  
+        $masp = $_GET["fix_masp"];
         $tensp = $_GET["fix_tensp"];
         $soluong = $_GET["fix_soluong"];
-        $img = $_GET["img_detail"];
+        $img = $_GET["fix_img"];
         $cost = $_GET["fix_cost"];
         $theloai = $_GET["fix_theloai"];
         $ttsp = $_GET["fix_ttsp"];
+
+        $data = array(
+            "masp" => $masp,
+            "tensp" => $tensp,
+            "soluong" => $soluong,
+            "img" => $img,
+            "cost" => $cost,
+            "theloai" => $theloai,
+            "ttsp" => $ttsp
+        );
+        $result = $sanpham->suasanpham($data);
+        if ($result) {
+            echo "Thêm sản phẩm thành công!";
+        } else {
+            echo "Thêm sản phẩm thất bại!";
+        }
     }
+    
 ?>;

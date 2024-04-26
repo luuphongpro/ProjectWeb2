@@ -8,7 +8,7 @@ class connect{
         }
     }
     function excuteSQL($sql){
-        return $this->conn->query($sql);
+        return $this->conn->query($sql);    
     }
     function modifySQL($sql){
         $result=$this->conn->query($sql);

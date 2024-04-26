@@ -33,20 +33,26 @@ class sanpham{
         $strSQL = "DELETE FROM product WHERE MaSP = '.$id.' ";
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
-        return $result;
+        // return $result;
 
     }
 
-    function suasanpham($id){
-        $this->conn -> constructor();
-        $strSQL = "UPDATE product
-                    VALUE TenSP = ".$id['']." , SoLuongSP = ".$id['']." , GiaSP = ".$id['']." , TTSP = ".$id['']." , IMG = ".$id['']." , categoryID =".$id['']." 
-                     WHERE MaSP = '.$id.' ";
-        $result = $this->conn-> excuteSQL($strSQL);
+    function suasanpham($data){
+        $this->conn->constructor();
+        $strSQL = "UPDATE product 
+                   SET TenSP = '".$data['tensp']."', 
+                       SoLuongSP = ".$data['soluong'].", 
+                       GiaSP = ".$data['cost'].", 
+                       TTSP = '".$data['ttsp']."', 
+                       IMG = '".$data['img']."', 
+                       categoryID = ".$data['theloai']." 
+                   WHERE MaSP = ".$data['masp'];
+        $result = $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
-
     }
+    
+
     function themsanpham($data){
         $this->conn -> constructor();
         $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId`)
@@ -80,4 +86,4 @@ class taikhoan{
         return $result;
     }
 }
-?>;
+?>
