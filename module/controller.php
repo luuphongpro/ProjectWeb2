@@ -14,7 +14,7 @@ class sanpham{
     }
     function timsanpham($id){
         $this->conn -> constructor();
-        $strSQL = "SELECT * FROM product WHERE MaSP = '.$id.' ";
+        $strSQL = 'SELECT * FROM product WHERE MaSP = "'.$id.'" ';
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
@@ -57,8 +57,6 @@ class sanpham{
 
     }
 
-    
-
 }
 class taikhoan{
     private $conn;
@@ -80,4 +78,35 @@ class taikhoan{
         return $result;
     }
 }
-?>;
+class donhang{
+    private $conn;
+    private $madonhang;
+    function __construct(){
+        $this->conn=new connect;
+    }
+    function setHoadon($data) {
+        $this->conn->constructor();
+        $strSQL="SELECT COUNT(*) as total FROM hoadon;";
+        $result=$this->conn->excuteSQL($strSQL);
+        $row=mysqli_fetch_assoc($result);
+        $this->madonhang=$row['total']+1;
+        $strSQL = "INSERT INTO `hoadon` (`MaHoadon`, `CreTime`, `TTHoaDon`, `TongTien`, `MaUser`) 
+        VALUES ('" . ($this->madonhang) . "', NOW(), '0', '" . $data->tong . "','" . $data->SĐT . "')";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+    function setChiTietDonHang($data){
+        $this->conn->constructor();
+        $strSQL="SELECT COUNT(*) as total FROM chitiethoadon;";
+        $result=$this->conn->excuteSQL($strSQL);
+        $row=mysqli_fetch_assoc($result);
+        $strSQL="INSERT INTO `chitiethoadon`(`MaChiTietHD`,`SoLuong`, `DonGia`, `MaHoadon`, `MaSP`) 
+        VALUES ('".($row['total']+1)."','".$data->soluong."','".$data->gia."','".($this->madonhang)."','".$data->MaSP."')";
+        $this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+}
+?>

@@ -74,6 +74,7 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 
 CREATE TABLE `chitiethoadon` (
   `MaHoadon` varchar(10) NOT NULL,
+  `MaChiTietHD` varchar(10) NOT NULL,
   `MaSP` varchar(10) NOT NULL,
   `SoLuong` int(100) NOT NULL,
   `DonGia` int(10) NOT NULL

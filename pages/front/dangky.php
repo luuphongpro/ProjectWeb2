@@ -25,7 +25,7 @@
                     </div>
                     <div class="modal_content-btn-box">
                         <button class="btn-form btn-login btn-default" id="btn-login"><span>Đăng nhập</span></button>
-                        <button type="reset" class="btn-form btn-close"><span>Bỏ qua</span></button>
+                        <button type="reset" class="btn-form close_modal"><span>Bỏ qua</span></button>
                         <span class="error-login">Số điện thoại hoặc Mật khẩu sai!</span>
                         <!-- <a href="index.php?chon=home"></a> -->
                     </div>
@@ -62,7 +62,7 @@
                     </div>
                       <div class="modal_content-btn-box">
                           <button type="submit" class="btn-login btn-form btn-default" id="btn-register"><span>Đăng ký</span></button>
-                          <button type="reset" class="btn-form btn-close">Bỏ qua</button>
+                          <button type="reset" class="btn-form close_modal">Bỏ qua</button>
                           <span class="error-login">Tài khoản đã tồn tại</span>
                           <!-- <span><a href="index.php?chon=home"></a></span> -->
                       </div>
@@ -79,112 +79,4 @@
         </div>
 </div>
 <script src="js/vadidation.js"></script>
-<script>
-    $(".user_link").click(function(event) {
-        var userlogin=JSON.parse(localStorage.getItem("UseLogin"));
-        if(!userlogin?.flag){
-            if(!$(event.target).hasClass("option-dn")){
-            $(".modal-login").css("display", "flex");
-            }
-        }
-    });
-    $('#Login').click(() =>{
-        $(".modal-login").css("display","flex")
-        $('#Register').addClass('modal_content-header-item-default');
-        $('#Login').removeClass('modal_content-header-item-default');
-        $('.modal_content-login').css("display","block");
-        $(".modal_content-register").css("display","none");
-    })
-    $("#Register").click(function(){
-        $(".modal-login").css("display","flex")
-        $("#Login").addClass("modal_content-header-item-default")
-        $('#Register').removeClass('modal_content-header-item-default');
-        $(".modal_content-register").css("display","block");
-        $('.modal_content-login').css("display","none");
-    })
-    $(".btn-close").click(() =>{
-        $(".modal-login").css("display","none")
-    })
-    //Bỏ thông báo sai đăng nhập
-    $('input').on("input",() =>{
-        $(".error-login").hide()
-    })
-    Validator({
-        form:'#form-1',
-        rules:[
-        Validator.isRequired('#user-login'),
-        Validator.isSDT('#user-login'),
-        Validator.isRequired('#password-login'),
-        Validator.isRequired('#password-login'),
-        Validator.isMinLength('#password-login',6),
-        ],
-        errorElement:'.form-message',
-        onSubmit: (value) =>{
-            if(value){
-                console.log(value)
-                xhr=new XMLHttpRequest();
-                xhr.open('POST','./module/xldangnhap.php');
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send('user_login='+value.user_login+'&password_login='+value.password_login);
-                xhr.onload = function () {
-                //Đợi và xử lý phản hồi của server
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    var response=JSON.parse(xhr.responseText);
-                    if(response.flag){
-                        $(".modal-login").css("display","flex")
-                        window.location.href='index.php?chon&id=home';
-                        localStorage.setItem('UseLogin',JSON.stringify(response));
-                    }
-                    else {
-                        $(".error-login").show()
-                    }  
-                } 
-                else {
-                    console.error('Lỗi gửi dữ liệu:', xhr.statusText);
-                }
-                }
-            }
-            else {
-                console.log("loi cmmm")
-            }
-        }
-    })
-    Validator({
-        form:'#form-2',
-        rules:[
-        Validator.isRequired('#user1-register'),
-        Validator.isSDT('#user1-register'),
-        Validator.isRequired('#password-register'),
-        Validator.isMinLength('#password-register',6),
-        Validator.isConfirmed('#confirm_password',function(){
-            return $('#password-register').val();
-            
-        }),
-        Validator.isRequired('#username-register'),
-        Validator.isMaxLength('#username-register',10),
-        ],
-        errorElement:'.form-message',
-        onSubmit: (value) =>{
-            const data=JSON.stringify(value);
-            xhr=new XMLHttpRequest();
-            xhr.open('POST','./module/xldangky.php');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send('jsonData='+data);
-            xhr.onload = function () {
-            //Đợi và xử lý phản hồi của server
-            if (xhr.status >= 200 && xhr.status < 300) {
-                if(xhr.responseText=='1'){
-                    $(".modal-login").css("display","none")
-                    alert("Tạo tài khoản thành công, vui lòng đăng nhập để tiếp tục.");
-                    $("#form-2").reset()
-                }
-                else {
-                    $(".error-login").show()
-                }  
-            } else {
-                console.error('Lỗi gửi dữ liệu:', xhr.statusText);
-            }
-            };
-        }
-    })
-</script>
+

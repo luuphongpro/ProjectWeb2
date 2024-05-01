@@ -15,6 +15,8 @@
             if($row['Password']==$passpwd){
                 $data['flag']=true;
                 $data['name']=$row['TenND'];
+                $data['quyen']=$row['MaQuyen'];
+                $data['SĐT']=$row['SĐT'];
             }
         }
     echo json_encode($data);

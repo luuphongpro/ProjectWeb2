@@ -15,7 +15,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav  mx-auto ">
+            <ul class="navbar-nav ml-5">
               <li class="nav-item active">
                 <a class="nav-link" href="index.php?chon&id=home" id="header_home">Trang chủ <span class="sr-only">(current)</span></a>
               </li>
@@ -31,17 +31,13 @@
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <div class="ten-dn"></div>
                 <div class="user-dn">
-                  <ul class="option-dn">
-                    <li><a class="option-item" href="xxx">
-                    <i class="fa fa-user"></i> Trang cá nhân</a></li>
-                    <li><a class="option-item" href="xxx">
-                    <i class="fa fa-book"></i> Lịch sử đơn</a></li>
-                    <li><a class="user-logout option-item" href="index.php?chon&id=home"><i class="fa fa-sign-out"></i> Thoát</a></li>
+                  <ul class="option-dn mb-0">
+                    
                   </ul>
                 </div>
               </div>
-              <a class="cart_link" href="#">
-              <i class="fa-solid fa-cart-shopping" style="color:#ffff"></i>
+              <a class="cart_link" href="index.php?chon&id=giohang">
+              <i class="fa-solid fa-cart-shopping" style="color:#ffff" ></i>
               </a>
               <form class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">

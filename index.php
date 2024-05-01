@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="./CSS/responsive.css">
     <link rel="stylesheet" href="./CSS/product_detail.css">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <!-- jQuery library -->
-    <script src="./JS/jquery-3.4.1.min.js"></script>
     <!-- Popper JS -->
+    <script src="JS/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./CSS/main.css">
+
 </head>
 <body>
     <?php 
@@ -36,8 +38,9 @@
     ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
-    <script src="JS/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="JS/cutom.js"></script>
     <script src="JS/product_detail.js"></script>
+    <script src="JS/dangnhap.js"></script>
 </body>
 </html>

@@ -1,8 +1,3 @@
-
-
-
-
-
 <?php
     include './controller.php';
     $sanpham = new sanpham;
