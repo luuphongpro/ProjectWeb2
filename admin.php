@@ -71,7 +71,13 @@
                         <li class="item-menu"><i class="ti-plus"></i> Xóa tài khoản</li>
                     </ul>
                 </div>
-            </div>
+            <div class="container">
+                    <div class="item-container" id="dstaikhoan">
+                        Danh sách tài khoản<i class="ti-angle-down"></i>
+                    </div>
+                    
+                </div>
+                </div>
             <div id="right-content">
                 <!-- Cần làm ở đây -->
                 <!-- Có thể dùng model có top-menu bên dưới -->
@@ -96,6 +102,7 @@
     <script src="./JS/jquery-3.4.1.min.js"></script>
     <script src="./JS/admin.js"></script>
     <script src="./JS/qlsanpham.js"></script>
+    <script src="./JS/member.js"></script>
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
 </body>
 </html>
