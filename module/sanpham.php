@@ -1,11 +1,27 @@
 <?php
     include './controller.php';
     $sanpham = new sanpham;
-    $result = $sanpham->dssanpham();
+    if(isset($_GET['btn_Search'])){
+        echo "đã vào nhưng sao không chạy";
+
+        if(empty($_GET["tensp"])){
+            $tensp = "";
+        }else{
+            $tensp = $_GET["tensp"];
+        }
+        if(empty($_GET["theloai"])){
+            $theloai = "";
+        }else{
+            $theloai = $_GET["theloai"];
+        }
+        $result = $sanpham->locsanpham($tensp,$theloai);
+    }else{
+        $result = $sanpham->dssanpham();
+    }
 
     if($result->num_rows > 0){
 
-        echo '  
+        echo '
             <section id="quanlisp">
 
                 <div class="overlay">
@@ -16,7 +32,7 @@
                             <form id = "add_detail_Product" method = "get" action ="./module/process_product_form.php" onsubmit = "return validateForm()">
                                 <div>
                                     <label for ="masp_detail"><b>Mã sản phẩm: </b></label><br>
-                                    <input id = "masp_detail" name = "masp_detail" type ="text">
+                                    <input id = "masp_detail" name = "masp_detail" type ="text" readonly>
                                     <p id = "err_masp" style ="display : none ; color : red" >Mã sản phẩm không được bỏ trống</p>
                                 </div>
                                 <div>
@@ -44,8 +60,8 @@
                                     <select id = "theloai_detail" name = "theloai_detail">
                                         <option value = 001 >Hamburger</option>
                                         <option value = 002 selected>Pizza</option>
-                                        <option value = 003>Chicken</option>
-                                        <option value = 004>Drink</option>
+                                        <option value = 003 >Chicken</option>
+                                        <option value = 004 >Drink</option>
                                     </select>
                                 </div>
                                 <div>
@@ -76,7 +92,7 @@
 
 
                     <div id ="searchBar">
-                        <form id = "searchForm" method = "get" action = "./module/process_product_form.php">
+                        <form id = "searchForm" method = "get" action = "admin.php">
                             <div id = "nameSP">
                                 <label for ="tensp"><b>Tên sản phẩm: </b></label>
                                 <input type= "text" id="tensp" name = "tensp" >
@@ -98,7 +114,7 @@
                 </div>
 
                 <div>
-                    <table class="table table-bordered" style="text-align: center">
+                    <table class="table table-bordered" style="text-align: center;">
                         <thead>
                             <tr>
                                 <th scope="col">Mã Sản Phẩm</th>
@@ -106,99 +122,101 @@
                                 <th scope="col">Ảnh</th>
                                 <th scope="col">Số Lượng</th>
                                 <th scope="col">Giá Tiền</th>
-                                <th scope="col">Thể Loại</th>
                                 <th scope="col">Tùy Chỉnh</th>
                             </tr>
                         </thead>
                         <tbody>
         ';
                     while($row = $result->fetch_assoc()){
-                        $productIndex = 0;
                         echo '
-                            <tr>
+                            <tr  style="color: #222222; font-weight: bold;">
                                 <th scope="row">'.$row['MaSP'].'</th>
                                 <td>'.$row['TenSP'].'</td>
                                 <td><img class= "img" src="./img/'.$row['IMG'].'" alt="Ảnh sản phẩm"></td>
-                                <td style="color: goldenrod;">'.$row['SoLuongSP'].'</td>
+                                <td>'.$row['SoLuongSP'].'</td>
                                 <td>'.$row['GiaSP'].'</td>
-                                <td>'.$row['categoryId'].'</td>
+                                <td style="display:none">'.$row['categoryId'].'</td>
+                                <td style="display:none">'.$row['TTSP'].'</td>
                                 <td class = "custom-icons">
                                     <div>
-                                        <a class= "fix_product_detail" product_index = '.$productIndex.' ><i class="fa-solid fa-wrench"></i> </a>
+                                        <a class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
                                     </div>
                                     <div>
-                                        <a product_index = '.$productIndex.' href = "./module/process_product_form.php?deteteMaSP='.$row['MaSP'].'"><i class="fa-solid fa-trash"></i> </a>  
+                                        <form class="deleteForm" action="./module/process_product_form.php" method="GET">
+                                            <input type="hidden" name="deleteMaSP" id="deleteMaSP" value="'.$row['MaSP'].'">
+                                            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                                                <a><i class="fa-solid fa-trash"></i></a>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr> ';
-                        echo '
-                            <div class="fix_overlay" product_index = '.$productIndex.' >
-                                <div class="fix_info" product_index = '.$productIndex.' >
-                                    <button type="button" class="close" onClick="closeFixProductInfo()">x</button>
-                                    <h2 style="font-family: \'Roboto Mono\', monospace; display:flex ; justify-content: center;">Sửa Sản Phẩm</h2>
-                                    <form id = "fix_detail_Product" method = "get" action ="./process_product_form.php">
-                                        <div class ="textcss">
-                                            <div>
-                                                <label for ="fix_masp"><b>Mã sản phẩm: </b></label><br>
-                                                <input id = "fix_masp" name = "fix_masp" type ="text" value="'.$row['MaSP'].'" readonly>
-                                            </div>
-                                            <div>
-                                                <label for ="fix_tensp"><b>Tên sản phẩm: </b></label><br>
-                                                <input id ="fix_tensp" name = "fix_tensp" type ="text" value="'.$row['TenSP'].'">
-                                                <p id ="err_fix_tensp" style ="display : none ; color : red ; white-space: nowrap;" >Tên sản phẩm không được bỏ trống</p>
-                                            </div>  
-                                            <div>
-                                                <label for = "fix_img"><b>Ảnh: </b></label><br>
-                                                <input id="fix_img" name = "fix_img" type="file" accept="image/*" onchange ="displayNewImage(this)" >
-                                            </div>
-                                            <div>
-                                                <label for ="fix_soluong"><b>Số lượng: </b></label><br>
-                                                <input id = "fix_soluong" name = "fix_soluong" type ="text" value="'.$row['SoLuongSP'].'">
-                                                <p id ="err_fix_soluong" style ="display : none ; color : red; white-space: nowrap;">Không được bỏ trống và nội dung phải là số !!!</p>
-
-                                            </div>
-                                            <div>
-                                                <label for ="fix_cost"><b>Giá tiền: </b></label><br>
-                                                <input id ="fix_cost" name = "fix_cost" type ="text" value="'.$row['GiaSP'].'">
-                                                <p id = "err_fix_giatien" style ="display : none ; color : red ; white-space: nowrap;">Không được bỏ trống và nội dung phải là số !!!</p>
-                                            </div>
-                                            <div>
-                                                <label><b>Thể loại: </b></label><br>
-                                                <select id = "fix_theloai" name = "fix_theloai">
-                                                    <option value="001" '.($row['categoryId'] == '001' ? 'selected' : ":" ).' >Hamburger</option>
-                                                    <option value="002" '.($row['categoryId'] == '002' ? 'selected' : ":" ).'>Pizza</option>
-                                                    <option value="003" '.($row['categoryId'] == '003' ? 'selected' : ":" ).'>Chicken</option>
-                                                    <option value="004" '.($row['categoryId'] == '004' ? 'selected' : ":" ).'>Drink</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label for= "fix_ttsp"><b>Thông tin chi tiết: </b></label><br>
-                                                <textarea id ="fix_ttsp" name = "fix_ttsp" rows="10" cols="50" value="">'.$row['TTSP'].'</textarea>
-                                                <p id="err_fix_ttsp" style ="display : none ; color : red">Nội dung không được bỏ trống</p>
-
-                                            </div>
-                                            <div class="display_img">
-                                                <label><b>Hình ảnh cũ: </b></label><br>
-                                                <img src="./img/'.$row['IMG'].'" alt="Hình ảnh cũ" style="max-width: 240px; max-height: 140px;" name = "display_old_image">
-                                            </div>
-                                            <div class = "display_img">
-                                                <label><b>Hình ảnh mới: </b></label><br>
-                                                <input id ="display_new_image" name = "display_new_image" type ="image" value ="" style="max-width: 240px; max-height: 140px;">
-                                            </div>
-                                        </div>
-                                        <input class="btn_fix" type="submit" value = "Sửa sản phẩm" name="btn_fix">
-                                    </form>
-                                </div>
-                            </div>
-                        ';
-                    $productIndex++;   
                     }
-
+                    
         echo '       </tbody>
                     </table>
                 </div>
+
+                <div class="fix_overlay" >
+                    <div class="fix_info">
+                        <button type="button" class="close" onClick="closeFixProductInfo()">x</button>
+                        <h2 style="font-family: \'Roboto Mono\', monospace; display:flex ; justify-content: center;">Sửa Sản Phẩm</h2>
+                        <form id = "fix_detail_Product" method = "get" action ="./module/process_product_form.php">
+                            <div class ="textcss">
+                                <div>
+                                    <label for ="fix_masp"><b>Mã sản phẩm: </b></label><br>
+                                    <input id = "fix_masp" name = "fix_masp" type ="text" value="" readonly>
+                                </div>
+                                <div>
+                                    <label for ="fix_tensp"><b>Tên sản phẩm: </b></label><br>
+                                    <input id ="fix_tensp" name = "fix_tensp" type ="text" value="">
+                                    <p id ="err_fix_tensp" style ="display : none ; color : red ; white-space: nowrap;" >Tên sản phẩm không được bỏ trống</p>
+                                </div>  
+                                <div>
+                                    <label for = "fix_img"><b>Ảnh: </b></label><br>
+                                    <input id="fix_img" name = "fix_img" type="file" accept="image/*" onchange ="displayNewImage(this)" >
+                                </div>
+                                <div>
+                                    <label for ="fix_soluong"><b>Số lượng: </b></label><br>
+                                    <input id = "fix_soluong" name = "fix_soluong" type ="text" value="">
+                                    <p id ="err_fix_soluong" style ="display : none ; color : red; white-space: nowrap;">Không được bỏ trống và nội dung phải là số !!!</p>
+
+                                </div>
+                                <div>
+                                    <label for ="fix_cost"><b>Giá tiền: </b></label><br>
+                                    <input id ="fix_cost" name = "fix_cost" type ="text" value="">
+                                    <p id = "err_fix_giatien" style ="display : none ; color : red ; white-space: nowrap;">Không được bỏ trống và nội dung phải là số !!!</p>
+                                </div>
+                                <div>
+                                    <label><b>Thể loại: </b></label><br>
+                                    <select id="fix_theloai" name="fix_theloai">
+                                        <option value="001">Hamburger</option>
+                                        <option value="002">Pizza</option>
+                                        <option value="003">Chicken</option>
+                                        <option value="004">Drink</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for= "fix_ttsp"><b>Thông tin chi tiết: </b></label><br>
+                                    <textarea id ="fix_ttsp" name = "fix_ttsp" rows="10" cols="50" value=""></textarea>
+                                    <p id="err_fix_ttsp" style ="display : none ; color : red">Nội dung không được bỏ trống</p>
+                                </div>
+                                <div class="display_img">
+                                    <label><b>Hình ảnh cũ: </b></label><br>
+                                    <img id="display_old_image" alt="Hình ảnh cũ" src="" style="max-width: 240px; max-height: 140px;" name = "display_old_image">
+                                </div>
+                                <div class = "display_img">
+                                    <label><b>Hình ảnh mới: </b></label><br>
+                                    <input id ="display_new_image" name = "display_new_image" type ="image" value ="" style="max-width: 240px; max-height: 140px;">
+                                </div>
+                            </div>
+                            <input id="btn_fix" class="btn_fix" type="submit" value = "Sửa sản phẩm" name="btn_fix">
+                        </form>
+                    </div>
+                </div>
             </section>
         ';
+
     }
 ?>
 
@@ -209,39 +227,18 @@
 <link rel="stylesheet" href="./CSS/product_manager.css">
 <script src="./JS/qlsanpham.js"></script>
 <script>
-    function displayImage(input) {
-        // Kiểm tra xem có tệp nào đã được chọn hay không
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                // Hiển thị hình ảnh trong phần tử <input type="image">
-                document.getElementById('display_image').src = e.target.result;
-            };
-
-            // Đọc dữ liệu của tệp ảnh đã chọn
-            reader.readAsDataURL(input.files[0]);
-        }
+    document.getElementById("fix_detail_Product").onsubmit = function() {
+        console.log("submit success");
+        return validateFixForm();
+    };
+    var deleteForms = document.getElementsByClassName('deleteForm');
+    for (var i = 0; i < deleteForms.length; i++) {
+        deleteForms[i].addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var confirmation = confirm("Are you sure you want to delete this product?"); // Ask for confirmation
+            if (confirmation) {
+                this.submit(); // If confirmed, submit the form
+            }
+        });
     }
-    function displayNewImage(input) {
-        // Kiểm tra xem có tệp nào đã được chọn hay không
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                // Hiển thị hình ảnh trong phần tử <input type="image">
-                document.getElementById('display_new_image').src = e.target.result;
-            };
-
-            // Đọc dữ liệu của tệp ảnh đã chọn
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    
-
-    // document.getElementById("fix_detail_Product").onsubmit = function() {
-    //     console.log("submit success");
-    //     return validateFixForm();
-    // };
-
 </script>

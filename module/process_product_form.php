@@ -5,15 +5,41 @@
 
     if (isset($_GET['btn_add'])) {
         echo "đã vào";
-
-        $masp = $_GET["masp_detail"];
+    
         $tensp = $_GET["tensp_detail"];
         $soluong = $_GET["soluong_detail"];
         $img = $_GET["img_detail"];
         $cost = $_GET["cost_detail"];
         $theloai = $_GET["theloai_detail"];
         $ttsp = $_GET["ttsp_detail"];
-
+    
+        // Get the count of products by category
+        $count = $sanpham->countProductsByCategory($theloai);
+    
+        // Generate product ID based on category
+        switch ($theloai) {
+            case "001":
+                $prefix = "B";
+                break;
+            case "002":
+                $prefix = "P";
+                break;
+            case "003":
+                $prefix = "C";
+                break;
+            case "004":
+                $prefix = "D";
+                break;
+            default:
+                $prefix = "X"; // Default prefix if category is not recognized
+        }
+    
+        // Format the count with leading zeros
+        $formattedCount = str_pad($count + 1, 3, "0", STR_PAD_LEFT);
+    
+        // Combine prefix and count to generate product ID
+        $masp = $prefix . $formattedCount;
+    
         $data = array(
             "masp" => $masp,
             "tensp" => $tensp,
@@ -23,16 +49,16 @@
             "theloai" => $theloai,
             "ttsp" => $ttsp
         );
-
+    
         $result = $sanpham->themsanpham($data);
-
+    
         if ($result) {
             echo "Thêm sản phẩm thành công!";
         } else {
             echo "Thêm sản phẩm thất bại!";
         }
     }
-
+    
     if(isset($_GET['btn_Search'])){
         echo "đã vào nhưng sao không chạy";
 
@@ -107,9 +133,6 @@
                                         <input type="submit" value = "Thêm sản phẩm" name = "btn_add">
                                     </form>
                                 </div>
-                                
-    
-    
                             </div>
                         </div>
                     </div>
@@ -190,10 +213,8 @@
     if(isset($_GET['deleteMaSP'])){
         echo "đã vào";
         $masp = $_GET['deleteMaSP'];
+        echo "$masp";
 
-        include "./controller.php";
-
-        $sanpham = new sanpham;
 
         $result = $sanpham->xoasanpham($masp);
         if ($result) {
@@ -204,11 +225,32 @@
     }
 
     if(isset($_GET["btn_fix"])){
+        echo "đã vào";  
+        $masp = $_GET["fix_masp"];
         $tensp = $_GET["fix_tensp"];
         $soluong = $_GET["fix_soluong"];
-        $img = $_GET["img_detail"];
+        $img = $_GET["fix_img"];
         $cost = $_GET["fix_cost"];
         $theloai = $_GET["fix_theloai"];
         $ttsp = $_GET["fix_ttsp"];
+
+        $data = array(
+            "masp" => $masp,
+            "tensp" => $tensp,
+            "soluong" => $soluong,
+            "img" => $img,
+            "cost" => $cost,
+            "theloai" => $theloai,
+            "ttsp" => $ttsp
+        );
+
+
+        $result = $sanpham->suasanpham($data);
+        if ($result) {
+            echo "Thêm sản phẩm thành công!";
+        } else {
+            echo "Thêm sản phẩm thất bại!";
+        }
     }
+    
 ?>;

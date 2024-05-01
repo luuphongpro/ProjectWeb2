@@ -5,8 +5,8 @@ $("#qlsanpham").click((e) =>{
     })
 });
 
-
-document.querySelector('.add_product_detail').addEventListener('click', function() {
+$(".add_product_detail").click(function (e) { 
+    e.preventDefault();
     var overlay = document.querySelector('.overlay');
     var info = document.querySelector('.info');
     
@@ -20,6 +20,7 @@ document.querySelector('.add_product_detail').addEventListener('click', function
 });
 
 
+
 function closeAddProductInfo() {
     var overlay = document.querySelector('.overlay');
     var info = document.querySelector('.info');
@@ -28,41 +29,50 @@ function closeAddProductInfo() {
 }
 
 
-document.querySelectorAll('.fix_product_detail').forEach(function(button, productIndex) {
-    button.addEventListener('click', function() {
-        var fix_overlay = document.querySelectorAll('.fix_overlay');
-        var fix_info = document.querySelectorAll('.fix_info');
+
+document.querySelectorAll('.fix_product_detail').forEach(function(element, index) {
+    element.addEventListener('click', function() {
+        console.log("Button clicked");
+        // Lấy chỉ số sản phẩm từ thuộc tính product_index của nút Sửa được nhấn
+        var productIndex = index;
         
-        fix_overlay.forEach(function(fix_overlay, index) {
-            if (index === productIndex) {
-                fix_overlay.style.display = 'flex';
-            } else {
-                fix_overlay.style.display = 'none';
-            }
-        });
-        
-        fix_info.forEach(function(fix_info, index) {
-            if (index === productIndex) {
-                fix_info.style.display = 'block';
-            } else {
-                fix_info.style.display = 'none';
-            }
-        });
+        // Lấy thông tin của sản phẩm tương ứng với chỉ số này
+        var productRow = document.querySelectorAll('#quanlisp table tbody tr')[productIndex];
+
+        // Lấy các thông tin cần thiết từ hàng sản phẩm
+        var masp = productRow.querySelector('th').innerText;
+        var tensp = productRow.querySelector('td:nth-child(2)').innerText;
+        var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
+        var soluong = productRow.querySelector('td:nth-child(4)').innerText;
+        var giatien = productRow.querySelector('td:nth-child(5)').innerText;
+        var theloai = productRow.querySelector('td:nth-child(6)').innerText;
+        console.log(theloai);
+        var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
+
+        var relativePath = imgSrc.replace("http://localhost/DoAn/ProjectWeb2/", "");
+
+        document.getElementById('fix_masp').value = masp;
+        document.getElementById('fix_tensp').value = tensp;
+        document.getElementById('display_old_image').src = "./" + relativePath;
+        document.getElementById('fix_soluong').value = soluong;
+        document.getElementById('fix_cost').value = giatien;
+        document.getElementById('fix_theloai').value = theloai;
+        document.getElementById('fix_ttsp').innerText = ttsp;
+
+        document.querySelector('.fix_overlay').style.display = 'flex';
+        document.querySelector('.fix_info').style.display = 'block';
     });
 });
 
+
+
 function closeFixProductInfo() {
-    var fix_overlay = document.querySelectorAll('.fix_overlay');
-    var fix_info = document.querySelectorAll('.fix_info');
-
-    fix_overlay.forEach(function(fix_overlay) {
-        fix_overlay.style.display = 'none';
-    });
-
-    fix_info.forEach(function(fix_info) {
-        fix_info.style.display = 'none';
-    });
+    var fix_overlay = document.querySelector('.fix_overlay');
+    var fix_info = document.querySelector('.fix_info');
+    fix_overlay.style.display = 'none';
+    fix_info.style.display = 'none';
 }
+
 
 
 
@@ -100,10 +110,10 @@ function validateForm() {
     }
 
     // Kiểm tra các trường khác không được bỏ trống
-    if (masp.trim() === '') {
-        err_masp.style.display = "block";
-        hasError = true;
-    }
+    // if (masp.trim() === '') {
+    //     err_masp.style.display = "block";
+    //     hasError = true;
+    // }
     if (tensp.trim() === '') {
         err_tensp.style.display = "block";
         hasError = true;
@@ -225,3 +235,33 @@ document.getElementById("fix_cost").onfocus = function() {
 document.getElementById("fix_ttsp").onfocus = function() {
     document.getElementById("err_fix_ttsp").style.display = "none";
 };
+
+
+function displayImage(input) {
+    // Kiểm tra xem có tệp nào đã được chọn hay không
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Hiển thị hình ảnh trong phần tử <input type="image">
+            document.getElementById('display_image').src = e.target.result;
+        };
+
+        // Đọc dữ liệu của tệp ảnh đã chọn
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function displayNewImage(input) {
+    // Kiểm tra xem có tệp nào đã được chọn hay không
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // Hiển thị hình ảnh trong phần tử <input type="image">
+            document.getElementById('display_new_image').src = e.target.result;
+        };
+
+        // Đọc dữ liệu của tệp ảnh đã chọn
+        reader.readAsDataURL(input.files[0]);
+    }
+}

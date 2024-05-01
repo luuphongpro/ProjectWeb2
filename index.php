@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="./CSS/main.css">
 
 </head>
-<body>
+<body style="background-color: #cfc5ae;">
     <?php 
         include './pages/front/head_slider.php';
         include './pages/front/content.php';

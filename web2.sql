@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 12, 2024 at 03:09 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 25, 2024 lúc 09:23 AM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `web2`
+-- Cơ sở dữ liệu: `web2`
 --
 CREATE DATABASE IF NOT EXISTS `web2` DEFAULT CHARACTER SET utf8 COLLATE utf8_vietnamese_ci;
 USE `web2`;
@@ -26,7 +26,7 @@ USE `web2`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -39,16 +39,18 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`TenND`,`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
-('Admin','0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@');
+INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
+('Admin', '0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@'),
+('Vĩ', '0123456781', 'KH', 'Đang hoạt động', '2024-04-12 08:46:32', 'huynhgiavi'),
+('vũ', '0123456782', 'KH', 'Đang hoạt động', '2024-04-12 08:50:25', 'huynhgiavi');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Cấu trúc bảng cho bảng `category`
 --
 
 CREATE TABLE `category` (
@@ -57,7 +59,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `category`
+-- Đang đổ dữ liệu cho bảng `category`
 --
 
 INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
@@ -69,7 +71,7 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiethoadon`
+-- Cấu trúc bảng cho bảng `chitiethoadon`
 --
 
 CREATE TABLE `chitiethoadon` (
@@ -83,7 +85,7 @@ CREATE TABLE `chitiethoadon` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietkhuyenmai`
+-- Cấu trúc bảng cho bảng `chitietkhuyenmai`
 --
 
 CREATE TABLE `chitietkhuyenmai` (
@@ -94,7 +96,7 @@ CREATE TABLE `chitietkhuyenmai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietphieunhap`
+-- Cấu trúc bảng cho bảng `chitietphieunhap`
 --
 
 CREATE TABLE `chitietphieunhap` (
@@ -107,7 +109,7 @@ CREATE TABLE `chitietphieunhap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitietquyen`
+-- Cấu trúc bảng cho bảng `chitietquyen`
 --
 
 CREATE TABLE `chitietquyen` (
@@ -116,7 +118,7 @@ CREATE TABLE `chitietquyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `chitietquyen`
+-- Đang đổ dữ liệu cho bảng `chitietquyen`
 --
 
 INSERT INTO `chitietquyen` (`MaChucnang`, `MaQuyen`) VALUES
@@ -129,7 +131,7 @@ INSERT INTO `chitietquyen` (`MaChucnang`, `MaQuyen`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chucnang`
+-- Cấu trúc bảng cho bảng `chucnang`
 --
 
 CREATE TABLE `chucnang` (
@@ -139,7 +141,7 @@ CREATE TABLE `chucnang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `chucnang`
+-- Đang đổ dữ liệu cho bảng `chucnang`
 --
 
 INSERT INTO `chucnang` (`MaChucnang`, `TenChucnang`, `Active`) VALUES
@@ -152,7 +154,7 @@ INSERT INTO `chucnang` (`MaChucnang`, `TenChucnang`, `Active`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhgiasanpham`
+-- Cấu trúc bảng cho bảng `danhgiasanpham`
 --
 
 CREATE TABLE `danhgiasanpham` (
@@ -164,7 +166,7 @@ CREATE TABLE `danhgiasanpham` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giaohang`
+-- Cấu trúc bảng cho bảng `giaohang`
 --
 
 CREATE TABLE `giaohang` (
@@ -176,7 +178,7 @@ CREATE TABLE `giaohang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hoadon`
+-- Cấu trúc bảng cho bảng `hoadon`
 --
 
 CREATE TABLE `hoadon` (
@@ -191,7 +193,7 @@ CREATE TABLE `hoadon` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khuyenmai`
+-- Cấu trúc bảng cho bảng `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -205,7 +207,7 @@ CREATE TABLE `khuyenmai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhacungcap`
+-- Cấu trúc bảng cho bảng `nhacungcap`
 --
 
 CREATE TABLE `nhacungcap` (
@@ -218,7 +220,7 @@ CREATE TABLE `nhacungcap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phieunhap`
+-- Cấu trúc bảng cho bảng `phieunhap`
 --
 
 CREATE TABLE `phieunhap` (
@@ -232,7 +234,7 @@ CREATE TABLE `phieunhap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
 CREATE TABLE `product` (
@@ -246,7 +248,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `product`
+-- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`MaSP`, `TenSP`, `SoLuongSP`, `GiaSP`, `TTSP`, `IMG`, `categoryId`) VALUES
@@ -306,7 +308,7 @@ INSERT INTO `product` (`MaSP`, `TenSP`, `SoLuongSP`, `GiaSP`, `TTSP`, `IMG`, `ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quyen`
+-- Cấu trúc bảng cho bảng `quyen`
 --
 
 CREATE TABLE `quyen` (
@@ -316,7 +318,7 @@ CREATE TABLE `quyen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `quyen`
+-- Đang đổ dữ liệu cho bảng `quyen`
 --
 
 INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`, `SĐT`) VALUES
@@ -326,7 +328,7 @@ INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`, `SĐT`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
