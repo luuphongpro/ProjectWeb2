@@ -16,7 +16,7 @@ function init(index){
         })
     })
 }
-init(2);
+init(0);
 // $("#qlsanpham").click(function(){
 //     if(!$(this).hasClass("disabled")){
 //         $(".menudrop-qlsanpham").toggle("active")
