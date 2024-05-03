@@ -88,7 +88,7 @@
                       Fast Food Restaurant
                     </h1>
                     <p>
-                    Mua ngay kẻo lỡ!!!
+                    Có Huynh Van Phu!
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">
@@ -109,7 +109,7 @@
                       Fast Food Restaurant
                     </h1>
                     <p>
-                    Mua ngay kẻo lỡ!!!
+                    Có Huynh Gia Vi
                     </p>
                     <div class="btn-box">
                       <a href="" class="btn1">

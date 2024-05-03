@@ -73,14 +73,14 @@
     }
     .table td,
     .table th {
-        border: 1px solid #ccc; /* Đặt màu viền cho ô trong bảng */
+        border: 2px solid #222222; /* Đặt màu viền cho ô trong bảng */
     }
 
     .table tr:nth-child(even) {
         background-color: #f9f9f9; /* Đặt màu nền cho các dòng chẵn */
     }
     .table thead th {
-        background-color: #222222;
+        background-color: gray;
         color: aliceblue;
         width: 200px; 
     }

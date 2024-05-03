@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2024 lúc 09:23 AM
+-- Thời gian đã tạo: Th4 05, 2024 lúc 05:06 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -30,7 +30,6 @@ USE `web2`;
 --
 
 CREATE TABLE `account` (
-  `TenND` varchar(10) DEFAULT NULL,
   `SĐT` varchar(10) NOT NULL,
   `MaQuyen` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
@@ -43,10 +42,8 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
-('Admin', '0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin@'),
-('Vĩ', '0123456781', 'KH', 'Đang hoạt động', '2024-04-12 08:46:32', 'huynhgiavi'),
-('vũ', '0123456782', 'KH', 'Đang hoạt động', '2024-04-12 08:50:25', 'huynhgiavi');
+INSERT INTO `account` (`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
+('0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -77,7 +74,6 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 
 CREATE TABLE `chitiethoadon` (
   `MaHoadon` varchar(10) NOT NULL,
-  `MaChiTietHD` varchar(10) NOT NULL,
   `MaSP` varchar(10) NOT NULL,
   `SoLuong` int(100) NOT NULL,
   `DonGia` int(10) NOT NULL
@@ -243,7 +239,7 @@ CREATE TABLE `product` (
   `TenSP` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `SoLuongSP` int(100) NOT NULL,
   `GiaSP` int(10) NOT NULL,
-  `TTSP` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TTSP` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `IMG` varchar(100) NOT NULL,
   `categoryId` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
