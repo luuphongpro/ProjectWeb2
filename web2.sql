@@ -30,6 +30,7 @@ USE `web2`;
 --
 
 CREATE TABLE `account` (
+  `TenND` varchar(10) DEFAULT NULL,
   `SĐT` varchar(10) NOT NULL,
   `MaQuyen` varchar(10) NOT NULL,
   `Status` varchar(20) NOT NULL,
@@ -39,12 +40,15 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) VALUES
-('0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', 'Admin');
-
+INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Address`, `Password`) VALUES
+('Admin', '0123456789', 'ADMIN', 'Đang hoạt động', '2024-03-30 08:36:38', NULL, 'Admin@'),
+('Vĩ', '0123456781', 'KH', 'Đang hoạt động', '2024-04-12 08:46:32', NULL, 'huynhgiavi'),
+('vũ', '0123456782', 'KH', 'Đang hoạt động', '2024-04-12 08:50:25', NULL, 'huynhgiavi'),
+('Phu Huynh', '0369698361', 'KH', 'Đang hoạt động', '2024-05-01 22:27:21', NULL, '123456'),
+('Phu Huynh', '0369698365', 'KH', 'Đang hoạt động', '2024-05-02 11:08:49', NULL, '123456');
 -- --------------------------------------------------------
 
 --
@@ -317,9 +321,9 @@ CREATE TABLE `quyen` (
 -- Đang đổ dữ liệu cho bảng `quyen`
 --
 
-INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`, `SĐT`) VALUES
-('Admin', 'ADMIN', '0123456789'),
-('Quanli', 'QLI', '0123456788');
+INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`) VALUES
+('Admin', 'ADMIN'),
+('Quanli', 'QLI');
 
 -- --------------------------------------------------------
 
