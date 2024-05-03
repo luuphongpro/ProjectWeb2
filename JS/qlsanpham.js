@@ -1,7 +1,9 @@
-$("#qlsanpham").click((e) =>{ 
+$(".js_qlsp").click(function(e){ 
     // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
     // })
-    $("#right-content").load("./module/sanpham.php",function(){
+    $(".nav-link.active").removeClass("active")
+    $(this).find("> a").addClass("active")
+    $(".content-wrapper").load("./module/sanpham.php",function(){
     })
 });
 

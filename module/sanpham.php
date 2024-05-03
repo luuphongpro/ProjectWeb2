@@ -25,7 +25,7 @@
             <section id="quanlisp">
 
                 <div class="overlay">
-                    <div class="info">
+                    <div class="info_product">
                         <button type="button" class="close" onClick="closeAddProductInfo()">x</button>
                         <h2 style="font-family: \'Roboto Mono\', monospace; margin-left : 340px">Thêm Mới Sản Phẩm</h2>
                         <div>
@@ -224,7 +224,6 @@
 <style>
     
 </style>
-<link rel="stylesheet" href="./CSS/product_manager.css">
 <script src="./JS/qlsanpham.js"></script>
 <script>
     document.getElementById("fix_detail_Product").onsubmit = function() {

@@ -88,5 +88,4 @@
         width: 200px; 
     }
 </style>
-<link rel="stylesheet" href="./CSS/product_manager.css">
 <script src="./JS/qlsanpham.js"></script>

@@ -79,9 +79,9 @@ Validator({
     onSubmit: (value) =>{
         const data=JSON.stringify(value);
         xhr=new XMLHttpRequest();
-        xhr.open('POST','./module/xldangky.php');
+        xhr.open('POST','./module/taikhoan.php?them');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('jsonData='+data);
+        xhr.send('dataJSON='+data);
         xhr.onload = function () {
         //Đợi và xử lý phản hồi của server
         if (xhr.status >= 200 && xhr.status < 300) {

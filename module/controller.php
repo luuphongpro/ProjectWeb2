@@ -90,12 +90,17 @@ class taikhoan{
         return $retult;
     }
     function taotaikhoan($data){
+        $this->conn->constructor();
         $strSQL = "INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) 
            VALUES ('" . $data['username_register'] . "', '" . $data['user1_register'] . "', 'KH', 'Đang hoạt động',NOW(), '".$data['password_register']."')";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
+    // function suataikhoan($data){
+    //     $this->conn->constructor();
+    //     $strSQL="UPDATE `account` SET `TenND`='".$data->."',`SĐT`='".$data->."',`MaQuyen`='".$data->."',`Status`='".$data->."',`CreTime`='".$data->."',`Address`='".$data->."',`Password`='".$data->."' WHERE 1";
+    // }
 }
 class donhang{
     private $conn;

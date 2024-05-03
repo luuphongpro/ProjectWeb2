@@ -3,16 +3,16 @@ $(".js_dathang").on("click", function () {
     DonHang()
 })
 var tongHoaDon = 0
-    ; (function RenderGioHang() {
-        var Cart = JSON.parse(localStorage.getItem("CartWeb2")) || {};
-        var tableGioHang = ''
-        var bodyGioHang = ''
-        tongHoaDon = 0;
-        if (Cart['arr']) {
-            Cart['arr'].forEach((value, index) => {
-                var tong = value['gia'] * value['soluong']
-                tongHoaDon += tong
-                tableGioHang += `<tr>
+function RenderGioHang() {
+    var Cart = JSON.parse(localStorage.getItem("CartWeb2")) || {};
+    var tableGioHang = ''
+    var bodyGioHang = ''
+    tongHoaDon = 0;
+    if (Cart['arr']) {
+        Cart['arr'].forEach((value, index) => {
+            var tong = value['gia'] * value['soluong']
+            tongHoaDon += tong
+            tableGioHang += `<tr>
                 <td class="align-middle"><img src="#" alt="" style="width: 50px;"> ${value['TenSP']}</td>
                 <td class="align-middle">${value['gia']}</td>
                 <td class="align-middle">
@@ -35,16 +35,17 @@ var tongHoaDon = 0
                 <td class="align-middle"><button class="btn btn-sm btn-primary" onclick="DeleteCart(${index})"><i
                             class="fa fa-times"></i></button></td>
                             </tr>`
-                bodyGioHang += `<div class="d-flex justify-content-between mb-3 pt-1">
+            bodyGioHang += `<div class="d-flex justify-content-between mb-3 pt-1">
                 <h6 class="font-weight-medium">${value['TenSP']}</h6>
                 <h6 class="font-weight-medium js_tongsp${value['MaSP']}">${tong}</h6>
             </div>`
-            })
-            $(".js_table_cart").html(tableGioHang)
-            $(".card-body").html(bodyGioHang)
-            $(".js_tongtien").text(tongHoaDon)
-        }
-    })()
+        })
+        $(".js_table_cart").html(tableGioHang)
+        $(".card-body").html(bodyGioHang)
+        $(".js_tongtien").text(tongHoaDon)
+    }
+}
+RenderGioHang()
 function TangNe(index) {
     var oldValue = Number($(".js_soluong" + index).val())
     $(".js_soluong" + index).val(oldValue + 1)
@@ -59,11 +60,11 @@ function TangNe(index) {
     $(".js_tongsp" + index).text(tongtien)
     $(".js_tongtien").text(tongHoaDon)
     localStorage.setItem("CartWeb2", JSON.stringify(Cart))
-
+    RenderGioHang()
 }
 function GiamNe(index) {
     var oldValue = Number($(".js_soluong" + index).val())
-    if(oldValue>1){
+    if (oldValue > 1) {
         $(".js_soluong" + index).val(oldValue - 1)
         var tongtien
         Cart['arr'].forEach((value) => {
@@ -77,6 +78,7 @@ function GiamNe(index) {
         $(".js_tongtien").text(tongHoaDon)
         localStorage.setItem("CartWeb2", JSON.stringify(Cart))
     }
+    RenderGioHang()
 }
 function DeleteCart(id) {
     const tableE = document.querySelector(".js_table_cart")
@@ -92,6 +94,7 @@ function DeleteCart(id) {
             $(this).click()
         }
     })
+    RenderGioHang()
 }
 function DonHang() {
     var account = JSON.parse(sessionStorage.getItem("UseLogin"))

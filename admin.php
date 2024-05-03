@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./CSS/bootstrap.css">
     <link rel="stylesheet" href="./CSS/admin.css">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="./CSS/cssDangky.css">
     <title>Document</title>
 </head>
 <body>
@@ -104,5 +104,6 @@
     <script src="./JS/qlsanpham.js"></script>
     <script src="./JS/member.js"></script>
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
+    <script src="JS/qltaikhoan.js"></script>
 </body>
 </html>
