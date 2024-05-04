@@ -1026,11 +1026,11 @@ a:focus {
   color: inherit;
 }
 .user-dn {
-  width: 150px;
-  height: 75px;
+  /* width: 150px; */
+  /* height: 75px; */
   position: absolute;
-  bottom: 25px;
-  right: 235px;
+  /* bottom: 25px; */
+  /* right: 235px; */
   border-radius: 5px;
   display: none;
 }

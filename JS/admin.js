@@ -32,6 +32,22 @@ $("#taikhoan").click(function(){
         $(".menudrop-qltk").toggle("active")
     }
 })
+$(".item-menu").on("click",function(e){
+    switch(e.target.innerText.trim()){
+        case "Thêm tài khoản":
+            LoadThemTK()
+            break;
+        case "Sửa tài khoản": 
+            LoadSuaTK()
+            break;
+        case "Xóa tài khoản": 
+            LoadXoaTK()
+            break;
+    }
+})
+// $(".js_qltk").on("click",function(){
+//     $(".content-wrapper").load("./pages/admin.")
+// })
 //Khi show chức năng, phải render vào #right-content trách bị trùng giao diện giữa mọi người
 
 // $("#qlsanpham").click((e) =>{ 

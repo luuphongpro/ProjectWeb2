@@ -26,7 +26,7 @@
             <input name="maxPrice" type="number" min = 0 value = "<?php if(isset($_GET['maxPrice'])){echo $_GET['maxPrice'];} ?>">
         </div>
     </form>
-</div> 
+</div>
 <?php
 // Kết nối đến cơ sở dữ liệu
 $servername = "localhost";
@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
                         echo "<h2 style='margin-bottom: 20px; margin-top: 20px;'>" . $row['TenSP'] . "</h2>";
                         echo "<div class='options'>";
                             echo "<p>Giá: " . number_format($row['GiaSP']) . " VNĐ</p>";
-                            echo "<a href=''><i class='fa-solid fa-cart-shopping' style='color:#ffff'></i></a>";
+                            echo '<a onclick=AddToCart("'.$row['MaSP'].'")><i class="fa-solid fa-cart-shopping" style="color:#ffff"></i></a>';
                         echo "</div>";
                         echo "<p>Số lượng còn lại: " . $row['SoLuongSP'] . "</p>";
                         echo "<button class='detail-button' data-product-index='" . $productIndex . "'>Chi tiết</button>";
@@ -123,7 +123,7 @@ if ($result->num_rows > 0) {
         echo "</div>";
         //
         echo "<input type='hidden' name='idp' id='idp' value='1'>";
-        echo "<button class='addtocart' onclick=getquantity()>Thêm vào giỏ</button>";
+        echo "<button class='addtocart' onclick=AddFromDetail('".$row['MaSP']."',event)>Thêm vào giỏ</button>";
 
         echo '<div class="footer_social" style="font-size: 30px; margin-bottom: 15px; Color: #626071;">
         <a href="">

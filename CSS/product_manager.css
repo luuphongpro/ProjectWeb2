@@ -47,8 +47,12 @@
 }
 
 
+<<<<<<< HEAD
 .info{
     display: flex;
+=======
+.info_product{
+>>>>>>> 0fdc39048a7088efa81421cda8df95bec2848460
     height: 700px;
     width: 1000px;
     background-color: #7FC7D9;

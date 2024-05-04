@@ -19,6 +19,9 @@
         if($_GET['id']!='dk'){
             $menu_id = isset($_GET['id']) ? $_GET['id']: '';
         }
+        if($_GET['id'] == 'giohang'){
+            include './pages/front/cart.php';
+        }
     }
     else{
         include './pages/front/product.php';

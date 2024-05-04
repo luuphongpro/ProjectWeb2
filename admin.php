@@ -6,8 +6,13 @@
     <link rel="stylesheet" href="./fonts/themify-icons-font/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="./CSS/bootstrap.css">
     <link rel="stylesheet" href="./CSS/admin.css">
+<<<<<<< HEAD
     <link href="css/font-awesome.min.css" rel="stylesheet">
 
+=======
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./CSS/cssDangky.css">
+>>>>>>> 0fdc39048a7088efa81421cda8df95bec2848460
     <title>Document</title>
 </head>
 <body>
@@ -71,7 +76,13 @@
                         <li class="item-menu"><i class="ti-plus"></i> Xóa tài khoản</li>
                     </ul>
                 </div>
-            </div>
+            <div class="container">
+                    <div class="item-container" id="dstaikhoan">
+                        Danh sách tài khoản<i class="ti-angle-down"></i>
+                    </div>
+                    
+                </div>
+                </div>
             <div id="right-content">
                 <!-- Cần làm ở đây -->
                 <!-- Có thể dùng model có top-menu bên dưới -->
@@ -96,6 +107,8 @@
     <script src="./JS/jquery-3.4.1.min.js"></script>
     <script src="./JS/admin.js"></script>
     <script src="./JS/qlsanpham.js"></script>
+    <script src="./JS/member.js"></script>
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
+    <script src="JS/qltaikhoan.js"></script>
 </body>
 </html>
