@@ -1,20 +1,9 @@
-<<<<<<< HEAD
     $("#qlsanpham").click((e) =>{ 
         // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
         // })
         $("#right-content").load("./module/sanpham.php",function(){
         })
     });
-=======
-$(".js_qlsp").click(function(e){ 
-    // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
-    // })
-    $(".nav-link.active").removeClass("active")
-    $(this).find("> a").addClass("active")
-    $(".content-wrapper").load("./module/sanpham.php",function(){
-    })
-});
->>>>>>> 0fdc39048a7088efa81421cda8df95bec2848460
 
     $(".add_product_detail").click(function (e) { 
         e.preventDefault();
