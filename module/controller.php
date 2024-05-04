@@ -1,5 +1,5 @@
-    <?php
-        include 'connect.php';
+<?php
+    include 'connect.php';
     class sanpham{
         private $conn;
         function __construct(){
