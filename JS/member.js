@@ -6,3 +6,9 @@ $(".js_qltk").click(function(e){
     $(".content-wrapper").load("./module/member.php",function(){
     })
 });
+$("#dstaikhoan").click((e) =>{ 
+    // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
+    // })
+    $("#right-content").load("./module/member.php",function(){
+    })
+});

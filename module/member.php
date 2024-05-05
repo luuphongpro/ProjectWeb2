@@ -89,3 +89,5 @@
     }
 </style>
 <script src="./JS/qlsanpham.js"></script>
+<script src="./JS/member.js"></script>
+

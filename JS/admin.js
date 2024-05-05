@@ -2,21 +2,35 @@ function cook() {
     window.location = "index.php";
 }
 // Kiểm tra disabled bởi vì cần làm chức năng quản lý chức năng cho nhóm quyền
-function init(index){
-    var name;
-    //Đang phát triển với tham số truyền vào tương ứng với các quyền...
-    name=[[],["Quản lý sản phẩm","Thống kê doanh thu"],["Quản lý Bán Hàng","Thống kê doanh thu"]]
+function init(index) {
+    var name = [
+        [],
+        ["Quản lý sản phẩm", "Thống kê doanh thu"],
+        ["Quản lý Bán Hàng", "Thống kê doanh thu"],
+        ["Danh sách tài khoản"],
+        ["Quản lý tài khoản"]
+    ];
+
     $(".container.disabled").removeClass("disabled");
-    $(".container").each(function(){
-        name[index].forEach((i)=>{
-            if($(this).find(".item-container").text().trim()==i){
-                console.log($(this).find(".item-container").text().trim())
-                $(this).find(".item-container").addClass("disabled");
-            }
-        })
-    })
+
+    if (index >= 0 && index < name.length) {
+        $(".container").each(function() {
+            name[index].forEach((i) => {
+                if ($(this).find(".item-container").text().trim() == i) {
+                    $(this).find(".item-container").addClass("disabled");
+                }
+            });
+        });
+    } else {
+        console.error("Index out of range");
+    }
 }
-init(0);
+
+init(1);
+init(2);
+init(3);
+// init(4);
+
 // $("#qlsanpham").click(function(){
 //     if(!$(this).hasClass("disabled")){
 //         $(".menudrop-qlsanpham").toggle("active")

@@ -6,7 +6,11 @@ $(".js_qlsp").click(function(e){
     $(".content-wrapper").load("./module/sanpham.php",function(){
     })
 });
-
+$("#qlsanpham").click((e) =>{ 
+    $("#right-content").load("./pages/admin/qlsanpham.php",function(){
+        
+    })
+});
 $(".add_product_detail").click(function (e) { 
     e.preventDefault();
     var overlay = document.querySelector('.overlay');
