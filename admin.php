@@ -103,6 +103,7 @@
     <script src="./JS/admin.js"></script>
     <script src="./JS/qlsanpham.js"></script>
     <script src="./JS/member.js"></script>
+    <script src="./JS/phanquyen.js"></script>
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
     <script src="JS/qltaikhoan.js"></script>
 </body>

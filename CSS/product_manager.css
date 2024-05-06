@@ -216,7 +216,7 @@ td, th {
 }
 
 .display_img input,img{
-    border: 2px solid black;
+    border: 2px solid #343a40;
     border-radius: 5px;
 }   
  

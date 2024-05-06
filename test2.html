@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phanquyen</title>
+    <link rel="stylesheet" href="./CSS/phanquyen.css">
+</head>
+<body>
+    <div class="overlay">
+        <div class="info">
+            <div class="topform">
+                <h2>Bảng phân quyền</h2>
+                <button type='button' class='close' onClick='closeProductInfo()'>+</button>
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Tên Quyền</th>
+                        <th>Quyền Sử Dụng</th>
+                    </tr>
+                    <tr>
+                        <td>Submit</td>
+                        <td><label><input type="checkbox" id="submitCheckbox" onchange="handleCheckboxChange('submitCheckbox', 'submitButton')">Submit</label></td>
+                    </tr>
+                    <tr>
+                        <td>Delete</td>
+                        <td><label><input type="checkbox" id="deleteCheckbox" onchange="handleCheckboxChange('deleteCheckbox', 'deleteButton')">Delete</label></td>
+                    </tr>
+                    <tr>
+                        <td>OK</td>
+                        <td><label><input type="checkbox" id="okCheckbox" onchange="handleCheckboxChange('okCheckbox', 'okButton')">OK</label></td>
+                    </tr>
+                    <tr>
+                        <td>Change</td>
+                        <td><label><input type="checkbox" id="changeCheckbox" onchange="handleCheckboxChange('changeCheckbox', 'changeButton')">Change</label></td>
+                    </tr>
+                </table>
+
+                <div>
+                    <input type="submit" id="submitButton" disabled value="Submit">
+                    <button id="deleteButton" disabled>Delete</button>
+                    <button id="okButton" disabled>OK</button>
+                    <button id="changeButton" disabled>Change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="./JS/phanquyen.js"></script>
