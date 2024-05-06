@@ -69,45 +69,73 @@
     // Đóng kết nối
     $conn->close();
 ?>
-    <div class="overlay">
-        <div class="info">
-            <div class="topform">
-                <h2>Bảng phân quyền</h2>
-                <button type='button' class='closequyen' onClick='closeProductInfo()'>x</button>
-            </div>
-            <div>
-                <table class="table table-bordered" style="border: none" id="table">
-                    <tr>
-                        <th>Tên Quyền</th>
-                        <th>Quyền Sử Dụng</th>
-                    </tr>
-                    <tr>
-                        <td>Submit</td>
-                        <td><label><input type="checkbox" id="submitCheckbox" onchange="handleCheckboxChange('submitCheckbox', 'submitButton')">Submit</label></td>
-                    </tr>
-                    <tr>
-                        <td>Delete</td>
-                        <td><label><input type="checkbox" id="deleteCheckbox" onchange="handleCheckboxChange('deleteCheckbox', 'deleteButton')">Delete</label></td>
-                    </tr>
-                    <tr>
-                        <td>OK</td>
-                        <td><label><input type="checkbox" id="okCheckbox" onchange="handleCheckboxChange('okCheckbox', 'okButton')">OK</label></td>
-                    </tr>
-                    <tr>
-                        <td>Change</td>
-                        <td><label><input type="checkbox" id="changeCheckbox" onchange="handleCheckboxChange('changeCheckbox', 'changeButton')">Change</label></td>
-                    </tr>
-                </table>
+   <div class="overlay">
+    <div class="info">
+        <div class="topform">
+            <h2>Bảng phân quyền</h2>
+            <button type='button' class='closequyen' onClick='closeProductInfo()'>x</button>
+        </div>
+        <div>
+            <table class="table table-bordered" style="border: none" id="table">
+                <tr>
+                    <th>Tên Quyền</th>
+                    <th>Quyền Sử Dụng</th>
+                </tr>
+                <tr>
+                    <td>Quản lí sản phẩm</td>
+                    <td><label><input type="checkbox" id="qlspCheckbox" onchange="handleCheckboxChange('qlspCheckbox', 'qlspButton')" checked>QLSP</label></td>
+                </tr>
+                <tr>
+                    <td>Thêm sản phẩm</td>
+                    <td><label><input type="checkbox" id="themCheckbox" onchange="handleCheckboxChange('themCheckbox', 'deleteButton')" checked>ADD</label></td>
+                </tr>
+                <tr>
+                    <td>Sửa sản phẩm</td>
+                    <td><label><input type="checkbox" id="suaCheckbox" onchange="handleCheckboxChange('suaCheckbox', 'suaButton')" checked>Sửa</label></td>
+                </tr>
+                <tr>
+                    <td>Xóa sản phẩm</td>
+                    <td><label><input type="checkbox" id="xoaspCheckbox" onchange="handleCheckboxChange('xoaspCheckbox', 'xoaspButton')" checked>Xóa</label></td>
+                </tr>
+                <tr>
+                    <td>Quản lí bán hàng</td>
+                    <td><label><input type="checkbox" id="qlbhCheckbox" onchange="handleCheckboxChange('qlbhCheckbox', 'qlbhButton')" checked>QLBH</label></td>
+                </tr>
+                <tr>
+                    <td>Thống kê doanh thu</td>
+                    <td><label><input type="checkbox" id="tkdtCheckbox" onchange="handleCheckboxChange('tkdtCheckbox', 'tkdtButton')" checked>TKDT</label></td>
+                </tr>
+                <tr>
+                    <td>Quản lí quyền</td>
+                    <td><label><input type="checkbox" id="qlqCheckbox" onchange="handleCheckboxChange('qlqCheckbox', 'qlqButton')" checked>QLQ</label></td>
+                </tr>
+                <tr>
+                    <td>Quản lí tài khoản</td>
+                    <td><label><input type="checkbox" id="qltkCheckbox" onchange="handleCheckboxChange('qltkCheckbox', 'qltkButton')" checked>QLTK</label></td>
+                </tr>
+                <tr>
+                    <td>Thêm tài khoản</td>
+                    <td><label><input type="checkbox" id="themtkCheckbox" onchange="handleCheckboxChange('themtkCheckbox', 'deleteButton')" checked>ADD</label></td>
+                </tr>
+                <tr>
+                    <td>Sửa tài khoản</td>
+                    <td><label><input type="checkbox" id="suatkCheckbox" onchange="handleCheckboxChange('suatkCheckbox', 'suaButton')" checked>Sửa</label></td>
+                </tr>
+                <tr>
+                    <td>Xóa tài khoản</td>
+                    <td><label><input type="checkbox" id="xoatkCheckbox" onchange="handleCheckboxChange('xoatkCheckbox', 'xoaspButton')" checked>Xóa</label></td>
+                </tr>
+            </table>
 
-                <div>
-                    <input type="submit" id="submitButton" disabled value="Submit">
-                    <button id="deleteButton" disabled>Delete</button>
-                    <button id="okButton" disabled>OK</button>
-                    <button id="changeButton" disabled>Change</button>
-                </div>
+            <div>
+                <button id="qltkButton">QLTTK</button>
+                <button id="qlspButton">QLSP</button>
+                <button id="tkdtButton">TKDT</button>
+                <button id="qlbhButton">QLBH</button>
             </div>
         </div>
     </div>
+</div>
 <script src="./JS/qlsanpham.js"></script>
 <script src="./JS/phanquyen.js"></script>
 

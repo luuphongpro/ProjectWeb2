@@ -31,15 +31,16 @@ function showQuyenOverlay() {
     info.style.display = "block";
 }
 
-    function handleCheckboxChange(checkboxId, buttonId) {
-        var checkbox = document.getElementById(checkboxId);
-        var button = document.getElementById(buttonId);
+function handleCheckboxChange(checkboxId, buttonId) {
+    var checkbox = document.getElementById(checkboxId);
+    var button = document.getElementById(buttonId);
 
-        button.disabled = !checkbox.checked;
-
-        // Lưu trạng thái checkbox vào localStorage
-        localStorage.setItem(checkboxId, checkbox.checked);
+    if (checkbox.checked) {
+        button.disabled = false;
+    } else {
+        button.disabled = true;
     }
+}
 
     function restoreCheckboxState(checkboxId, buttonId) {
         var checkbox = document.getElementById(checkboxId);
