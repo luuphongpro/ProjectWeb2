@@ -53,9 +53,10 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    height: 80px;
+    /* height: 80px; */
     justify-content: space-between;
     margin-bottom: 10px;
+    margin: 20px 0;
 }   
 .modal_content-input-box label{
     font-size: 14px;
@@ -131,4 +132,7 @@
 .modal_content-register-rule {
     font-size: 12px;
     text-align: center;
+}
+.dal_content-select {
+    width: 50%;
 }

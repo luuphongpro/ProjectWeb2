@@ -109,7 +109,6 @@ function Validator(option){
                         }
                         return value
                     },{})
-                    this.reset();
                     option.onSubmit(valueForm)
                 }
                 // Submit mặc định của gg
@@ -186,7 +185,7 @@ Validator.isConfirmed=function(selector,valueConfirm){
     return {
         selector,
         test: function(value){
-            return value == valueConfirm()? undefined : 'Dự liệu nhập vào không đúng'
+            return value == valueConfirm() ? undefined : 'Dự liệu nhập vào không đúng'
         }
     }
 }

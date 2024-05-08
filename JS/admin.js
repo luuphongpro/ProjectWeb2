@@ -16,7 +16,7 @@ function init(index){
         })
     })
 }
-init(2);
+init(1);
 // $("#qlsanpham").click(function(){
 //     if(!$(this).hasClass("disabled")){
 //         $(".menudrop-qlsanpham").toggle("active")
@@ -45,6 +45,7 @@ $(".item-menu").on("click",function(e){
             break;
     }
 })
+
 // $(".js_qltk").on("click",function(){
 //     $(".content-wrapper").load("./pages/admin.")
 // })

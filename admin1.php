@@ -13,7 +13,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+  <link rel="stylesheet" href="css/bootstrap-v5.3.3.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
@@ -28,11 +29,10 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
   <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/adpanel.css">
-  <link rel="stylesheet" href="./css/styleAdmin.css">
-  <link rel="stylesheet" href="css/product_manager.css">
   <link rel="stylesheet" href="./fonts/themify-icons-font/themify-icons/themify-icons.css">
-
+  <link rel="stylesheet" href="css/product_manager.css">
+  <link rel="stylesheet" href="css/cssDangky.css">
+  <link rel="stylesheet" href="css/qltaikhoan.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -214,17 +214,16 @@
             </li>
             <li class="nav-item js_qlsp">
               <a class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Quản lý sản phẩm
-                  <!-- <i class="fas fa-angle-left right"></i> -->
-                  <span class="badge badge-info right"></span>
+                <i class="nav-icon fas fa-th"></i>
+                Quản lý sản phẩm
+                <!-- <i class="fas fa-angle-left right"></i> -->
+                <span class="badge badge-info right"></span>
                 </p>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fas fa-book"></i>
                 <p>
                   Quản lý bán hàng
                   <span class="badge badge-info right"></span>
@@ -262,7 +261,7 @@
             </li>
             <li class="nav-item">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fas fa-edit"></i>
                 <p>
                   Quản lý quyền
                   <span class="badge badge-info right"></span>
@@ -271,7 +270,7 @@
             </li>
             <li class="nav-item js_qltk">
               <a class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
+                <i class="nav-icon fas fa-table"></i>
                 <p>
                   Quản lý tài khoản
                   <span class="badge badge-info right"></span>
@@ -328,7 +327,8 @@
   <script src="plugins/moment/moment.min.js"></script>
   <script src="plugins/daterangepicker/daterangepicker.js"></script>
   <!-- Tempusdominus Bootstrap 4 -->
-  <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> -->
+  <script src="js/bootstrap-v5.3.3.bundle.min.js"></script>
   <!-- Summernote -->
   <script src="plugins/summernote/summernote-bs4.min.js"></script>
   <!-- overlayScrollbars -->
@@ -340,7 +340,7 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.0.4/js/dataTables.bootstrap5.js"></script>
+  <script src="js/XMLHTTP.js"></script>
   <script src="js/vadidation.js"></script>
   <script src="js/admin1.js"></script>
   <script src="js/qlsanpham.js"></script>
