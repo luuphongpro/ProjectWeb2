@@ -1,67 +1,71 @@
 <?php
     include 'connect.php';
-class sanpham{
-    private $conn;
-    function __construct(){
-        $this->conn=new connect;
-    }
-    function dssanpham(){
-        $this->conn->constructor();
-        $strSQL="SELECT * FROM product WHERE 1";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    function timsanpham($id){
-        $this->conn -> constructor();
-        $strSQL = 'SELECT * FROM product WHERE MaSP = "'.$id.'" ';
-        $result = $this->conn-> excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
+    class sanpham{
+        private $conn;
+        function __construct(){
+            $this->conn=new connect;
+        }
+        function dssanpham(){
+            $this->conn->constructor();
+            $strSQL="SELECT * FROM product WHERE 1";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        function timsanpham($id){
+            $this->conn -> constructor();
+            $strSQL = "SELECT * FROM product WHERE MaSP = '.$id.' ";
+            $result = $this->conn-> excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
 
-    }
-    function locsanpham($tensp,$category){
-        $this->conn -> constructor();
-        $strSQL = "SELECT * FROM product WHERE MaTL LIKE '.$category.' && category LIKE '.$tensp.'" ;
-        $result = $this->conn-> excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
+        }
+        function locsanpham($tensp, $category){
+            $this->conn->constructor();
+            $strSQL = "SELECT * FROM product WHERE `TenSP` LIKE '%$tensp%'  && `categoryId` LIKE  '%$category%' ";
+            $result = $this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        
+        
 
-    }
-    function xoasanpham($id){
-        $this->conn->constructor();
-        $strSQL = "DELETE FROM product WHERE MaSP = '" . $id . "'";
-        $result = $this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    
+        function xoasanpham($id){
+            $this->conn->constructor();
+            $strSQL = "DELETE FROM product WHERE MaSP = '" . $id . "'";
+            $result = $this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        
 
-    function suasanpham($data){
-        $this->conn->constructor();
-        $strSQL = "UPDATE product 
-                   SET TenSP = '".$data['tensp']."', 
-                       SoLuongSP = ".$data['soluong'].", 
-                       GiaSP = ".$data['cost'].", 
-                       TTSP = '".$data['ttsp']."', 
-                       IMG = '".$data['img']."', 
-                       categoryID = ".$data['theloai']." 
-                   WHERE MaSP = ".$data['masp'];
-        $result = $this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    
+        function suasanpham($data){
+            $this->conn->constructor();
+            $strSQL = "UPDATE product 
+                    SET TenSP = '".$data['tensp']."', 
+                        SoLuongSP = ".$data['soluong'].", 
+                        GiaSP = ".$data['cost'].", 
+                        TTSP = '".$data['ttsp']."', 
+                        IMG = '".$data['img']."', 
+                        categoryID = ".$data['theloai']." 
+                    WHERE MaSP = '".$data['masp']."' ";  
 
-    function themsanpham($data){
-        $this->conn -> constructor();
-        $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId`)
-                    VALUE ('".$data['masp']."', '".$data['tensp']."', '".$data['soluong']."', '".$data['cost']."', '".$data['ttsp']."', '".$data['img']."', '".$data['theloai']."')  ";
-        $result = $this->conn-> excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
 
-    }
+            $result = $this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        
+
+        function themsanpham($data){
+            $this->conn -> constructor();
+            $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId`)
+                        VALUE ('".$data['masp']."', '".$data['tensp']."', '".$data['soluong']."', '".$data['cost']."', '".$data['ttsp']."', '".$data['img']."', '".$data['theloai']."')  ";
+            $result = $this->conn-> excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+
+        }
 
     function countProductsByCategory($category){
         $this->conn->constructor();
@@ -91,33 +95,16 @@ class taikhoan{
     }
     function taotaikhoan($data){
         $this->conn->constructor();
-        $strSQL = "INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`, `Address`) 
-           VALUES ('" .$data->TenND. "', '" . $data->SDT. "', 'KH', 'Đang hoạt động', NOW(), '".$data->Password."','".$data->Address."')";
+        $strSQL = "INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) 
+           VALUES ('" . $data['username_register'] . "', '" . $data['user1_register'] . "', 'KH', 'Đang hoạt động',NOW(), '".$data['password_register']."')";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
-    function suataikhoan($data){
-        $this->conn->constructor();
-        $strSQL="UPDATE `account` SET `TenND`='".$data->TenND."',`Address`='".$data->Address."',`Password`='".$data->Password."' WHERE `SĐT`=".$data->SĐT."";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    function dstaikhoan(){
-        $this->conn->constructor();
-        $strSQL="SELECT * FROM `account` WHERE `Status`='Đang hoạt động'";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    function xoataikhoan($sdt){
-        $this->conn->constructor();
-        $strSQL="UPDATE `account` SET `Status`='Delected' WHERE `SĐT`='".$sdt."'";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
+    // function suataikhoan($data){
+    //     $this->conn->constructor();
+    //     $strSQL="UPDATE `account` SET `TenND`='".$data->."',`SĐT`='".$data->."',`MaQuyen`='".$data->."',`Status`='".$data->."',`CreTime`='".$data->."',`Address`='".$data->."',`Password`='".$data->."' WHERE 1";
+    // }
 }
 class donhang{
     private $conn;

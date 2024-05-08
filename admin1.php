@@ -189,10 +189,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <img src="images/LOGOW2.png" class="img-circle elevation-2" alt="User Image" style="width: 120px; height: 120px;  margin-left:30px">
+            <a href="#" class="d-block" style="margin-left: 22px; margin-top:10px; font-size: 20px; font-weight: bold;">Ăn không sợ Béo!</a>
           </div>
         </div>
 
@@ -259,9 +257,9 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
+            <li class="nav-item js_qlquyen">
+              <a href="quyen.php" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Quản lý quyền
                   <span class="badge badge-info right"></span>
@@ -345,6 +343,7 @@
   <script src="js/admin1.js"></script>
   <script src="js/qlsanpham.js"></script>
   <script src="js/member.js"></script>
+  <script src="js/phanquyen.js"></script>
 </body>
 
 </html>

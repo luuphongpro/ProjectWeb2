@@ -134,3 +134,15 @@
     </section>
     <!-- end slider section -->
   </div>
+  <script>
+  $(document).ready(function(){
+    $('#customCarousel1').carousel({
+      interval: 5000 
+    });
+  });
+</script>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

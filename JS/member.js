@@ -165,3 +165,9 @@ function SearchTaiKhoan(e){
     var array=dataAccount.filter((value)=>(regex.test(value.SĐT)))
     RenderTableAccount(array)
 }
+$("#dstaikhoan").click((e) =>{ 
+    // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
+    // })
+    $("#right-content").load("./module/member.php",function(){
+    })
+});
