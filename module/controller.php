@@ -95,16 +95,33 @@ class taikhoan{
     }
     function taotaikhoan($data){
         $this->conn->constructor();
-        $strSQL = "INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`) 
-           VALUES ('" . $data['username_register'] . "', '" . $data['user1_register'] . "', 'KH', 'Đang hoạt động',NOW(), '".$data['password_register']."')";
+        $strSQL = "INSERT INTO `account` (`TenND`, `SĐT`, `MaQuyen`, `Status`, `CreTime`, `Password`, `Address`) 
+           VALUES ('" .$data->TenND. "', '" . $data->SDT. "', 'KH', 'Đang hoạt động', NOW(), '".$data->Password."','".$data->Address."')";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
-    // function suataikhoan($data){
-    //     $this->conn->constructor();
-    //     $strSQL="UPDATE `account` SET `TenND`='".$data->."',`SĐT`='".$data->."',`MaQuyen`='".$data->."',`Status`='".$data->."',`CreTime`='".$data->."',`Address`='".$data->."',`Password`='".$data->."' WHERE 1";
-    // }
+    function suataikhoan($data){
+        $this->conn->constructor();
+        $strSQL="UPDATE `account` SET `TenND`='".$data->TenND."',`Address`='".$data->Address."',`Password`='".$data->Password."' WHERE `SĐT`=".$data->SĐT."";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function dstaikhoan(){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM `account` WHERE `Status`='Đang hoạt động'";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function xoataikhoan($sdt){
+        $this->conn->constructor();
+        $strSQL="UPDATE `account` SET `Status`='Delected' WHERE `SĐT`='".$sdt."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
 }
 class donhang{
     private $conn;
