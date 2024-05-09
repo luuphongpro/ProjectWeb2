@@ -27,9 +27,9 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
   <link href="css/font-awesome.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./fonts/themify-icons-font/themify-icons/themify-icons.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
   <link rel="stylesheet" href="css/product_manager.css">
   <link rel="stylesheet" href="css/cssDangky.css">
   <link rel="stylesheet" href="css/qltaikhoan.css">
@@ -248,8 +248,8 @@
                 </li>
               </ul> -->
             </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
+            <li class="nav-item js_thongkedt">
+              <a class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Thống kê doanh thu
@@ -344,6 +344,7 @@
   <script src="js/qlsanpham.js"></script>
   <script src="js/member.js"></script>
   <script src="js/phanquyen.js"></script>
+  <script src="js/thongke.js"></script>
 </body>
 
 </html>

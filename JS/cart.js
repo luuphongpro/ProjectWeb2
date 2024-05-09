@@ -100,13 +100,14 @@ function DonHang() {
     var account = JSON.parse(sessionStorage.getItem("UseLogin"))
     var donhang = JSON.parse(localStorage.getItem("CartWeb2"))
     if (account['flag'] && donhang['arr']) {
-        account['tong'] = tongHoaDon
-        account['arr'] = donhang['arr']
-
+        donhang['tong'] = tongHoaDon
+        donhang['SĐT']=account['SĐT']
+        delete donhang['TenSP']
         var xhr = new XMLHttpRequest()
         xhr.open("POST", "./module/donhang.php?set")
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("dataJSON=" + JSON.stringify(account));
+        xhr.send("dataJSON=" + JSON.stringify(donhang));
+        console.log(JSON.stringify(donhang))
         xhr.onload = function () {
             var message = xhr.responseText
             if (message == "sucsess")

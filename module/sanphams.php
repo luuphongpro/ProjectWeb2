@@ -11,4 +11,30 @@
         $data=json_encode($row);
         echo $data;
     }
+    else if(isset($_REQUEST['thongke'])){
+        if(isset($_REQUEST['dataJSON'])){
+            $data=json_decode($_REQUEST['dataJSON']);
+            $result=$sanpham->thongke($data);
+        }
+        else {
+            $result=$sanpham->thongke();
+        }
+        $data=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $data[]=$row;
+            }
+        }
+        echo json_encode($data);
+    }
+    else if(isset($_REQUEST['gettheloai'])){
+        $result=$sanpham->gettheloai();
+        $data=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $data[]=$row;
+            }
+        }
+        echo json_encode($data);
+    }
 ?>

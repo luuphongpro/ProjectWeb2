@@ -10,3 +10,11 @@ $(".js_qltk").on("click",function(e){
         })
     })
 });
+$(".js_thongkedt").on("click",function(){
+    $(".nav-link.active").removeClass("active")
+    $(this).find("> a").addClass("active")
+    $(".content-wrapper").load("./pages/admin/thongkebh.php",function(){
+        RenderThongKe()
+        RenderSelector()
+    })
+})

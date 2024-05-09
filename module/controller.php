@@ -14,7 +14,7 @@
         }
         function timsanpham($id){
             $this->conn -> constructor();
-            $strSQL = "SELECT * FROM product WHERE MaSP = '.$id.' ";
+            $strSQL = "SELECT * FROM product WHERE MaSP = '".$id."' ";
             $result = $this->conn-> excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
@@ -76,10 +76,47 @@
         $this->conn->disconnect();
         return $count;         
     }
+    function thongke($data=null){
+        $this->conn->constructor();
+        $conditions = array();
+        if($data && $data->FormTimeST && $data->ToTimeST){
+            $conditions[] = "hoadon.CreTime BETWEEN '".$data->ToTimeST."' AND '".$data->FormTimeST."'";
+        }
+        if($data && $data->categoryST && $data->categoryST != '0'){
+            $conditions[] = "product.categoryId = '".$data->categoryST."'";
+        }
+        $strSQL = "SELECT 
+                        SUM(chitiethoadon.DonGia) AS totalTong, 
+                        product.MaSP, 
+                        chitiethoadon.DonGia, 
+                        product.TenSP, 
+                        SUM(chitiethoadon.SoLuong) AS totalSL, 
+                        product.IMG
+                    FROM 
+                        chitiethoadon
+                    LEFT JOIN 
+                        product ON chitiethoadon.MaSP = product.MaSP
+                    LEFT JOIN 
+                        hoadon ON chitiethoadon.MaHoadon = hoadon.MaHoadon";
     
-
+        if (!empty($conditions)) {
+            $strSQL .= " WHERE " . implode(" AND ", $conditions);
+        } else {
+            $strSQL .= " WHERE 1";
+        }
+        $strSQL .= " GROUP BY product.MaSP, chitiethoadon.DonGia, product.TenSP, product.IMG";
+        $result = $this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
     
-
+    function gettheloai()  {
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM `category`";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
 }
 class taikhoan{
     private $conn;
@@ -144,12 +181,9 @@ class donhang{
     
     function setChiTietDonHang($data){
         $this->conn->constructor();
-        $strSQL="SELECT COUNT(*) as total FROM chitiethoadon;";
+        $strSQL="INSERT INTO `chitiethoadon`(`SoLuong`, `DonGia`,`MaHoadon`, `MaSP`) 
+        VALUES ('".$data->soluong."','".$data->gia."','".($this->madonhang)."','".$data->MaSP."')";
         $result=$this->conn->excuteSQL($strSQL);
-        $row=mysqli_fetch_assoc($result);
-        $strSQL="INSERT INTO `chitiethoadon`(`MaChiTietHD`,`SoLuong`, `DonGia`, `MaHoadon`, `MaSP`) 
-        VALUES ('".($row['total']+1)."','".$data->soluong."','".$data->gia."','".($this->madonhang)."','".$data->MaSP."')";
-        $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
