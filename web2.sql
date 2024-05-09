@@ -79,7 +79,6 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 CREATE TABLE `chitiethoadon` (
   `MaHoadon` varchar(10) NOT NULL,
   `MaSP` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `TenSP` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `SoLuong` int(100) NOT NULL,
   `DonGia` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
@@ -87,11 +86,11 @@ CREATE TABLE `chitiethoadon` (
 -- Đang đổ dữ liệu cho bảng `chitiethoadon`
 --
 
-INSERT INTO `chitiethoadon` (`MaHoadon`, `MaSP`, `TenSP`, `SoLuong`, `DonGia`) VALUES
-('50', 'D08', '1 Chai Fanta 1.5L', 2, 35000),
-('50', 'C09', 'Combo 2 cánh gà BB & 1 khoai tây & 1 đồ uống', 1, 69000),
-('51', 'P14', 'Pizza Bò & Tôm nướng kiểu Mỹ', 1, 249000),
-('51', 'P13', 'Pizza Hải sản sốt Mayonnaise', 1, 199000);
+INSERT INTO `chitiethoadon` (`MaHoadon`, `MaSP`, `SoLuong`, `DonGia`) VALUES
+('50', 'D08', 2, 35000),
+('50', 'C09', 1, 69000),
+('51', 'P14', 1, 249000),
+('51', 'P13', 1, 199000);
 
 -- --------------------------------------------------------
 
@@ -194,7 +193,6 @@ CREATE TABLE `giaohang` (
 
 CREATE TABLE `hoadon` (
   `MaHoadon` varchar(10) NOT NULL,
-  `TenND` varchar(30) DEFAULT NULL,
   `MaUser` varchar(10) NOT NULL,
   `TongTien` int(15) NOT NULL,
   `CreTime` datetime NOT NULL,
@@ -205,9 +203,9 @@ CREATE TABLE `hoadon` (
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`MaHoadon`, `TenND`, `MaUser`, `TongTien`, `CreTime`, `TrangThai`, `TTThanhToan`) VALUES
-('50', 'Phu Huynh', '0369698361', 139000, '2024-05-07 19:59:01', 'Chưa xử lý', ''),
-('51', 'vũ', '0123456782', 498000, '2024-05-09 15:25:07', 'Chưa xử lý', '');
+INSERT INTO `hoadon` (`MaHoadon`, `MaUser`, `TongTien`, `CreTime`, `TrangThai`, `TTThanhToan`) VALUES
+('50', '0369698361', 139000, '2024-05-07 19:59:01', 'Chưa xử lý', ''),
+('51', '0123456782', 498000, '2024-05-09 15:25:07', 'Chưa xử lý', '');
 
 -- --------------------------------------------------------
 

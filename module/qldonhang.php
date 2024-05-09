@@ -12,7 +12,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM hoadon";
+    $sql = "SELECT * FROM `hoadon` LEFT JOIN account ON hoadon.MaUser=account.SĐT";
     $result = mysqli_query($conn, $sql);
 
 ?>
@@ -22,11 +22,11 @@
             <form class="filter">
                 <div id = "dateStart">
                     <label><b>Ngày bắt đầu: </b></label>
-                    <input type= "datetime-local" name="dateStart">
+                    <input type= "datetime-local" name="dateStart" value="<?php if(isset($_GET['dateStart'])){echo $_GET['dateStart'];} ?>">
                 </div>
                 <div id = "dateEnd">
                     <label><b>Ngày kết thúc: </b></label>
-                    <input type= "datetime-local" name="dateEnd">
+                    <input type= "datetime-local" name="dateEnd" value="<?php if(isset($_GET['dateEnd'])){echo $_GET['dateEnd'];} ?>">
                 </div>
                 <div id = "xulydonhang">
                     <label><b>Xử lý: </b></label>
@@ -37,7 +37,7 @@
                     </select>
                 </div>
                 <div class="submit">
-                    <button type ="submit" id="btn">Tìm kiếm</button>
+                    <button type ="submit" id="btn" name="timkiem">Tìm kiếm</button>
                 </div>
             </form>
         </div>
@@ -82,6 +82,52 @@
         </tbody>
     </table>
 
+<?php
+if(isset($_GET['timkiem'])){
+    $filter = $_GET['filter'];
+    
+    if(empty($_GET['dateStart'])){
+        $dateStart = "2000-01-01T00:00:00";
+    }else{
+        $dateStart = $_GET['dateStart'];
+    }
+
+    if(empty($_GET['dateEnd'])){
+        $dateEnd = "2099-01-01T00:00:00";
+    }else{
+        $dateEnd = $_GET['dateEnd'];
+    }
+
+    $filterdata = "SELECT * FROM `hoadon` WHERE `TrangThai` LIKE '%$filter%' && CreTime BETWEEN $dateStart AND $dateEnd";
+    
+    $filterdata_run = mysqli_query($conn, $filterdata);
+    if (mysqli_num_rows($filterdata_run) > 0){
+        foreach($filterdata_run as $row) {
+            $productIndex=0;
+            echo '
+                            <tr font-weight: bold">
+                                <th scope="row">'.$row['MaHoadon'].'</th>
+                                <td>'.$row['TenND'].'</td>
+                                <td>'.$row['MaUser'].'</td>
+                                <td>'.$row['TongTien'].'</td>
+                                <td>'.$row['CreTime'].'</td>
+                                <td>'.$row['TrangThai'].'</td>
+                                <td>
+                                    <div>
+                                        <button class="detailed"> <i class="fa-solid fa-wrench"></i> Tùy chỉnh </button>
+                                    </div>
+                                    <div>
+                                        <button class="delete"> <i class="fa-solid fa-trash"></i> Xóa </button>
+                                    </div>
+                                </td>
+                            </tr> ';
+        }
+    }else {
+        echo "Không tìm thấy kết quả";
+    }
+}
+
+?>
 
 <style>
     
@@ -144,5 +190,44 @@
 
 </style>
 
+<script>
+// Hàm để tải nội dung của trang mới bằng AJAX
+function loadPage(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            var response = xhr.responseText;
+            var parser = new DOMParser();
+            var newDoc = parser.parseFromString(response, 'text/html');
+            var newContent = newDoc.querySelector('.food_section');
+            $('.food_section').html(newContent);
+            bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
+        } else {
+            console.error('Request failed with status', xhr.status);
+        }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send();
+}
 
+// Hàm để gắn kết sự kiện click với các nút chi tiết sản phẩm mới
+function bindDetailButtons() {
+    var detailButtons = document.querySelectorAll('.detail-button');
+    detailButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            var productIndex = this.getAttribute('data-product-index');
+            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
+            overlay.style.display = "flex"; // Hiển thị overlay
+            var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
+            info.style.display = "flex"; // Hiển thị overlay
+        });
+    });
+
+}
+
+bindDetailButtons(); 
+</script>
 <script src="./JS/qldonhang.js"></script>
