@@ -2,6 +2,9 @@
     include './connect.php';
     $conn = new connect;
     $conn->constructor();
+
+
+
     $perPage = 9;
     if(isset($_GET['trang'])){
         $page = $_GET['trang'];
@@ -31,7 +34,8 @@
             $maxPrice = $_GET['maxPrice'];
         }
 
-        $filterdata = "SELECT * FROM `product` WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice LIMIT $begin , $perPage";
+        $filterdata = "SELECT * FROM `product` WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice Limit $begin , $perPage ";
+        
         $filterdata_run = $conn->excuteSQL($filterdata);
         if (mysqli_num_rows($filterdata_run) > 0){
             foreach($filterdata_run as $row) {
@@ -119,9 +123,66 @@
                 $productIndex++;
                 
             }
-        }
-        else {
+        }else {
             echo "Không tìm thấy kết quả";
         }
     }
 ?>
+<script>
+
+$(document).ready(function(){
+    $('.pageNumber').on('click', '.button-active', function(e){
+        e.preventDefault();
+        $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
+        $(this).addClass('activePT');
+        var url = this.getAttribute('href'); // Lấy URL của trang mới
+        loadPage(url);
+        handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
+    });
+    function handlePage(page){
+        var dataContainer = document.getElementById('data-container');
+        dataContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+});
+
+    
+// Hàm để tải nội dung của trang mới bằng AJAX
+function loadPage(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            var response = xhr.responseText;
+            var parser = new DOMParser();
+            var newDoc = parser.parseFromString(response, 'text/html');
+            var newContent = newDoc.querySelector('.food_section');
+            $('.food_section').html(newContent);
+            bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
+        } else {
+            console.error('Request failed with status', xhr.status);
+        }
+    };
+    xhr.onerror = function() {
+        console.error('Request failed');
+    };
+    xhr.send();
+}
+
+// Hàm để gắn kết sự kiện click với các nút chi tiết sản phẩm mới
+function bindDetailButtons() {
+    var detailButtons = document.querySelectorAll('.detail-button');
+    detailButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            var productIndex = this.getAttribute('data-product-index');
+            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
+            overlay.style.display = "flex"; // Hiển thị overlay
+            var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
+            info.style.display = "flex"; // Hiển thị overlay
+        });
+    });
+
+}
+
+bindDetailButtons(); 
+
+</script>   
