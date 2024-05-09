@@ -1,23 +1,29 @@
-    $("#qlsanpham").click((e) =>{ 
-        // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
-        // })
-        $("#right-content").load("./module/sanpham.php",function(){
-        })
-    });
-
-    $(".add_product_detail").click(function (e) { 
-        e.preventDefault();
-        var overlay = document.querySelector('.overlay');
-        var info = document.querySelector('.info');
+$(".js_qlsp").click(function(e){ 
+    // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
+    // })
+    $(".nav-link.active").removeClass("active")
+    $(this).find("> a").addClass("active")
+    $(".content-wrapper").load("./module/sanpham.php",function(){
+    })
+});
+$("#qlsanpham").click((e) =>{ 
+    $("#right-content").load("./pages/admin/qlsanpham.php",function(){
         
-        if (overlay.style.display === 'none' || info.style.display === 'none') {
-            overlay.style.display = 'flex';
-            info.style.display = 'block';
-        } else {
-            overlay.style.display = 'none';
-            info.style.display = 'none';
-        }
-    });
+    })
+});
+$(".add_product_detail").click(function (e) { 
+    e.preventDefault();
+    var overlay = document.querySelector('.overlay');
+    var info = document.querySelector('.info');
+    
+    if (overlay.style.display === 'none' || info.style.display === 'none') {
+        overlay.style.display = 'flex';
+        info.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+        info.style.display = 'none';
+    }
+});
 
 
 

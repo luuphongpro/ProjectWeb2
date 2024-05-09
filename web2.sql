@@ -314,8 +314,9 @@ INSERT INTO `product` (`MaSP`, `TenSP`, `SoLuongSP`, `GiaSP`, `TTSP`, `IMG`, `ca
 
 CREATE TABLE `quyen` (
   `TenQuyen` varchar(50) NOT NULL,
-  `MaQuyen` varchar(10) NOT NULL,
+  `MaQuyen` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
 
 --
 -- Đang đổ dữ liệu cho bảng `quyen`

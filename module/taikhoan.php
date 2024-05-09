@@ -30,6 +30,39 @@
             echo json_encode($data);
         }
     }
+    else if(isset($_REQUEST['get'])){
+        $result=$taikhoan->dstaikhoan();
+        $arraccount=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $arraccount[]=$row;
+            }
+        }
+        echo json_encode($arraccount);
+    }
+    else if(isset($_REQUEST['update'])){
+        $data=$_REQUEST['dataJSON'];
+        $data=json_decode($data);
+        $result=$taikhoan->suataikhoan($data);
+        echo $result;
+    }
+    else if(isset($_REQUEST['delete'])){
+        $data=$_REQUEST['SDT'];
+        $result=$taikhoan->xoataikhoan($data);
+        echo $result;
+    }
+    else if(isset($_REQUEST['create'])){
+        $data=$_REQUEST['dataJSON'];
+        $data=json_decode($data);
+        $result=$taikhoan->timtaikhoan($data->SDT);
+        if(mysqli_num_rows($result)==0){
+            $result=$taikhoan->taotaikhoan($data);
+            echo 'success';
+        }
+        else {
+            echo 'fail';
+        }
+    }
     // else if(isset($_REQUEST['sua'])){
     //     $data=json_decode($_REQUEST['dataJSON']);
     //     $result=$taikhoan->suataikhoan($data['user1_register']);

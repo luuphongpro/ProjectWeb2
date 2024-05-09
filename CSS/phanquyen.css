@@ -1,0 +1,86 @@
+.overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(90, 86, 86, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 990; 
+    }
+    .info {
+        margin-top: 50px;
+        display: flex;
+        height: 600px;
+        width: 600px;
+        background-color: #7FC7D9;
+        margin: 50px auto;
+        padding: 20px 20px 20px;
+        position: relative;
+        animation: topdown 0.5s;
+        flex-wrap: wrap;
+        z-index: 20;
+        border-radius: 45px;
+        gap: 50px;
+        overflow: auto; 
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+    }
+    .info::-webkit-scrollbar { 
+        width: 0 !important;
+        display: none; 
+      }
+
+    .topform{
+    display: flex;
+    position: absolute;
+    margin-left: 160px;
+}
+    .table {
+        margin-top:100px;
+        border-collapse: collapse;
+        margin-left: 80px;
+        text-align: center;
+    }
+    .table td,
+    .table th {
+        border: 2px solid #222222; /* Đặt màu viền cho ô trong bảng */
+        padding-left: 40px;
+        padding: 10px;
+        text-align: center; /* Thêm thuộc tính text-align: center; để căn giữa chữ trong ô */
+        vertical-align: middle; /* Thêm thuộc tính vertical-align: middle; để căn giữa chữ theo chiều dọc trong ô */
+    }
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9; /* Đặt màu nền cho các dòng chẵn */
+        height: 50px;
+    }
+    .table thead th {
+        background-color: gray;
+        color: aliceblue;
+        width: 200px; 
+    }
+    .table tbody td {
+        width: 200px; 
+    }
+    .closequyen{
+	font-size: 32pt;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-top: -17px;
+    margin-left: 100px;
+  }
+  .closequyen:hover{
+    color: #cb2020;
+  }
+  h2{
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+  }
+  .table input[type="checkbox"] {
+    transform: scale(1.5); /* Thêm thuộc tính transform: scale(1.5); để làm cho ô checkbox to hơn */
+    }
