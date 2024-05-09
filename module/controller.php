@@ -188,4 +188,68 @@ class donhang{
         return $result;
     }
 }
+class quyen{
+    private $conn;
+    function __construct(){
+        $this->conn=new connect;
+    }
+    function dsquyen(){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM chucnang WHERE 1";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function timquyen($id){
+        $this->conn -> constructor();
+        $strSQL = "SELECT * FROM chucnang WHERE MaChucnang = '".$id."' ";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+
+    }
+    function locquyen($tenquyen, $category){
+        $this->conn->constructor();
+        $strSQL = "SELECT * FROM chucnang WHERE `TenChucnang` LIKE '%$tenquyen%'  && `categoryId` LIKE  '%$category%' ";
+        $result = $this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+    
+
+    function xoaquyen($id){
+        $this->conn->constructor();
+        $strSQL = "DELETE FROM chucnang WHERE MaChucnang = '" . $id . "'";
+        $result = $this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+
+    function suaquyen($data){
+        $this->conn->constructor();
+        $strSQL = "UPDATE chucnang 
+                SET TenChucnang = '".$data['tenchucnang']."', 
+                    Active = ".$data['active'].", 
+                    
+                WHERE MaChucnang = '".$data['machucnang']."' ";  
+
+
+        $result = $this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+
+    function themquyen($data){
+        $this->conn -> constructor();
+        $strSQL = "INSERT INTO `chucnang` (`MaChucnang` ,`TenChucnang` , `Active`)
+                    VALUE ('".$data['machucnang']."', '".$data['tenchucnang']."', '".$data['active']."'";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+
+    }
+}
 ?>

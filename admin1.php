@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="css/product_manager.css">
   <link rel="stylesheet" href="css/cssDangky.css">
   <link rel="stylesheet" href="css/qltaikhoan.css">
+  <link rel="stylesheet" href="css/phanquyen.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
