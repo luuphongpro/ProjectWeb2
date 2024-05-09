@@ -219,7 +219,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item js_qldh">
               <a class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -344,6 +344,7 @@
   <script src="js/vadidation.js"></script>
   <script src="js/admin1.js"></script>
   <script src="js/qlsanpham.js"></script>
+  <script src="js/qldonhang.js"></script>
   <script src="js/member.js"></script>
   <script src="js/phanquyen.js"></script>
   <script src="js/thongke.js"></script>
