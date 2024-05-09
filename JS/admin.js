@@ -60,9 +60,7 @@ $(".item-menu").on("click",function(e){
     }
 })
 
-// $(".js_qltk").on("click",function(){
-//     $(".content-wrapper").load("./pages/admin.")
-// })
+
 //Khi show chức năng, phải render vào #right-content trách bị trùng giao diện giữa mọi người
 
 // $("#qlsanpham").click((e) =>{ 
