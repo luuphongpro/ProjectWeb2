@@ -338,6 +338,7 @@
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
+  <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
   <script src="js/XMLHTTP.js"></script>
   <script src="js/vadidation.js"></script>
   <script src="js/admin1.js"></script>
