@@ -15,10 +15,13 @@
     $sql = "SELECT * FROM `hoadon` LEFT JOIN account ON hoadon.MaUser=account.SĐT";
     $result = mysqli_query($conn, $sql);
 
+    // WHERE chitiethoadon.MaHoadon = $MaHoadon
+    $sql2 = "SELECT * FROM chitiethoadon LEFT JOIN product ON chitiethoadon.MaSP=product.MaSP";
+    $result2 = mysqli_query($conn, $sql2);
 ?>
 
 
-<div id ="timkiem" class="timkiem">
+    <div id ="timkiem" class="timkiem">
             <form class="filter">
                 <div id = "dateStart">
                     <label><b>Ngày bắt đầu: </b></label>
@@ -58,76 +61,86 @@
         <tbody id="showdata">
         <?php
                 if($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                        echo '
-                            <tr font-weight: bold">
-                                <th scope="row">'.$row['MaHoadon'].'</th>
-                                <td>'.$row['TenND'].'</td>
-                                <td>'.$row['MaUser'].'</td>
-                                <td>'.$row['TongTien'].'</td>
-                                <td>'.$row['CreTime'].'</td>
-                                <td>'.$row['TrangThai'].'</td>
+                    while($row = $result->fetch_assoc()){ ?>
+                        
+                            <tr font-weight="bold">
+                                <th scope="row"><?php echo $row['MaHoadon'] ?></th>
+                                <td><?php echo $row['TenND']?></td>
+                                <td><?php echo $row['MaUser']?></td>
+                                <td><?php echo $row['TongTien']?></td>
+                                <td><?php echo $row['CreTime']?></td>
+                                <td>
+                                <?php
+                                    if ($row['TrangThai'] == 0)
+                                    {?>
+                                        <p>Chưa xử lý</p>
+                                    <?php }
+                                    elseif ($row['TrangThai'] == 1)
+                                    {?>
+                                        <p>Đã xử lý</p>
+                                    <?php }
+                                ?>
+                                </td>
                                 <td>
                                     <div>
-                                        <button class="detailed"> <i class="fa-solid fa-wrench"></i> Tùy chỉnh </button>
+                                        <button id="detailed" class="detailed"> <i class="fa-solid fa-wrench"></i> Tùy chỉnh </button>
                                     </div>
                                     <div>
                                         <button class="delete"> <i class="fa-solid fa-trash"></i> Xóa </button>
                                     </div>
                                 </td>
-                            </tr> ';
+                            </tr>
+                    <?php
                     }
                 }
             ?>
         </tbody>
     </table>
 
-<?php
-if(isset($_GET['timkiem'])){
-    $filter = $_GET['filter'];
-    
-    if(empty($_GET['dateStart'])){
-        $dateStart = "2000-01-01T00:00:00";
-    }else{
-        $dateStart = $_GET['dateStart'];
-    }
+    <div class="detail">
+        <div id="ctdh" class="ctdh">
+            <div>
+                <table class="list" style="text-align: center ; display: grid">
+                    <thead>
+                        <tr>
+                            <th>Mã sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
 
-    if(empty($_GET['dateEnd'])){
-        $dateEnd = "2099-01-01T00:00:00";
-    }else{
-        $dateEnd = $_GET['dateEnd'];
-    }
+                <?php
+                    if($result->num_rows > 0){
+                        while($row = $result2->fetch_assoc()){
+                            echo '
+                                <tr font-weight: bold">
+                                    <th scope="row">'.$row['MaSP'].'</th>
+                                    <td>'.$row['TenSP'].'</td>
+                                    <td>'.$row['SoLuong'].'</td>
+                                    <td>'.$row['DonGia'].'</td>
+                                    <td>'.$row['DonGia'] * $row['SoLuong'].'</td>
+                                </tr> ';
+                        }
+                    }
+                ?>
+                </table>
+            
+                <div>
+                    <div id = "xulydonhang">
+                        <select id="luachon" name="filter">
+                            <option value="Chưa">Chưa xử lý</option>
+                            <option value="Đã">Đã xử lý</option>
+                        </select>
+                    </div>
+                    <button id="success"> <i class="fa-solid fa-check"></i> Xác nhận </button>
+                    <button id="exit"> <i class="fa-solid fa-xmark"></i> Hủy </button>
+                </div>
 
-    $filterdata = "SELECT * FROM `hoadon` WHERE `TrangThai` LIKE '%$filter%' && CreTime BETWEEN $dateStart AND $dateEnd";
-    
-    $filterdata_run = mysqli_query($conn, $filterdata);
-    if (mysqli_num_rows($filterdata_run) > 0){
-        foreach($filterdata_run as $row) {
-            $productIndex=0;
-            echo '
-                            <tr font-weight: bold">
-                                <th scope="row">'.$row['MaHoadon'].'</th>
-                                <td>'.$row['TenND'].'</td>
-                                <td>'.$row['MaUser'].'</td>
-                                <td>'.$row['TongTien'].'</td>
-                                <td>'.$row['CreTime'].'</td>
-                                <td>'.$row['TrangThai'].'</td>
-                                <td>
-                                    <div>
-                                        <button class="detailed"> <i class="fa-solid fa-wrench"></i> Tùy chỉnh </button>
-                                    </div>
-                                    <div>
-                                        <button class="delete"> <i class="fa-solid fa-trash"></i> Xóa </button>
-                                    </div>
-                                </td>
-                            </tr> ';
-        }
-    }else {
-        echo "Không tìm thấy kết quả";
-    }
-}
-
-?>
+            </div>
+        </div>
+    </div>
 
 <style>
     
@@ -174,60 +187,66 @@ if(isset($_GET['timkiem'])){
     border-bottom-width: 2px;
 }
 
-.detailed{
+.detailed , #success{
     border-radius: 5px;
     width: auto;
     background-color:#00ff99;
     color: black;
 }
 
-.delete {
+.delete, #exit {
     border-radius: 5px;
     width: auto;
     background-color: red;
     color: white;
 }
 
+.detail{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(90, 86, 86, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 990;
+}
+
+.ctdh{
+    max-width: 100%;
+    position: relative;
+    top: 100px;
+    left: 120px;
+    height: auto;
+    width: 1100px;
+    margin: 50px auto;
+    padding: 50px 20px 20px;
+
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    -webkit-box-shadow: 0 0 10px #000000;
+    display: block;
+    pointer-events: auto;
+}
+
 </style>
 
 <script>
-// Hàm để tải nội dung của trang mới bằng AJAX
-function loadPage(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 400) {
-            var response = xhr.responseText;
-            var parser = new DOMParser();
-            var newDoc = parser.parseFromString(response, 'text/html');
-            var newContent = newDoc.querySelector('.food_section');
-            $('.food_section').html(newContent);
-            bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
-        } else {
-            console.error('Request failed with status', xhr.status);
-        }
-    };
-    xhr.onerror = function() {
-        console.error('Request failed');
-    };
-    xhr.send();
-}
+document.getElementById("detailed").addEventListener("click", function(){
+ var e =document.getElementsByClassName("detail");
 
-// Hàm để gắn kết sự kiện click với các nút chi tiết sản phẩm mới
-function bindDetailButtons() {
-    var detailButtons = document.querySelectorAll('.detail-button');
-    detailButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
-            var productIndex = this.getAttribute('data-product-index');
-            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
-            overlay.style.display = "flex"; // Hiển thị overlay
-            var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
-            info.style.display = "flex"; // Hiển thị overlay
-        });
-    });
-
-}
-
-bindDetailButtons(); 
+        e[0].style.display = 'block';
+   
+})	;
+document.getElementById("exit").addEventListener("click", function(){
+   var e =document.getElementsByClassName("detail");
+ e[0].style.display= 'none';
+});
 </script>
 <script src="./JS/qldonhang.js"></script>
