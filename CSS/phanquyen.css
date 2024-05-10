@@ -1,86 +1,71 @@
-.overlay{
-    display: none;
+.quyen_overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(90, 86, 86, 0.8);
+    display: none;
     justify-content: center;
     align-items: center;
-    z-index: 990; 
-    }
-    .info {
-        margin-top: 50px;
-        display: flex;
-        height: 600px;
-        width: 600px;
-        background-color: #7FC7D9;
-        margin: 50px auto;
-        padding: 20px 20px 20px;
-        position: relative;
-        animation: topdown 0.5s;
-        flex-wrap: wrap;
-        z-index: 20;
-        border-radius: 45px;
-        gap: 50px;
-        overflow: auto; 
-        overflow: -moz-scrollbars-none;
-        -ms-overflow-style: none;
-    }
-    .info::-webkit-scrollbar { 
-        width: 0 !important;
-        display: none; 
-      }
-
-    .topform{
-    display: flex;
-    position: absolute;
-    margin-left: 160px;
+    z-index: 990;
 }
-    .table {
-        margin-top:100px;
-        border-collapse: collapse;
-        margin-left: 80px;
-        text-align: center;
-    }
-    .table td,
-    .table th {
-        border: 2px solid #222222; /* Đặt màu viền cho ô trong bảng */
-        padding-left: 40px;
-        padding: 10px;
-        text-align: center; /* Thêm thuộc tính text-align: center; để căn giữa chữ trong ô */
-        vertical-align: middle; /* Thêm thuộc tính vertical-align: middle; để căn giữa chữ theo chiều dọc trong ô */
-    }
-    .table tr:nth-child(even) {
-        background-color: #f9f9f9; /* Đặt màu nền cho các dòng chẵn */
-        height: 50px;
-    }
-    .table thead th {
-        background-color: gray;
-        color: aliceblue;
-        width: 200px; 
-    }
-    .table tbody td {
-        width: 200px; 
-    }
-    .closequyen{
-	font-size: 32pt;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    margin-top: -17px;
-    margin-left: 100px;
-  }
-  .closequyen:hover{
-    color: #cb2020;
-  }
-  h2{
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto Mono', monospace;
-  }
-  .table input[type="checkbox"] {
-    transform: scale(1.5); /* Thêm thuộc tính transform: scale(1.5); để làm cho ô checkbox to hơn */
-    }
+.quyen_info{
+    display: flex;
+    width: 500px;
+    height: 600px;
+    background-color: #7FC7D9;
+    margin: 50px auto;
+    padding: 50px 20px 20px;
+    position: relative;
+    animation: topdown 0.5s;
+    flex-wrap: wrap;
+    z-index: 20;
+    border-radius: 45px;
+    gap:50px;
+}
+
+
+.addQuyen{
+    display: flex;
+    align-items: flex-end;
+    border-radius:0 7px 7px 0; 
+    border: 2px solid whitesmoke;
+    padding: 16px 5px;
+    margin: 20px 0;
+    background-color: #f5d4ab;
+    top: 20px;
+    right: 20px; 
+}
+.addQuyen a{
+    color :blue;
+    margin: 7px;
+    font-size: 25px; /* Đặt kích thước của biểu tượng */
+}
+.addQuyen a:hover{
+    color:red;
+}
+
+#form_add_quyen{
+    border-radius: 7px; 
+    border: 2px solid #7FC7D9;
+    background-color: #7FC7D9; 
+    font-size: 20px;
+}
+#form_add_quyen input[type="text"]{
+    margin-bottom: 10px;
+    width: 456px;
+}
+.btn-search-quyen{
+    position: absolute;
+    left: 38%;
+    bottom: 50px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #FFBE33;
+    font-weight: bold;
+}
+.btn-search-quyen:hover{
+    background-color: #513905;
+    color: white;
+}
