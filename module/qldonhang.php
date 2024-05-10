@@ -16,8 +16,14 @@
     $result = mysqli_query($conn, $sql);
 
     // WHERE chitiethoadon.MaHoadon = $MaHoadon
-    $sql2 = "SELECT * FROM chitiethoadon LEFT JOIN product ON chitiethoadon.MaSP=product.MaSP";
+    $sql2 = "SELECT * FROM chitiethoadon LEFT JOIN product ON chitiethoadon.MaSP=product.MaSP ";
     $result2 = mysqli_query($conn, $sql2);
+
+    if(isset($_POST['setting']))
+    {
+        $status = $_POST['setting'];
+        mysqli_query($conn, "UPDATE hoadon SET setting = '$status' WHERE MaHoadon = $MaHoadon ");
+    }
 ?>
 
 
@@ -35,8 +41,11 @@
                     <label><b>Xử lý: </b></label>
                     <select id="luachon" name="filter">
                         <option value="">Lựa chọn</option>
-                        <option value="Chưa">Chưa xử lý</option>
-                        <option value="Đã">Đã xử lý</option>
+                        <option value="0">Chưa xử lý</option>
+                        <option value="1">Đã xử lý</option>
+                        <option value="2">Đang giao hàng</option>
+                        <option value="3">Đã giao hàng</option>
+                        <option value="4">Hủy đơn</option>
                     </select>
                 </div>
                 <div class="submit">
@@ -48,7 +57,7 @@
 
     <table class="list" style="text-align: center ; display: grid">
         <thead>
-            <tr>
+            <tr class="list-name">
                 <th>Mã đơn hàng</th>
                 <th>Tên Khách Hàng</th>
                 <th>Số điện thoại</th>
@@ -73,11 +82,23 @@
                                 <?php
                                     if ($row['TrangThai'] == 0)
                                     {?>
-                                        <p>Chưa xử lý</p>
+                                        Chưa xử lý
                                     <?php }
                                     elseif ($row['TrangThai'] == 1)
                                     {?>
-                                        <p>Đã xử lý</p>
+                                        Đã xử lý
+                                    <?php }
+                                    elseif ($row['TrangThai'] == 2)
+                                    {?>
+                                        Đang giao hàng
+                                    <?php }
+                                    elseif ($row['TrangThai'] == 3)
+                                    {?>
+                                        Đã giao hàng
+                                    <?php }
+                                    elseif ($row['TrangThai'] == 4)
+                                    {?>
+                                        Hủy đơn
                                     <?php }
                                 ?>
                                 </td>
@@ -100,9 +121,10 @@
     <div class="detail">
         <div id="ctdh" class="ctdh">
             <div>
+                <h1> Chi tiết đơn hàng</h1>
                 <table class="list" style="text-align: center ; display: grid">
                     <thead>
-                        <tr>
+                        <tr class="list-name">
                             <th>Mã sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Số lượng</th>
@@ -112,7 +134,7 @@
                     </thead>
 
                 <?php
-                    if($result->num_rows > 0){
+                    if($result2->num_rows > 0){
                         while($row = $result2->fetch_assoc()){
                             echo '
                                 <tr font-weight: bold">
@@ -129,13 +151,16 @@
             
                 <div>
                     <div id = "xulydonhang">
-                        <select id="luachon" name="filter">
-                            <option value="Chưa">Chưa xử lý</option>
-                            <option value="Đã">Đã xử lý</option>
+                        <select id="chon" name="setting">
+                        <option value="0">Chưa xử lý</option>
+                        <option value="1">Đã xử lý</option>
+                        <option value="2">Đang giao hàng</option>
+                        <option value="3">Đã giao hàng</option>
+                        <option value="4">Hủy đơn</option>
                         </select>
+                        <button id="success"> <i class="fa-solid fa-check"></i> Xác nhận </button>
+                        <button id="exit"> <i class="fa-solid fa-xmark"></i> Hủy </button>
                     </div>
-                    <button id="success"> <i class="fa-solid fa-check"></i> Xác nhận </button>
-                    <button id="exit"> <i class="fa-solid fa-xmark"></i> Hủy </button>
                 </div>
 
             </div>
@@ -160,7 +185,7 @@
     row-gap: 10px;
 }
 
-#luachon{
+#luachon, #chon{
     border-radius: 10px;
     width: 150px;
 }
@@ -175,6 +200,11 @@
 .list {
     margin: 10px;
     border: 1px solid #dee2e6;
+}
+
+.list-name{
+    background-color: #ff0045;
+    color: white;
 }
 
 .list th, .list td {
@@ -235,18 +265,31 @@
     pointer-events: auto;
 }
 
+h1 {
+  text-align: center;
+}
+
+
 </style>
 
 <script>
+
 document.getElementById("detailed").addEventListener("click", function(){
  var e =document.getElementsByClassName("detail");
 
         e[0].style.display = 'block';
    
-})	;
+});
+
 document.getElementById("exit").addEventListener("click", function(){
    var e =document.getElementsByClassName("detail");
  e[0].style.display= 'none';
 });
+
+document.getElementById("success").addEventListener("click", function(){
+   var e =document.getElementsByClassName("detail");
+ e[0].style.display= 'none';
+});
+
 </script>
 <script src="./JS/qldonhang.js"></script>
