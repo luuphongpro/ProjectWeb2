@@ -35,7 +35,7 @@ $("#qlquyen").click((e) =>{
 
     function validateForm() {
         var tenquyen = document.getElementById("tenquyen_detail").value;
-        var maquyen = document.getElementById("maquyen\_detail").value;
+        var maquyen = document.getElementById("maquyen_detail").value;
         var active = document.getElementById("active_detail").value;
 
         var err_tenquyen = document.getElementById("err_tenquyen");
@@ -67,7 +67,6 @@ $("#qlquyen").click((e) =>{
         return true;
     }
 
-    var hasError = false;
 
     function validateFixForm() {
         var tenquyen = document.getElementById("fix_tenquyen").value;
@@ -78,7 +77,8 @@ $("#qlquyen").click((e) =>{
         var err_maquyen = document.getElementById("err_fix_maquyen");
         var err_active = document.getElementById("err_fix_active");
 
-      
+        var hasError = false;
+
 
         if (!/^\d+(,\d{3})*(\.\d+)?$/.test(active)) {
             err_active.style.display = "block";
@@ -110,10 +110,10 @@ $("#qlquyen").click((e) =>{
 
     
     function re_useDel_quyen(){
-        document.querySelectorAll('.deleteFormQuyen').forEach(function(form) {
-            form.addEventListener("submit", async function(ev) {
+        document.querySelectorAll('.deleteFormQuyen').forEach(function() {
+            var xoaquyen = document.querySelector('#deleteFormQuyen');
+            xoaquyen.addEventListener("submit", async function(ev) {
                 ev.preventDefault(); // Ngăn chặn reload trang
-                
                 console.log("đã vào");
         
                 var confirmation = confirm("Bạn có chắc muốn xóa quyền này?"); // Hỏi xác nhận

@@ -245,7 +245,7 @@ class quyen{
     function themquyen($data){
         $this->conn -> constructor();
         $strSQL = "INSERT INTO `chucnang` (`MaChucnang` ,`TenChucnang` , `Active`)
-                    VALUE ('".$data['machucnang']."', '".$data['tenchucnang']."', '".$data['active']."'";
+                    VALUE ('".$data['maquyen']."', '".$data['tenquyen']."', '".$data['active']."'";
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
