@@ -196,7 +196,7 @@ CREATE TABLE `hoadon` (
   `MaUser` varchar(10) NOT NULL,
   `TongTien` int(15) NOT NULL,
   `CreTime` datetime NOT NULL,
-  `TrangThai` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `TrangThai` int(15) NOT NULL,
   `TTThanhToan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 --
@@ -204,8 +204,8 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`MaHoadon`, `MaUser`, `TongTien`, `CreTime`, `TrangThai`, `TTThanhToan`) VALUES
-('50', '0369698361', 139000, '2024-05-07 19:59:01', 'Chưa xử lý', ''),
-('51', '0123456782', 498000, '2024-05-09 15:25:07', 'Chưa xử lý', '');
+('50', '0369698361', 139000, '2024-05-07 19:59:01', 0, ''),
+('51', '0123456782', 498000, '2024-05-09 15:25:07', 0, '');
 
 -- --------------------------------------------------------
 
