@@ -20,6 +20,12 @@
     $result = $conn->query($sql);
     
 ?>
+<section id="quanlisp">
+
+<div id="noti">
+    <h4 id="noti-title"></h4>
+    <div id ="noti-desc"></div>
+</div>
 
 <div style = "display : flex ; justify-content: space-between; position: relative;">
         <div id = "addQuyen" class="addQuyen">
@@ -48,17 +54,17 @@
                         <input id ="tenquyen_detail" name = "tenquyen_detail" type ="text">
                         <p id ="err_tenquyen" style ="display : none ; color : red ; white-space: nowrap;" >Tên quyền không được bỏ trống</p>
                     </div>
+                    <div>
                         <label for ="active_detail"><b>Trạng thái Active: </b></label><br>
                         <input id = "active_detail" name = "active_detail" type ="text">
                         <p id ="err_active" style ="display : none ; color : red; white-space: nowrap;">Không được bỏ trống và nội dung phải là số  !!!</p>
-</div>
+                    </div>
                     <button type ="submit" class="btn-search-quyen">Thêm Quyền</button>
                 </form>
             </div>
-        </div>
     </div>
-
-            <table class="table table-bordered" style="text-align: center ; display: grid">
+</div>
+        <table class="table table-bordered" style="text-align: center ; display: grid">
         <thead>
             <tr>
                 <th scope="col">Mã quyền</th>
@@ -95,6 +101,7 @@
         ?>
           </tbody>
     </table>
+</section>
 <link rel="stylesheet" href="./CSS/product_manager.css"/>
    
 <script src="./JS/phanquyen.js"></script>

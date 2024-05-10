@@ -214,6 +214,7 @@
             <li class="nav-item js_qlsp">
               <a class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
+                <p>
                 Quản lý sản phẩm
                 <!-- <i class="fas fa-angle-left right"></i> -->
                 <span class="badge badge-info right"></span>

@@ -53,7 +53,7 @@ $(".add_product_detail").click(function (e) {
             var giatien = productRow.querySelector('td:nth-child(5)').innerText;
             var theloai = productRow.querySelector('td:nth-child(6)').innerText;
             var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
-            var relativePath = imgSrc.replace("http://localhost/DoAn/ProjectWeb2/", "");
+            var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
             document.getElementById('fix_masp').value = masp;
             document.getElementById('fix_tensp').value = tensp;
@@ -264,7 +264,7 @@ $(".add_product_detail").click(function (e) {
             return;
         }
         const data = new FormData(ev.target);
-        const json = await fetch('http://localhost/DoAn/ProjectWeb2/module/add_product.php', {
+        const json = await fetch('http://localhost/ProjectWeb2/module/add_product.php', {
             method: 'POST',
             body: data
         })
@@ -308,7 +308,7 @@ $(".add_product_detail").click(function (e) {
         }
 
         const data = new FormData(ev.target);
-        const json = await fetch('http://localhost/DoAn/ProjectWeb2/module/fix_product.php', {
+        const json = await fetch('http://localhost/ProjectWeb2/module/fix_product.php', {
             method: 'POST',
             body: data
         })
@@ -401,7 +401,7 @@ $(".add_product_detail").click(function (e) {
                 var theloai = productRow.querySelector('td:nth-child(6)').innerText;
                 var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
 
-                var relativePath = imgSrc.replace("http://localhost/DoAn/ProjectWeb2/", "");
+                var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
                 document.getElementById('fix_masp').value = masp;
                 document.getElementById('fix_tensp').value = tensp;
