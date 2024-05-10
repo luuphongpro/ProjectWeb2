@@ -2,7 +2,7 @@
     include './controller.php';
     $quyen = new quyen;
 
-    $masp = $_POST['deleteMaQuyen'];
+    $maquyen = $_POST['deleteMaQuyen'];
 
     $result = $quyen->xoaquyen($maquyen);
     if ($result) {

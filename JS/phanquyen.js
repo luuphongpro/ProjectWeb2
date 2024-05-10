@@ -35,20 +35,15 @@ $("#qlquyen").click((e) =>{
 
     function validateForm() {
         var tenquyen = document.getElementById("tenquyen_detail").value;
-        var maquyen = document.getElementById("maquyen\_detail").value;
+        var maquyen = document.getElementById("maquyen_detail").value;
         var active = document.getElementById("active_detail").value;
 
         var err_tenquyen = document.getElementById("err_tenquyen");
         var err_maquyen = document.getElementById("err_maquyen");
-        var err_giatien = document.getElementById("err_giatien");
 
         
         var hasError = false;
 
-        if (!/^\d+(,\d{3})*(\.\d+)?$/.test(active)) {
-            err_giatien.style.display = "block";
-            hasError = true;
-        }
 
         if (!/^\d+$/.test(maquyen)) {
             err_maquyen.style.display = "block";
@@ -64,15 +59,6 @@ $("#qlquyen").click((e) =>{
             err_maquyen.style.display = "block";
             hasError = true;
         }
-        if (active.trim() === '') {
-            err_giatien.style.display = "block";
-            hasError = true;
-        }
-
-        if (ttsp.trim() === ''){
-            err_ttsp.style.display = "block";
-            hasError = true;
-        }
         console.log(hasError);
         if (hasError) {
             return false;
@@ -81,7 +67,6 @@ $("#qlquyen").click((e) =>{
         return true;
     }
 
-    var hasError = false;
 
     function validateFixForm() {
         var tenquyen = document.getElementById("fix_tenquyen").value;
@@ -92,7 +77,8 @@ $("#qlquyen").click((e) =>{
         var err_maquyen = document.getElementById("err_fix_maquyen");
         var err_active = document.getElementById("err_fix_active");
 
-      
+        var hasError = false;
+
 
         if (!/^\d+(,\d{3})*(\.\d+)?$/.test(active)) {
             err_active.style.display = "block";
@@ -123,11 +109,11 @@ $("#qlquyen").click((e) =>{
     }
 
     
-    function re_useDel(){
-        document.querySelectorAll('.deleteFormQuyen').forEach(function(form) {
-            form.addEventListener("submit", async function(ev) {
+    function re_useDel_quyen(){
+        document.querySelectorAll('.deleteFormQuyen').forEach(function() {
+            var xoaquyen = document.querySelector('#deleteFormQuyen');
+            xoaquyen.addEventListener("submit", async function(ev) {
                 ev.preventDefault(); // Ngăn chặn reload trang
-                
                 console.log("đã vào");
         
                 var confirmation = confirm("Bạn có chắc muốn xóa quyền này?"); // Hỏi xác nhận
@@ -178,7 +164,6 @@ $("#qlquyen").click((e) =>{
             row.innerHTML = `
                 <th scope="row">${item.MaChucnang}</th>
                 <td>${item.TenChucnang}</td>  
-                <td>${item.SoLuongSP}</td>
                 <td>${item.Active}</td>
                 <td class="custom-icons">
                     <div>
@@ -197,4 +182,77 @@ $("#qlquyen").click((e) =>{
             tableBody.appendChild(row);
         });
         
+    }
+    var form_add_quyen = document.getElementById("form_add_quyen");
+    var noti = document.getElementById('noti');
+
+    function removeNoti(){
+        noti.style.transform = 'translateX(110%)';
+    }
+
+
+    form_add_quyen.addEventListener("submit", async function (ev) {
+        ev.preventDefault();
+        var kq =  validateForm();
+        if(!kq){
+            return;
+        }
+        const data = new FormData(ev.target);
+        const json = await fetch('http://localhost/ProjectWeb2/module/them_quyen.php', {
+            method: 'POST',
+            body: data
+        })
+
+        const response = await json.json();
+        
+        console.log(response);
+
+        const title = document.getElementById('noti-title');
+        const desc = document.getElementById('noti-desc');
+        
+        
+
+        if(response.message == 'successAdd'){
+            removeNoti()
+            console.log(noti)
+            noti.style.backgroundColor = 'green';
+            title.innerHTML = 'Success'
+            desc.innerHTML = 'ĐÃ thêm thành công'
+        }else{
+            removeNoti()
+            noti.style.backgroundColor = 'red';
+            title.innerHTML = 'Error'
+            desc.innerHTML = 'Thêm thất bại'
+        }
+
+        noti.style.transform = 'translateX(0)';
+        setTimeout(() => {
+            removeNoti()
+        }, 4000)
+    })
+
+    function loadPage(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var response = xhr.responseText;
+                var parser = new DOMParser();
+                var newDoc = parser.parseFromString(response, 'text/html');
+                var newTable = newDoc.querySelector('table.table.table-bordered');
+                if (newTable) {
+                    document.querySelector('#quanlisp table.table.table-bordered').innerHTML = newTable.innerHTML;
+                } else {
+                    console.error('Table not found in the response');
+                }
+            } else {
+                console.error('Request failed with status', xhr.status);
+            }
+            // bindEditDeleteListeners();
+            re_useDel();
+        };
+        xhr.onerror = function() {
+            console.error('Request failed');
+        };
+        xhr.send();
     }
