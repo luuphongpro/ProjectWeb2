@@ -23,6 +23,9 @@
             include './pages/front/cart.php';
         }
     }
+    else if(isset($_GET['profile'])){
+        include_once './pages/front/profile.php';
+    }
     else{
         include './pages/front/product.php';
     }

@@ -219,7 +219,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item js_qldh">
               <a class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -339,10 +339,12 @@
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
   <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
+
   <script src="js/XMLHTTP.js"></script>
   <script src="js/vadidation.js"></script>
   <script src="js/admin1.js"></script>
   <script src="js/qlsanpham.js"></script>
+  <script src="js/qldonhang.js"></script>
   <script src="js/member.js"></script>
   <script src="js/phanquyen.js"></script>
   <script src="js/thongke.js"></script>

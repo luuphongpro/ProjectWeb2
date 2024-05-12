@@ -37,4 +37,17 @@
         }
         echo json_encode($data);
     }
+    else if(isset($_REQUEST['xoasp'])){
+        $id=$_REQUEST[''];
+        $result=$sanpham->xoasanpham($id);
+        if($result!=0){
+            echo 'success';
+        }
+        else echo 'fail';
+    }
+    else if(isset($_REQUEST['sua'])){
+        $data=$_REQUEST['dataJSON'];
+        $result=$sanpham->suasanpham($data);
+        return $result;
+    }
 ?>

@@ -117,9 +117,12 @@ else{
     $('.user-dn').removeClass('status')
 }
 $(".user-logout").on("click",() =>{
+    LogOut()
+})
+function LogOut(){
     UserLogin.flag=false;
     sessionStorage.setItem('UseLogin',JSON.stringify(UserLogin));
-})
+}
 // document.querySelector(".filter").onSubmit=function(e){
 //     console.log("cmmm")
 //     e.preventDefault()
@@ -134,14 +137,14 @@ Validator({
     }
 })
 function CheckQuyen(quyen){
-    var html=`<li><a class="option-item" href="xxx">
+    var html=`<li><a class="option-item" href="index.php?profile">
     <i class="fa fa-user"></i> Trang cá nhân</a></li>
-    <li><a class="option-item" href="xxx"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
+    <li><a class="option-item" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
     if(quyen=="KH"){
-        html+=`<li><a class="option-item" href="xxx"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
+        html+=`<li><a class="option-item" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
     }
     else {
-        html+=`<li><a class="option-item" href="admin.php"><i class="fa fa-book"></i> Vào trang Admin</a></li>`
+        html+=`<li><a class="option-item" href="admin1.php"><i class="fa fa-book"></i> Vào trang Admin</a></li>`
     }
     html+=`<li><a class="user-logout option-item" href="index.php?chon&id=home"><i class="fa fa-sign-out"></i> Thoát</a></li>`
     $(".option-dn").html(html);
@@ -181,4 +184,19 @@ function AddToCart(masp,soluong=1){
 }
 function AddFromDetail(masp,event){
     AddToCart(masp,event.target.parentElement.querySelector("#quantity").value)
+}
+;(function(){
+    var urlCurrent=window.location.href;
+    if(urlCurrent.indexOf('profile&donhang')!=-1){
+        $(".nav-item").each(function(){
+            if($(this).children().text().trim()=='My orders'){
+                $(this).children().removeClass("active")
+                $(this).children().addClass("active")
+                RenderDonhang()
+            }
+        })
+    }
+})()
+function RenderDonhang(){
+    
 }

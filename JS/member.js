@@ -6,7 +6,6 @@ function GetValue(){
         dataAccount=JSON.parse(data)
     })
 }
-GetValue()
 function SetValue(value){
     var xhr=new XHR()
     return xhr.connect("POST","./module/taikhoan.php?update",value)
@@ -28,7 +27,7 @@ function RenderTableAccount(data=false){
                 </td>
             </tr>';`
             });
-            // console.log(data)
+            console.log(dataAccount)
             $(".js_table_qltaikhoan").html(html)
         })
     }
@@ -152,7 +151,7 @@ function XoaTaiKhoan(sdt,e){
     var choice=confirm("Bạn có chắc muốn xóa tài khoản này không")
     if(choice){
         var xhr=new XHR()
-        $(e.target).parent().parent().remove()
+        $(e.currentTarget).parent().parent().remove()
         return xhr.connect("GET","./module/taikhoan.php?delete&SDT="+sdt)
             .then(function(){
                 alert("Xóa tài khoản thành công")
