@@ -102,12 +102,13 @@ function DonHang() {
     if (account['flag'] && donhang['arr']) {
         donhang['tong'] = tongHoaDon
         donhang['SĐT']=account['SĐT']
-        delete donhang['TenSP']
+        donhang['arr'].forEach((item)=>{
+            delete item['TenSP']
+        })
         var xhr = new XMLHttpRequest()
         xhr.open("POST", "./module/donhang.php?set")
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send("dataJSON=" + JSON.stringify(donhang));
-        console.log(JSON.stringify(donhang))
         xhr.onload = function () {
             var message = xhr.responseText
             if (message == "sucsess")
@@ -116,7 +117,7 @@ function DonHang() {
                 alert("Đơn hàng bị lỗi, vui lòng kiểm tra kết nối mạng")
             Cart['arr'] = null
             localStorage.setItem("CartWeb2", JSON.stringify(Cart))
-            location.reload()
+            // location.reload()
         }
     }
     else {
