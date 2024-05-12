@@ -140,10 +140,7 @@ function CheckQuyen(quyen){
     var html=`<li><a class="option-item" href="index.php?profile">
     <i class="fa fa-user"></i> Trang cá nhân</a></li>
     <li><a class="option-item" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
-    if(quyen=="KH"){
-        html+=`<li><a class="option-item" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
-    }
-    else {
+    if(quyen!="KH"){
         html+=`<li><a class="option-item" href="admin1.php"><i class="fa fa-book"></i> Vào trang Admin</a></li>`
     }
     html+=`<li><a class="user-logout option-item" href="index.php?chon&id=home"><i class="fa fa-sign-out"></i> Thoát</a></li>`
