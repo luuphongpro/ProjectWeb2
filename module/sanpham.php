@@ -150,6 +150,7 @@
         <tbody>
             <?php
                 if($result->num_rows > 0){
+                    $i=0;
                     while($row = $result->fetch_assoc()){
                         echo '
                             <tr  style="color: #222222; font-weight: bold;">
@@ -164,13 +165,11 @@
                                     <div>
                                         <a class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
                                     </div>
-                                    <div>
-                                        <form class="deleteForm"  method="post">
+                                    <div >
                                             <input type="hidden" name="deleteMaSP" id="deleteMaSP" value="'.$row['MaSP'].'">
-                                            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
-                                                <a><i class="fa-solid fa-trash"></i></a>
+                                            <button onclick=deleyesp("'.$row['MaSP'].'",event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                                            <a><i class="fa-solid fa-trash"></i></a>
                                             </button>
-                                        </form>
                                     </div>
                                 </td>
                             </tr> ';

@@ -43,7 +43,7 @@
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 990;
+    z-index: 1500;
 }
 
 
@@ -88,7 +88,7 @@
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 90;
+    z-index: 1500;
 }
 
 

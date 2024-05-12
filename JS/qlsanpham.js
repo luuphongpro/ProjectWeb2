@@ -54,6 +54,7 @@ $(".add_product_detail").click(function (e) {
             var theloai = productRow.querySelector('td:nth-child(6)').innerText;
             var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
             var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
+
             document.getElementById('fix_masp').value = masp;
             document.getElementById('fix_tensp').value = tensp;
             document.getElementById('display_old_image').src = "./"+relativePath;
@@ -263,7 +264,7 @@ $(".add_product_detail").click(function (e) {
             return;
         }
         const data = new FormData(ev.target);
-        const json = await fetch('http://localhost/DoAn/ProjectWeb2/module/add_product.php', {
+        const json = await fetch('./module/add_product.php', {
             method: 'POST',
             body: data
         })
@@ -307,7 +308,7 @@ $(".add_product_detail").click(function (e) {
         }
 
         const data = new FormData(ev.target);
-        const json = await fetch('http://localhost/DoAn/ProjectWeb2/module/fix_product.php', {
+        const json = await fetch('./module/fix_product.php', {
             method: 'POST',
             body: data
         })
@@ -341,46 +342,33 @@ $(".add_product_detail").click(function (e) {
     })
 
 
-    function re_useDel(){
-        document.querySelectorAll('.deleteForm').forEach(function(form) {
-            form.addEventListener("submit", async function(ev) {
-                ev.preventDefault(); // Ngăn chặn reload trang
-                
-                console.log("đã vào");
-        
-                var confirmation = confirm("Are you sure you want to delete this product?"); // Hỏi xác nhận
-                if (!confirmation) return; // Nếu không xác nhận, không làm gì cả
-        
-                const data = new FormData(ev.target); // Lấy dữ liệu từ form
-        
-                const json = await fetch('./module/delete_product.php', {
-                    method: "POST",
-                    body: data
-                });
-        
-                const response = await json.json();
-        
-                const title = document.getElementById('noti-title');
-                const desc = document.getElementById('noti-desc');
-        
-                if (response.message == "successDel") {
-                    removeNoti();
-                    title.innerHTML = "SUCCESS"
-                    desc.innerHTML = "Xóa sản phẩm thành công"
-                    noti.style.backgroundColor = "green"
-                    noti.style.transform = "translateX(0)"
-                } else {
-                    removeNoti();
-                    title.innerHTML = "FAILURE" // Sửa lỗi chính tả
-                    desc.innerHTML = "Xóa sản phẩm thất bại"
-                    noti.style.backgroundColor = "red"
-                    noti.style.transform = "translateX(0)"
-                }
-        
-                setTimeout(function() {
-                    removeNoti();
-                }, 3000);
-            });
+    function deleyesp(masp,e){
+        var confirmation = confirm("Are you sure you want to delete this product?"); // Hỏi xác nhận
+        if (!confirmation) return; // Nếu không xác nhận, không làm gì cả
+        var xhr = new XHR();
+        return xhr.connect(undefined,"./module/sanphams.php?xoasp&id="+masp)
+        .then(function(data){
+            var message = data
+            const title = document.getElementById('noti-title');
+            const desc = document.getElementById('noti-desc');
+            if(message == "success"){
+                $(".activePT").click()
+                removeNoti();
+                title.innerHTML = "SUCCESS"
+                desc.innerHTML = "Xóa sản phẩm thành công"
+                noti.style.backgroundColor = "green"
+                noti.style.transform = "translateX(0)"
+            }
+            else {
+                removeNoti();
+                title.innerHTML = "FAILURE" // Sửa lỗi chính tả
+                desc.innerHTML = "Xóa sản phẩm thất bại"
+                noti.style.backgroundColor = "red"
+                noti.style.transform = "translateX(0)"
+            }
+            setTimeout(function() {
+                removeNoti();
+            }, 3000);
         });
     }
 
@@ -400,7 +388,7 @@ $(".add_product_detail").click(function (e) {
                 var theloai = productRow.querySelector('td:nth-child(6)').innerText;
                 var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
 
-                var relativePath = imgSrc.replace("http://localhost/DoAn/ProjectWeb2/", "");
+                var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
                 document.getElementById('fix_masp').value = masp;
                 document.getElementById('fix_tensp').value = tensp;
@@ -416,10 +404,7 @@ $(".add_product_detail").click(function (e) {
         });
     }
 
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     // bindEditDeleteListeners();
-    //     // re_useDel();
-    // });
+   
 
 
     $(document).ready(function(){
@@ -462,7 +447,7 @@ $(".add_product_detail").click(function (e) {
                 console.error('Request failed with status', xhr.status);
             }
             bindEditDeleteListeners();
-            re_useDel();
+            // re_useDel();
         };
         xhr.onerror = function() {
             console.error('Request failed');
@@ -501,7 +486,7 @@ $(".add_product_detail").click(function (e) {
             desc.innerHTML = 'Không tìm thấy sản phẩm'
         }
         bindEditDeleteListeners();
-        re_useDel();
+        // re_useDel();
         noti.style.transform = 'translateX(0)';
         setTimeout(() => {
             removeNoti()

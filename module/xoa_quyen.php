@@ -1,10 +1,10 @@
 <?php
     include './controller.php';
-    $sanpham = new sanpham;
+    $quyen = new quyen;
 
-    $masp = $_POST['deleteMaSP'];
+    $maquyen = $_POST['deleteMaQuyen'];
 
-    $result = $sanpham->xoasanpham($masp);
+    $result = $quyen->xoaquyen($maquyen);
     if ($result) {
         echo json_encode([
             'message' => 'successDel'

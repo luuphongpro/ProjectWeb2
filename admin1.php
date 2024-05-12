@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="css/product_manager.css">
   <link rel="stylesheet" href="css/cssDangky.css">
   <link rel="stylesheet" href="css/qltaikhoan.css">
+  <link rel="stylesheet" href="css/phanquyen.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -213,6 +214,7 @@
             <li class="nav-item js_qlsp">
               <a class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
+                <p>
                 Quản lý sản phẩm
                 <!-- <i class="fas fa-angle-left right"></i> -->
                 <span class="badge badge-info right"></span>
@@ -339,7 +341,6 @@
   <script src="dist/js/pages/dashboard.js"></script>
   <script src="https://cdn.datatables.net/2.0.4/js/dataTables.js"></script>
   <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
-
   <script src="js/XMLHTTP.js"></script>
   <script src="js/vadidation.js"></script>
   <script src="js/admin1.js"></script>

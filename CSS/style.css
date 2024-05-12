@@ -523,6 +523,7 @@ a:focus {
   border-radius: 15px;
   overflow: hidden;
   background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
+  margin-left: 52px;
 }
 
 .box {

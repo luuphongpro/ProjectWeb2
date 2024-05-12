@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="./CSS/phanquyen.css">
-<link rel="stylesheet" href="./CSS/qlsanpham.css">
-<link rel="stylesheet" href="./CSS/qlmember.css">
-
 <?php
     // Thiết lập kết nối đến cơ sở dữ liệu
     $servername = "localhost";
@@ -18,124 +14,91 @@
     }
 
     // Câu truy vấn SQL
-    $sql = "SELECT TenND, MaQuyen, Password, SĐT FROM account";
+    $sql = "SELECT * FROM chucnang";
 
     // Thực thi câu truy vấn
     $result = $conn->query($sql);
-
-    // Kiểm tra và xử lý kết quả
-    if ($result->num_rows > 0) {
-        echo '
-            <section id="quanlisp">
-                <div>
-                    <table class="table table-bordered" style="text-align: center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tên tài khoản</th>
-                                <th scope="col">Số điện thoại</th>
-                                <th scope="col">Mã quyền</th>
-                                <th scope="col">Chỉnh sửa quyền</th>
-                                <th scope="col">Mật khẩu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-        ';
-
-        while ($row = $result->fetch_assoc()) {
-            $tenND = $row["TenND"];
-            $maQuyen = $row["MaQuyen"];
-            $sdt = $row["SĐT"];
-            $Password = $row["Password"];
-
-            echo '
-                <tr style="color: #222222; font-weight: bold;">
-                    <th scope="row">'.$tenND.'</th>
-                    <td>'.$sdt.'</td>
-                    <td>'.$maQuyen.'</td>
-                    <td><button class="btn-choose-quyen" onClick="showQuyenOverlay()">Bảng chọn quyền</button></td>    
-                    <td>'.$Password.'</td>
-                </tr>';
-        }
-                    
-        echo '
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        ';
-    } else {
-        echo "Không có dữ liệu trong bảng account.";
-    }
-    // Đóng kết nối
-    $conn->close();
+    
 ?>
-   <div class="overlay">
-    <div class="info">
-        <div class="topform">
-            <h2>Bảng phân quyền</h2>
-            <button type='button' class='closequyen' onClick='closeProductInfo()'>x</button>
-        </div>
-        <div>
-            <table class="table table-bordered" style="border: none" id="table">
-                <tr>
-                    <th>Tên Quyền</th>
-                    <th>Quyền Sử Dụng</th>
-                </tr>
-                <tr>
-                    <td>Quản lí sản phẩm</td>
-                    <td><label><input type="checkbox" id="qlspCheckbox" onchange="handleCheckboxChange('qlspCheckbox', 'qlspButton')" checked>QLSP</label></td>
-                </tr>
-                <tr>
-                    <td>Thêm sản phẩm</td>
-                    <td><label><input type="checkbox" id="themCheckbox" onchange="handleCheckboxChange('themCheckbox', 'deleteButton')" checked>ADD</label></td>
-                </tr>
-                <tr>
-                    <td>Sửa sản phẩm</td>
-                    <td><label><input type="checkbox" id="suaCheckbox" onchange="handleCheckboxChange('suaCheckbox', 'suaButton')" checked>Sửa</label></td>
-                </tr>
-                <tr>
-                    <td>Xóa sản phẩm</td>
-                    <td><label><input type="checkbox" id="xoaspCheckbox" onchange="handleCheckboxChange('xoaspCheckbox', 'xoaspButton')" checked>Xóa</label></td>
-                </tr>
-                <tr>
-                    <td>Quản lí bán hàng</td>
-                    <td><label><input type="checkbox" id="qlbhCheckbox" onchange="handleCheckboxChange('qlbhCheckbox', 'qlbhButton')" checked>QLBH</label></td>
-                </tr>
-                <tr>
-                    <td>Thống kê doanh thu</td>
-                    <td><label><input type="checkbox" id="tkdtCheckbox" onchange="handleCheckboxChange('tkdtCheckbox', 'tkdtButton')" checked>TKDT</label></td>
-                </tr>
-                <tr>
-                    <td>Quản lí quyền</td>
-                    <td><label><input type="checkbox" id="qlqCheckbox" onchange="handleCheckboxChange('qlqCheckbox', 'qlqButton')" checked>QLQ</label></td>
-                </tr>
-                <tr>
-                    <td>Quản lí tài khoản</td>
-                    <td><label><input type="checkbox" id="qltkCheckbox" onchange="handleCheckboxChange('qltkCheckbox', 'qltkButton')" checked>QLTK</label></td>
-                </tr>
-                <tr>
-                    <td>Thêm tài khoản</td>
-                    <td><label><input type="checkbox" id="themtkCheckbox" onchange="handleCheckboxChange('themtkCheckbox', 'deleteButton')" checked>ADD</label></td>
-                </tr>
-                <tr>
-                    <td>Sửa tài khoản</td>
-                    <td><label><input type="checkbox" id="suatkCheckbox" onchange="handleCheckboxChange('suatkCheckbox', 'suaButton')" checked>Sửa</label></td>
-                </tr>
-                <tr>
-                    <td>Xóa tài khoản</td>
-                    <td><label><input type="checkbox" id="xoatkCheckbox" onchange="handleCheckboxChange('xoatkCheckbox', 'xoaspButton')" checked>Xóa</label></td>
-                </tr>
-            </table>
+<section id="quanlisp">
 
+<div id="noti">
+    <h4 id="noti-title"></h4>
+    <div id ="noti-desc"></div>
+</div>
+
+<div style = "display : flex ; justify-content: space-between; position: relative;">
+        <div id = "addQuyen" class="addQuyen">
             <div>
-                <button id="qltkButton">QLTTK</button>
-                <button id="qlspButton">QLSP</button>
-                <button id="tkdtButton">TKDT</button>
-                <button id="qlbhButton">QLBH</button>
+                <label for ="addIcon"><b>Thêm quyền</b></label>
+            </div>
+            <div>
+                <a id = "addIcon" class = "add_quyen" ><i class="fa-solid fa-plus"></i> </a>
             </div>
         </div>
+</div>
+    
+<div class="quyen_overlay">
+        <div class="quyen_info">
+            <button type="button" class="close" onClick="closeAddQuyenInfo()">x</button>
+            <h2 style="font-family: \'Roboto Mono\', monospace; margin-left : 106px; margin-bottom: 45px;">Thêm Quyền Mới</h2>
+            <div>
+                <form id = "form_add_quyen" method = "post" >
+                    <div>
+                        <label for ="maquyen_detail"><b>Mã Quyền: </b></label><br>
+                        <input id = "maquyen_detail" name = "maquyen_detail" type ="text">
+                    </div>
+                    <div>
+                        <label for ="tenquyen_detail"><b>Tên Quyền: </b></label><br>
+                        <input id ="tenquyen_detail" name = "tenquyen_detail" type ="text">
+                    </div>
+                    <div>
+                        <label for ="active_detail"><b>Trạng thái Active: </b></label><br>
+                        <input id = "active_detail" name = "active_detail" type ="text">
+                    </div>
+                    <button type ="submit" class="btn-search-quyen">Thêm Quyền</button>
+                </form>
+            </div>
     </div>
 </div>
-<script src="./JS/qlsanpham.js"></script>
+        <table class="table table-bordered" style="text-align: center ; display: grid">
+        <thead>
+            <tr>
+                <th scope="col">Mã quyền</th>
+                <th scope="col">Tên quyền</th>
+                <th scope="col">Active</th>
+                <th scope="col">Tùy Chỉnh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                        echo '
+                            <tr  style="color: #222222; font-weight: bold;">
+                                <th scope="row">'.$row['MaChucnang'].'</th>
+                                <td>'.$row['TenChucnang'].'</td>
+                                <td>'.$row['Active'].'</td>
+                                <td class = "custom-icons">
+                                    <div>
+                                        <a class= "fix_quyen_detail"><i class="fa-solid fa-wrench"></i> </a>
+                                    </div>
+                                    <div>
+                                        <div class="deleteFormQuyen"  method="post">
+                                            <input type="hidden" name="deleteMaQuyen" id="deleteMaQuyen" value="'.$row['MaChucnang'].'">
+                                            <button  style="background: none; border: none; padding: 0; cursor: pointer;">
+                                            <a><i class="fa-solid fa-trash"></i></a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr> ';
+                    }
+        }
+        ?>
+          </tbody>
+    </table>
+</section>
+<link rel="stylesheet" href="./CSS/product_manager.css"/>
+   
 <script src="./JS/phanquyen.js"></script>
-
