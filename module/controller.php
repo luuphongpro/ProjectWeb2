@@ -29,7 +29,6 @@
         }
         
         
-
         function xoasanpham($id){
             $this->conn->constructor();
             $strSQL = "DELETE FROM product WHERE MaSP = '" . $id . "'";
@@ -67,57 +66,77 @@
 
         }
 
-    function countProductsByCategory($category){
-        $this->conn->constructor();
-        $strSQL = "SELECT COUNT(*) AS count FROM product WHERE categoryId = ".$category." ";
-        $result = $this->conn->excuteSQL($strSQL);
-        $row = mysqli_fetch_assoc($result);
-        $count = $row['count'];
-        $this->conn->disconnect();
-        return $count;         
+        function countProductsByCategory($category){
+            $this->conn->constructor();
+            $strSQL = "SELECT COUNT(*) AS count FROM product WHERE categoryId = ".$category." ";
+            $result = $this->conn->excuteSQL($strSQL);
+            $row = mysqli_fetch_assoc($result);
+            $count = $row['count'];
+            $this->conn->disconnect();
+            return $count;         
+        }
+        function thongke($data=null){
+            $this->conn->constructor();
+            $conditions = array();
+            if($data && $data->FormTimeST && $data->ToTimeST){
+                $conditions[] = "hoadon.CreTime BETWEEN '".$data->ToTimeST."' AND '".$data->FormTimeST."'";
+            }
+            if($data && $data->categoryST && $data->categoryST != '0'){
+                $conditions[] = "product.categoryId = '".$data->categoryST."'";
+            }
+            $strSQL = "SELECT 
+                            SUM(chitiethoadon.DonGia) AS totalTong, 
+                            product.MaSP, 
+                            chitiethoadon.DonGia, 
+                            product.TenSP, 
+                            SUM(chitiethoadon.SoLuong) AS totalSL, 
+                            product.IMG
+                        FROM 
+                            chitiethoadon
+                        LEFT JOIN 
+                            product ON chitiethoadon.MaSP = product.MaSP
+                        LEFT JOIN 
+                            hoadon ON chitiethoadon.MaHoadon = hoadon.MaHoadon";
+        
+            if (!empty($conditions)) {
+                $strSQL .= " WHERE " . implode(" AND ", $conditions);
+            } else {
+                $strSQL .= " WHERE 1";
+            }
+            $strSQL .= " GROUP BY product.MaSP, chitiethoadon.DonGia, product.TenSP, product.IMG";
+            $result = $this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        
+        function gettheloai()  {
+            $this->conn->constructor();
+            $strSQL="SELECT * FROM `category`";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+}
+
+
+class xemlaidonhang{
+    private $conn;
+    function __construct(){
+        $this->conn = new connect;
     }
-    function thongke($data=null){
-        $this->conn->constructor();
-        $conditions = array();
-        if($data && $data->FormTimeST && $data->ToTimeST){
-            $conditions[] = "hoadon.CreTime BETWEEN '".$data->ToTimeST."' AND '".$data->FormTimeST."'";
-        }
-        if($data && $data->categoryST && $data->categoryST != '0'){
-            $conditions[] = "product.categoryId = '".$data->categoryST."'";
-        }
-        $strSQL = "SELECT 
-                        SUM(chitiethoadon.DonGia) AS totalTong, 
-                        product.MaSP, 
-                        chitiethoadon.DonGia, 
-                        product.TenSP, 
-                        SUM(chitiethoadon.SoLuong) AS totalSL, 
-                        product.IMG
-                    FROM 
-                        chitiethoadon
-                    LEFT JOIN 
-                        product ON chitiethoadon.MaSP = product.MaSP
-                    LEFT JOIN 
-                        hoadon ON chitiethoadon.MaHoadon = hoadon.MaHoadon";
-    
-        if (!empty($conditions)) {
-            $strSQL .= " WHERE " . implode(" AND ", $conditions);
-        } else {
-            $strSQL .= " WHERE 1";
-        }
-        $strSQL .= " GROUP BY product.MaSP, chitiethoadon.DonGia, product.TenSP, product.IMG";
+
+    function listdonhang($sodt){
+        $this ->conn->constructor();
+        $strSQL = "SELECT * FROM `hoadon` WHERE SĐT = '".$sodt."' ";
         $result = $this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    
-    function gettheloai()  {
-        $this->conn->constructor();
-        $strSQL="SELECT * FROM `category`";
-        $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
 }
+
+
+
+
 class taikhoan{
     private $conn;
     function __construct(){

@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -73,15 +74,10 @@
                   <div class="tab-content">
                     <div class="tab-pane" id="pending" aria-expanded="false">
                       <!-- Post -->
-                                                                    <div class="post" style=" text-align: center; ">
-
-
-                          <span>HAVE NO ORDER</span>
-
-
-
+                        <div class="post" style=" text-align: center;">
+                          
                         </div>
-                                          </div>
+                    </div>
                     <div class="tab-pane" id="activity" aria-expanded="false">
                       <!-- Post -->
 
@@ -98,15 +94,35 @@
                     <div class="tab-pane active" id="timeline" aria-expanded="true">
                       <!-- Post -->
 
-                                                                    <div class="post" style=" text-align: center; ">
-
-
-                          <span>HAVE NO ORDER</span>
-
-
-
-                        </div>
-                                          </div>
+                      <div class="post" style=" text-align: center; ">
+                        <table class="table">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Mã đơn hàng</th>
+                              <th scope="col">Thời gian đặt hàng</th>
+                              <th scope="col">Tổng tiền</th>
+                              <th scope="col">Tình trạng đơn hàng</th>
+                              <th scope="col">Xem chi tiết</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>005</td>
+                              <td>2024</td>
+                              <td>100.000đ</td>
+                              <td>Đã xong</td>
+                              <td>
+                                <a class ="donhang-detail">
+                                  <i class="fa-solid fa-eye "></i>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                     <!-- /.tab-pane -->
 
                     <div class="tab-pane" id="settings" aria-expanded="false">
@@ -194,3 +210,7 @@
       <!-- /.content -->
     </div>
   </div>
+
+<!-- <script src="../JS/xemdonhang.js"></script> -->
+<!-- <script src="../JS/xemdonhang.js"></script>
+<script src="JS/jquery-3.4.1.min.js"></script> -->

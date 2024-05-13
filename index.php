@@ -42,5 +42,7 @@
     <script src="JS/cutom.js"></script>
     <script src="JS/product_detail.js"></script>
     <script src="JS/dangnhap.js"></script>
+    <script src="JS/xemdonhang.js"></script>
+
 </body>
 </html>
