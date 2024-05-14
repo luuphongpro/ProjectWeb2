@@ -23,6 +23,7 @@
     <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./CSS/main.css">
 
+
 </head>
 <body style="background-color: #cfc5ae;">
     <?php 
@@ -36,13 +37,14 @@
         // include_once './pages/front/book.php';
         include_once './pages/front/footer.php';
     ?>
+    <script src="JS/XMLHTTP.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="JS/cutom.js"></script>
     <script src="JS/product_detail.js"></script>
     <script src="JS/dangnhap.js"></script>
-    <script src="JS/xemdonhang.js"></script>
+    <script src="JS/profile.js"></script>
 
 </body>
 </html>

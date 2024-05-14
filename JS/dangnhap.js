@@ -139,7 +139,7 @@ Validator({
 function CheckQuyen(quyen){
     var html=`<li><a class="option-item" href="index.php?profile">
     <i class="fa fa-user"></i> Trang cá nhân</a></li>
-    <li><a class="option-item list-donhang" onclick=listdonhang() href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
+    <li><a class="option-item list-donhang" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
     if(quyen!="KH"){
         html+=`<li><a class="option-item" href="admin1.php"><i class="fa fa-book"></i> Vào trang Admin</a></li>`
     }
@@ -189,11 +189,113 @@ function AddFromDetail(masp,event){
             if($(this).children().text().trim()=='My orders'){
                 $(this).children().removeClass("active")
                 $(this).children().addClass("active")
-                RenderDonhang()
+                listdonhang()
+                loadDataToForm()
             }
         })
     }
 })()
-function RenderDonhang(){
-    
+
+
+function listdonhang(){
+    var sessionData = JSON.parse(sessionStorage.getItem('UseLogin'))
+    console.log(sessionData);
+    var sdt = sessionData.SĐT;
+    console.log(sdt);
+    var xhr = new XHR();
+    return xhr.connect(undefined,"./module/xemdonhang.php?listdonhang&sdt="+sdt)
+    .then(function(data){
+        console.log(data);
+        if(data.message == "success"){
+            console.log(data.result);
+            updateTable(data.result);
+            console.log("Thành công");
+        }
+        else {
+            var tablebody = document.querySelector('.tabel.list-donhang body');
+            tablebody.innerHTML="";
+            var row = document.createElement('tr');
+            row.innerHTML=`
+                <td colspan = 5>Bạn chưa có đơn hàng nào, hãy đặt ngay !!!</td>
+            `;
+            tablebody.appendChild(row);
+        }
+    });
+}
+
+
+function updateTable(result){
+    var index = 1;
+    var tablebody = document.querySelector('.tabel.list-donhang tbody');
+    // tablebody.innerHTML = "";
+    result.foreach(function(item){
+        var row = document.createElement('tr');
+        row.innerHTML=`
+            <tr>
+                <th scope="row">${index}</th>
+                <td>${item.MaHoadon}</td>
+                <td>${item.CreTime}</td>
+                <td>${item.TongTien}</td>
+                <td style="color: blue">${item.TrangThai}</td>
+                <td>
+                <a class ="donhang-detail">
+                    <i class="fa-solid fa-eye "></i>
+                </a>
+                </td>
+            </tr>
+        `;
+        tablebody.appendChild(row);
+    });
+}
+
+
+function loadDataToForm(){
+    var sessionData = JSON.parse(sessionStorage.getItem('UseLogin'))
+    var sdt = sessionData.SĐT;
+
+    var xhr = new XHR();
+    xhr.connect(undefined,"./module/updateInfoUser.php?loadtoform&sdt="+sdt)
+    .then(function(data){
+        console.log(data);
+        formUser.innerHTML ="";
+        var content = `
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-4 col-form-label">Tên đăng nhập</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="loginname" placeholder="Last Name" value=".{data  }." required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName2" class="col-sm-4 col-form-label">Phone</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" name="phone" placeholder="Phone number" value="0369698361" required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputExperience" class="col-sm-4 col-form-label">Address</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="address" id="" class="form-control" placeholder="Address" value="TP.Pleiku" required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputSkills" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" name="password" placeholder="Password" value="$2y$10$ANl2/VZo4dsChncAlT5Ta.t82j/nvcZMXO5sgvcNS3g6L7RnW3H5O">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-8">
+                    <input type="submit" class="btn btn-info" value="Submit">
+                </div>
+            </div>
+        </div>
+
+        `;
+        formUser.innerHTML = content;
+    })
+
 }

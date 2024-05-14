@@ -127,7 +127,7 @@ class xemlaidonhang{
 
     function listdonhang($sodt){
         $this ->conn->constructor();
-        $strSQL = "SELECT * FROM `hoadon` WHERE SĐT = '".$sodt."' ";
+        $strSQL = "SELECT * FROM `hoadon` WHERE MaUser = '".$sodt."' ";
         $result = $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
@@ -178,6 +178,15 @@ class taikhoan{
         $this->conn->disconnect();
         return $result;
     }
+
+    function suataikhoan2_0($data){
+        $this->conn->constructor();
+        $strSQL="UPDATE `account` SET `TenND`='".$data['tennd']."',`Address`='".$data['address']."',`Password`='".$data['password']."' WHERE `SĐT`=".$data['sdt']."";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+
 }
 class donhang{
     private $conn;

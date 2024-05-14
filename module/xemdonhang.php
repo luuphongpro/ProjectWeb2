@@ -32,7 +32,7 @@ header("Content-Type: application/json");
 
 
     if(isset($_REQUEST['listdonhang'])){
-        $id=$_REQUEST['sdt'];
+        $sdt=$_REQUEST['sdt'];
 
         $listdonhang = array();
 

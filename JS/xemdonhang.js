@@ -48,7 +48,13 @@ function listdonhang(){
             console.log("Thành công");
         }
         else {
-            alert("THất bại")
+            var tablebody = document.querySelector('.tabel .list-donhang body');
+            tablebody.innerHTML="";
+            var row = document.createElement('tr');
+            row.innerHTML=`
+                <td colspan = 5>Bạn chưa có đơn hàng nào, hãy đặt ngay !!!</td>
+            `;
+            tablebody.appendChild(row);
         }
     });
 }
@@ -56,17 +62,18 @@ function listdonhang(){
 
 
 function updateTable(result){
-    var tablebody = document.querySelector('.tabel body');
+    var index = 1;
+    var tablebody = document.querySelector('.tabel .list-donhang body');
     tablebody.innerHTML="";
     result.foreach(function(item){
         var row = document.createElement('tr');
         row.innerHTML=`
             <tr>
-                <th scope="row">${item.MaHoadon}</th>
-                <td>${item.MaUser}</td>
+                <th scope="row">${index}</th>
+                <td>${item.MaHoadon}</td>
                 <td>${item.CreTime}</td>
                 <td>${item.TongTien}</td>
-                <td>${item.TrangThai}</td>
+                <td style="color: blue">${item.TrangThai}</td>
                 <td>
                 <a class ="donhang-detail">
                     <i class="fa-solid fa-eye "></i>

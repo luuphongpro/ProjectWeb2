@@ -95,7 +95,7 @@
                       <!-- Post -->
 
                       <div class="post" style=" text-align: center; ">
-                        <table class="table">
+                        <table class="table list-donhang">
                           <thead class="thead-light">
                             <tr>
                               <th scope="col">#</th>
@@ -112,12 +112,13 @@
                               <td>005</td>
                               <td>2024</td>
                               <td>100.000đ</td>
-                              <td>Đã xong</td>
+                              <td style="color : blue;">Đã xong</td>
                               <td>
                                 <a class ="donhang-detail">
                                   <i class="fa-solid fa-eye "></i>
                                 </a>
                               </td>
+                              
                             </tr>
                           </tbody>
                         </table>
@@ -128,27 +129,27 @@
                     <div class="tab-pane" id="settings" aria-expanded="false">
 
 
-                      <form class="form-horizontal" method="post">
+                      <form class="form-horizontal" method="post" id = "form-user">
                         <div class="row">
                           <div class="col-md-6">
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                               <label for="inputName" class="col-sm-4 col-form-label">First Name</label>
                               <div class="col-sm-8">
-                                <input type="text" class="form-control" name="firstname" placeholder="First Name" value="Huỳnh">
+                                <input type="text" class="form-control" name="firtname" placeholder="First Name" value="Huỳnh">
                               </div>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
-                              <label for="inputName" class="col-sm-4 col-form-label">Last Name</label>
+                              <label for="inputName" class="col-sm-4 col-form-label">Tên đăng nhập</label>
                               <div class="col-sm-8">
-                                <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="Phú" required="">
+                                <input type="text" class="form-control" name="loginname" placeholder="Last Name" value="Phú" required="">
                               </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                               <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
                               <div class="col-sm-8">
                                 <input type="email" class="form-control" name="email" placeholder="Email" value="phuhuynh.010104@gmail.com" required="">
                               </div>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
                               <label for="inputName2" class="col-sm-4 col-form-label">Phone</label>
                               <div class="col-sm-8">
