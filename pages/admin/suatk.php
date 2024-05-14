@@ -28,6 +28,12 @@
                     <input type="text" placeholder="Nhập địa chỉ" id="Address" name="Address">
                     <span class="form-message"></span>
                 </div>
+                <div class="modal_content-input-box form-group">
+                    <label for="Address">Quyền</label>
+                    <select name="MaQuyen" id="Quyen">
+                        
+                    </select>
+                </div>
                 <!-- <div class="modal_content-select form-group ">
                     <label for="">Trạng thái tài khoản </label>
                     <select id="status_account" name="status_account">

@@ -124,7 +124,11 @@ CREATE TABLE `chitietphieunhap` (
 
 CREATE TABLE `chitietquyen` (
   `MaChucnang` varchar(10) NOT NULL,
-  `MaQuyen` varchar(10) NOT NULL
+  `MaQuyen` varchar(10) NOT NULL,
+  `Xem` int NOT NULL,
+  `Them` int NOT NULL,
+  `Sua` int NOT NULL,
+  `Xoa` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -158,29 +162,30 @@ CREATE TABLE `chucnang` (
 -- Đang đổ dữ liệu cho bảng `chucnang`
 --
 
-INSERT INTO `chucnang`(`MaChucnang`, `TenChucnang`, `Active`) 
-VALUES ('1','Thêm sản phẩm','1'),
-('2','Sửa sản phẩm','1'),
-('3','Xóa sản phẩm','1'),
-('4','Xem sản phẩm','1'),
-('5','Thêm tài khoản','1'),
-('6','Sửa tài khoản','1'),
-('7','Xóa tài khoản','1'),
-('8','Xem tài khoản','1'),
-('9','Xem thống kê doanh thu','1'),
-('10','Thêm nhóm quyền','1'),
-('11','Xóa nhóm quyền','1'),
-('12','Sửa nhóm quyền','1'),
-('13','Xem nhóm quyền','1')
-('14','Xem hóa đơn','1')
-('15','Duyệt hóa đơn','1')
--- INSERT INTO `chucnang` (`MaChucnang`, `TenChucnang`, `Active`) VALUES
+-- INSERT INTO `chucnang`(`MaChucnang`, `TenChucnang`, `Active`) 
+-- VALUES ('1','Thêm sản phẩm','1'),
+-- ('2','Sửa sản phẩm','1'),
+-- ('3','Xóa sản phẩm','1'),
+-- ('4','Xem sản phẩm','1'),
+-- ('5','Thêm tài khoản','1'),
+-- ('6','Sửa tài khoản','1'),
+-- ('7','Xóa tài khoản','1'),
+-- ('8','Xem tài khoản','1'),
+-- ('9','Xem thống kê doanh thu','1'),
+-- ('10','Thêm nhóm quyền','1'),
+-- ('11','Xóa nhóm quyền','1'),
+-- ('12','Sửa nhóm quyền','1'),
+-- ('13','Xem nhóm quyền','1')
+-- ('14','Xem hóa đơn','1')
+-- ('15','Duyệt hóa đơn','1')
+INSERT INTO `chucnang` (`MaChucnang`, `TenChucnang`, `Active`) VALUES
 
--- ('CN01', 'Quản lý mã giảm giá', 1),
--- ('CN02', 'Quản lý sản phẩm', 1),
--- ('CN03', 'Quản lý tài khoản', 1),
--- ('CN04', 'Quản lý phân quyền', 1),
--- ('CN05', 'Báo cáo thống kê', 1);
+('CN01', 'Quản lý phân quyền', 1),
+('CN02', 'Quản lý sản phẩm', 1),
+('CN03', 'Quản lý bán hàng', 1),
+('CN04', 'Quản lý tài khoản', 1),
+('CN05', 'Báo cáo thống kê', 1),
+('CN06', 'Quản lý mã giảm giá', 1);
 
 -- --------------------------------------------------------
 
@@ -351,7 +356,10 @@ INSERT INTO `product` (`MaSP`, `TenSP`, `SoLuongSP`, `GiaSP`, `TTSP`, `IMG`, `ca
 
 CREATE TABLE `quyen` (
   `TenQuyen` varchar(50) NOT NULL,
-  `MaQuyen` varchar(10) NOT NULL
+  `MaQuyen` varchar(10) NOT NULL,
+  `TrangThai` varchar(10) NOT NULL,
+  `SĐT` varchar(10) NOT NULL,
+  `ThoiGian` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 
@@ -359,9 +367,9 @@ CREATE TABLE `quyen` (
 -- Đang đổ dữ liệu cho bảng `quyen`
 --
 
-INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`) VALUES
-('Admin', 'ADMIN'),
-('Quanli', 'QLI');
+INSERT INTO `quyen` (`TenQuyen`, `MaQuyen`, `TrangThai`, `SĐT`,`ThoiGian`) VALUES
+('Admin', 'ADMIN', 'active','0123456789',NOW()),
+('Quanli', 'QLI', 'active','0123456789',NOW());
 
 -- --------------------------------------------------------
 

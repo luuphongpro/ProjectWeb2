@@ -2,10 +2,10 @@ function XHR() {
     this.xhr = new XMLHttpRequest();
 }
 
-XHR.prototype.connect = function(method="GET",URL,value) {
+XHR.prototype.connect = function(method='GET',URL,value) {
     return new Promise((resolve)=>{
         this.xhr.open(method, URL);
-    if(method=="GET"){
+    if(method=='GET'){
         this.xhr.send();
     }
     else {

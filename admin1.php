@@ -199,84 +199,9 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <ul class="nav nav-pills nav-sidebar flex-column container_menu" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item js_home">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Trang chủ
-                  <!-- <i class="right fas fa-angle-left"></i> -->
-                </p>
-              </a>
-            </li>
-            <li class="nav-item js_qlsp">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                Quản lý sản phẩm
-                <!-- <i class="fas fa-angle-left right"></i> -->
-                <span class="badge badge-info right"></span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item js_qldh">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Quản lý bán hàng
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-              <!-- <ul class="nav nav-treeview">
-                <li class="nav-item js_qltk">
-                  <a class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Quản lý tài khoản</p>
-                  </a>
-                </li>
-                <li class="nav-item js_qldh">
-                  <a class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Quản lý đơn hàng</p>
-                  </a>
-                </li>
-                <li class="nav-item js_thongkebh">
-                  <a class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Thống kê bán hàng</p>
-                  </a>
-                </li>
-              </ul> -->
-            </li>
-            <li class="nav-item js_thongkedt">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Thống kê doanh thu
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item js_qlquyen">
-              <a href="quyen.php" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Quản lý quyền
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item js_qltk">
-              <a class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                  Quản lý tài khoản
-                  <span class="badge badge-info right"></span>
-                </p>
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
@@ -343,6 +268,7 @@
   <script src="https://kit.fontawesome.com/2d8d1ff741.js" crossorigin="anonymous"></script>
   <script src="js/XMLHTTP.js"></script>
   <script src="js/vadidation.js"></script>
+  <script src="js/chucnang.js"></script>
   <script src="js/admin1.js"></script>
   <script src="js/qlsanpham.js"></script>
   <script src="js/qldonhang.js"></script>

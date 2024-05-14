@@ -57,7 +57,7 @@ function FiltertSatistics(){
     valuefilter['ToTimeST']=$("#ToTimeST").val()
     valuefilter['FormTimeST']=$("#FormTimeST").val()
     valuefilter['categoryST']=$("#categoryST").val()
-    return xhr.connect("POST","./module/del...php?deleteMasp="+id)
+    return xhr.connect("POST","./module/sanphams.php?thongke",valuefilter)
     .then((data)=>{
         dataThongKe=JSON.parse(data)
         RenderThongKe(dataThongKe)

@@ -1,104 +1,80 @@
 <?php
-    // Thiết lập kết nối đến cơ sở dữ liệu
-    $servername = "localhost";
-    $username = "root"; // Thay username bằng tên người dùng của bạn
-    $password = ""; // Thay password bằng mật khẩu của bạn
-    $dbname = "web2";
-
-    // Tạo kết nối
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Kiểm tra kết nối
-    if ($conn->connect_error) {
-        die("Kết nối đến cơ sở dữ liệu thất bại: " . $conn->connect_error);
-    }
-
-    // Câu truy vấn SQL
-    $sql = "SELECT * FROM chucnang";
-
-    // Thực thi câu truy vấn
-    $result = $conn->query($sql);
-    
-?>
-<section id="quanlisp">
-
-<div id="noti">
-    <h4 id="noti-title"></h4>
-    <div id ="noti-desc"></div>
-</div>
-
-<div style = "display : flex ; justify-content: space-between; position: relative;">
-        <div id = "addQuyen" class="addQuyen">
-            <div>
-                <label for ="addIcon"><b>Thêm quyền</b></label>
-            </div>
-            <div>
-                <a id = "addIcon" class = "add_quyen" ><i class="fa-solid fa-plus"></i> </a>
-            </div>
-        </div>
-</div>
-    
-<div class="quyen_overlay">
-        <div class="quyen_info">
-            <button type="button" class="close" onClick="closeAddQuyenInfo()">x</button>
-            <h2 style="font-family: \'Roboto Mono\', monospace; margin-left : 106px; margin-bottom: 45px;">Thêm Quyền Mới</h2>
-            <div>
-                <form id = "form_add_quyen" method = "post" >
-                    <div>
-                        <label for ="maquyen_detail"><b>Mã Quyền: </b></label><br>
-                        <input id = "maquyen_detail" name = "maquyen_detail" type ="text">
-                    </div>
-                    <div>
-                        <label for ="tenquyen_detail"><b>Tên Quyền: </b></label><br>
-                        <input id ="tenquyen_detail" name = "tenquyen_detail" type ="text">
-                    </div>
-                    <div>
-                        <label for ="active_detail"><b>Trạng thái Active: </b></label><br>
-                        <input id = "active_detail" name = "active_detail" type ="text">
-                    </div>
-                    <button type ="submit" class="btn-search-quyen">Thêm Quyền</button>
-                </form>
-            </div>
-    </div>
-</div>
-        <table class="table table-bordered" style="text-align: center ; display: grid">
-        <thead>
-            <tr>
-                <th scope="col">Mã quyền</th>
-                <th scope="col">Tên quyền</th>
-                <th scope="col">Active</th>
-                <th scope="col">Tùy Chỉnh</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                if($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                        echo '
-                            <tr  style="color: #222222; font-weight: bold;">
-                                <th scope="row">'.$row['MaChucnang'].'</th>
-                                <td>'.$row['TenChucnang'].'</td>
-                                <td>'.$row['Active'].'</td>
-                                <td class = "custom-icons">
-                                    <div>
-                                        <a class= "fix_quyen_detail"><i class="fa-solid fa-wrench"></i> </a>
-                                    </div>
-                                    <div>
-                                        <div class="deleteFormQuyen"  method="post">
-                                            <input type="hidden" name="deleteMaQuyen" id="deleteMaQuyen" value="'.$row['MaChucnang'].'">
-                                            <button  style="background: none; border: none; padding: 0; cursor: pointer;">
-                                            <a><i class="fa-solid fa-trash"></i></a>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr> ';
-                    }
+    include 'controller.php';
+    $chitietquyen=new chitietquyen;
+    $quyen=new quyen;
+    $chucnang=new chucnang;
+    if(isset($_REQUEST['them'])){
+        $arrChucNang=array();
+        $msqlChucNang=$chucnang->dschucnang();
+        $dataJSON=$_REQUEST['dataJSON'];
+        $data=json_decode($dataJSON);
+        $result = $quyen->themquyen($data);
+        if(mysqli_num_rows($msqlChucNang)>0){
+            while($row=mysqli_fetch_assoc($msqlChucNang)){
+                $chitietquyen->setchitietquyen($row['MaChucnang'],$data);
+            }
         }
-        ?>
-          </tbody>
-    </table>
-</section>
-<link rel="stylesheet" href="./CSS/product_manager.css"/>
-   
-<script src="./JS/phanquyen.js"></script>
+        if($result!=0){
+            echo 'success';
+        }
+        else echo 'fail';
+    }
+    else if(isset($_REQUEST['tim'])){
+        $id=$_REQUEST['id'];
+        $result=$quyen->timquyen($id);
+        $array=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
+            echo json_encode($array);
+        }
+        else {
+            echo 0;
+        }
+    }
+    else if(isset($_REQUEST['sua'])){
+        $data=$_REQUEST['dataJSON'];
+        $data=json_decode($data);
+        $msqlChucNang=$chucnang->dschucnang();
+        $result=$quyen->suaquyen($data);
+        if(mysqli_num_rows($msqlChucNang)>0){
+            while($row=mysqli_fetch_assoc($msqlChucNang)){
+                $chitietquyen->suachitietquyen($row['MaChucnang'],$data);
+            }
+        }
+        if($result!=0){
+            echo 'success';
+        }
+        else echo 'fail';
+    }
+    else if(isset($_REQUEST['xoa'])){
+        $id=$_REQUEST['id'];
+        $result=$quyen->xoaquyen($id);
+        if($result!=0){
+            echo 'success';
+        }
+        else echo 'fail';
+    }
+    else if(isset($_REQUEST['get'])){
+        $result=$quyen->dsquyen();
+        $data=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $data[]=$row;
+            }
+        }
+        echo json_encode($data);
+    }
+    else if(isset($_REQUEST['chitiet'])){
+        $maquyen=$_REQUEST['id'];
+        $result=$chitietquyen->getchitiet($maquyen);
+        $array=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
+        }
+        echo json_encode($array);
+    }
+?>

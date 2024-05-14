@@ -57,12 +57,12 @@
     width: 456px;
 }
 .btn-search-quyen{
-    position: absolute;
-    left: 38%;
-    bottom: 50px;
+    /* position: absolute; */
+    /* left: 38%; */
+    /* bottom: 50px; */
     padding: 10px;
-    border-radius: 15px;
-    background-color: #FFBE33;
+    /* border-radius: 15px; */
+    /* background-color: #FFBE33; */
     font-weight: bold;
 }
 .btn-search-quyen:hover{

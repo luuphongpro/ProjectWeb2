@@ -140,7 +140,7 @@ class taikhoan{
     }
     function suataikhoan($data){
         $this->conn->constructor();
-        $strSQL="UPDATE `account` SET `TenND`='".$data->TenND."',`Address`='".$data->Address."',`Password`='".$data->Password."' WHERE `SĐT`=".$data->SĐT."";
+        $strSQL="UPDATE `account` SET `TenND`='".$data->TenND."',`MaQuyen`='".$data->MaQuyen."',`Address`='".$data->Address."',`Password`='".$data->Password."' WHERE `SĐT`=".$data->SĐT."";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
@@ -195,18 +195,22 @@ class quyen{
     }
     function dsquyen(){
         $this->conn->constructor();
-        $strSQL="SELECT * FROM chucnang WHERE 1";
+        $strSQL="SELECT quyen.MaQuyen, quyen.TenQuyen, account.TenND, quyen.ThoiGian FROM `quyen` 
+        LEFT JOIN account ON account.SĐT=quyen.SĐT
+        WHERE TrangThai='active'";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
     }
     function timquyen($id){
         $this->conn -> constructor();
-        $strSQL = "SELECT * FROM chucnang WHERE MaChucnang = '".$id."' ";
+        $strSQL = "SELECT * 
+        FROM quyen 
+        LEFT JOIN chitietquyen ON chitietquyen.MaQuyen=quyen.MaQuyen
+        WHERE quyen.MaQuyen = '".$id."' AND quyen.TrangThai='active'";
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
-
     }
     function locquyen($tenquyen, $category){
         $this->conn->constructor();
@@ -220,7 +224,7 @@ class quyen{
 
     function xoaquyen($id){
         $this->conn->constructor();
-        $strSQL = "DELETE FROM chucnang WHERE MaChucnang = '" . $id . "'";
+        $strSQL = "UPDATE `quyen` SET `TrangThai`='deleted' WHERE MaQuyen='".$id."'";
         $result = $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
@@ -229,13 +233,8 @@ class quyen{
 
     function suaquyen($data){
         $this->conn->constructor();
-        $strSQL = "UPDATE chucnang 
-                SET TenChucnang = '".$data['tenchucnang']."', 
-                    Active = ".$data['active'].", 
-                    
-                WHERE MaChucnang = '".$data['machucnang']."' ";  
-
-
+        $strSQL = "UPDATE `quyen` SET `TenQuyen`='".$data->TenQuyen."',`MaQuyen`='".$data->MaQuyen."'
+        WHERE MaQuyen='".$data->MaCu."' AND quyen.TrangThai='active'" ;  
         $result = $this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
@@ -243,13 +242,55 @@ class quyen{
     
 
     function themquyen($data){
-        $this->conn -> constructor();
-        $strSQL = "INSERT INTO `chucnang` (`MaChucnang` ,`TenChucnang` , `Active`)
-                    VALUE ('".$data['maquyen']."', '".$data['tenquyen']."', '".$data['active']."'";
+        $this->conn->constructor();
+        $strSQL = "INSERT INTO `quyen`(`TenQuyen`, `MaQuyen`, `TrangThai`, `SĐT`, `ThoiGian`) 
+        VALUES ('".$data->TenQuyen."','".$data->MaQuyen."','active','".$data->SĐT."',NOW())";
         $result = $this->conn-> excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;
-
+    }
+}
+class chucnang {
+    private $conn;
+    function __construct(){
+        $this->conn=new connect;
+    }
+    function dschucnang(){
+        $this->conn->constructor();
+        $strSQL = "SELECT * FROM `chucnang` WHERE Active=1";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+}
+class chitietquyen {
+    private $conn;
+    function __construct(){
+        $this->conn=new connect;
+    }
+    function setchitietquyen($machucnang,$data){
+        $this->conn->constructor();
+        $strSQL = "INSERT INTO `chitietquyen`(`MaChucnang`, `MaQuyen`, `Xem`, `Them`, `Sua`, `Xoa`) 
+        VALUES ('".$machucnang."','".$data->MaQuyen."','".$data->$machucnang[0]."','".$data->$machucnang[1]."','".$data->$machucnang[2]."','".$data->$machucnang[3]."')";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function suachitietquyen($machucnang,$data){
+        $this->conn->constructor();
+        $strSQL = "UPDATE `chitietquyen` 
+        SET `Xem`='".$data->$machucnang[0]."',`Them`='".$data->$machucnang[1]."',`Sua`='".$data->$machucnang[2]."',`Xoa`='".$data->$machucnang[3]."' 
+        WHERE `MaQuyen`='".$data->MaQuyen."' AND `MaChucnang`='".$machucnang."'";
+        $result = $this->conn-> excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function getchitiet($maquyen){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM `chitietquyen` WHERE `MaQuyen`='".$maquyen."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        return $result;
     }
 }
 ?>

@@ -1,5 +1,7 @@
 <div class="d-flex justify-content-between">
-    <button class="btn btn-primary js_themtk" onclick="ThemTaiKhoan()">Thêm <i class="ti-plus"></i> </button>
+    <div Them="CN04">
+
+    </div>
     <input type="search" placeholder="Nhập số điện thoại" class="rounded-2 mx-5 js_search_tk">
 </div>
 <table class="table table-bordered">

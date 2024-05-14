@@ -1,11 +1,12 @@
 var dataAccount=[]
-function GetValue(){
+function GetValueAccoutn(){
     var xhr=new XHR()
     return xhr.connect(undefined,"./module/taikhoan.php?get")
     .then(function(data){
         dataAccount=JSON.parse(data)
     })
 }
+GetValueAccoutn()
 function SetValue(value){
     var xhr=new XHR()
     return xhr.connect("POST","./module/taikhoan.php?update",value)
@@ -13,7 +14,7 @@ function SetValue(value){
 function RenderTableAccount(data=false){
     var html=''
     if(!data){
-        GetValue()
+        GetValueAccoutn()
         .then(function(){
             dataAccount.forEach(value => {
                 html+=` <tr style="color: #222222; font-weight: bold;">
@@ -21,14 +22,14 @@ function RenderTableAccount(data=false){
                 <td>${value['SĐT']}</td>
                 <td>${value['MaQuyen']}</td>
                 <td>******</td>
-                <td>
-                    <button class="btn-info mx-1" onclick="SuaTaiKhoan('${value['SĐT']}')">Sửa</button>
-                    <button class="btn-danger" onclick="XoaTaiKhoan('${value['SĐT']}',event)">Xóa </button>
+                <td matk="${value['SĐT']}">
+                    <div Sua="CN04"></div>
+                    <div Xoa="CN04"></div>
                 </td>
             </tr>';`
             });
-            console.log(dataAccount)
             $(".js_table_qltaikhoan").html(html)
+            chucnang.QLTaiKhoan(ChucNangs)
         })
     }
     else {
@@ -38,14 +39,15 @@ function RenderTableAccount(data=false){
             <td>${value['SĐT']}</td>
             <td>${value['MaQuyen']}</td>
             <td>******</td>
-            <td>
-                <button class="btn-info mx-1" onclick="SuaTaiKhoan('${value['SĐT']}')">Sửa</button>
-                <button class="btn-danger" onclick="XoaTaiKhoan('${value['SĐT']}',event)">Xóa </button>
+            <td matk="${value['SĐT']}">
+                    <div Sua="CN04"></div>
+                    <div Xoa="CN04"></div>
             </td>
         </tr>';`
         });
         // console.log(data)
         $(".js_table_qltaikhoan").html(html)
+        chucnang.QLTaiKhoan(ChucNangs)
     }
 }
 function CloseModal(){
@@ -63,8 +65,9 @@ function DataForm(data){
     $("#TenND").val(data['TenND'])
     $("#Address").val(data['Address'])
 }
-function SuaTaiKhoan(sdt){
+function SuaTaiKhoan(e){
     var dataTK
+    var sdt=$(e.currentTarget).parent().parent().attr("matk")
     dataAccount.forEach(data => {
         if(data['SĐT']==sdt){
             return dataTK=data
@@ -74,6 +77,7 @@ function SuaTaiKhoan(sdt){
         $(this).addClass("active")
         CloseModal()
         DataForm(dataTK)
+        LoadDSQuyen(dataTK)
         SubmitFormSua(sdt)
     })
 }
@@ -147,15 +151,20 @@ function SubmitFormSua(sdt){
     }
     )
 }
-function XoaTaiKhoan(sdt,e){
+function XoaTaiKhoan(e){
     var choice=confirm("Bạn có chắc muốn xóa tài khoản này không")
     if(choice){
         var xhr=new XHR()
-        $(e.currentTarget).parent().parent().remove()
+        var sdt=$(e.currentTarget).parent().parent().attr("matk");
+        $(e.currentTarget).parent().parent().parent().remove()
         return xhr.connect("GET","./module/taikhoan.php?delete&SDT="+sdt)
             .then(function(){
                 alert("Xóa tài khoản thành công")
-            })
+                GetValueAccoutn()
+                .then(function(){
+                    RenderTableAccount()
+                })
+        })
     }
 }
 //Tìm tài khoản
@@ -170,3 +179,15 @@ $("#dstaikhoan").click((e) =>{
     $("#right-content").load("./module/member.php",function(){
     })
 });
+function LoadDSQuyen(dataTK){
+    var xhr=new XHR();
+    var html="";
+    return xhr.connect(undefined,"./module/quyen.php?get")
+    .then(function(data){
+        var valueQuyens=JSON.parse(data);
+        valueQuyens.forEach(valueQuyen => {
+            html+=`<option value="${valueQuyen['MaQuyen']}" ${dataTK['MaQuyen']==valueQuyen['MaQuyen'] ? 'selected' : ''}>${valueQuyen['TenQuyen']}</option>`
+        });
+        $("#Quyen").html(html)
+    })
+}

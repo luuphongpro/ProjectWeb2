@@ -1,11 +1,4 @@
-$(".js_qlsp").click(function(e){ 
-    // $("#right-content").load("./pages/admin/qlsanpham.php",function(){
-    // })
-    $(".nav-link.active").removeClass("active")
-    $(this).find("> a").addClass("active")
-    $(".content-wrapper").load("./module/sanpham.php",function(){
-    })
-});
+
 $("#qlsanpham").click((e) =>{ 
     $("#right-content").load("./pages/admin/qlsanpham.php",function(){
         
@@ -342,7 +335,7 @@ $(".add_product_detail").click(function (e) {
     })
 
 
-    function deleyesp(masp,e){
+    function deleyesp(e){
         var confirmation = confirm("Are you sure you want to delete this product?"); // Hỏi xác nhận
         if (!confirmation) return; // Nếu không xác nhận, không làm gì cả
         var xhr = new XHR();
@@ -511,7 +504,7 @@ $(".add_product_detail").click(function (e) {
                 <td style="display:none">${item.categoryId}</td>
                 <td style="display:none">${item.TTSP}</td>
                 <td class="custom-icons">
-                    <div>
+                    <div Sua="CN02" masp="${item.TTSP}">
                         <a class="fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
                     </div>
                     <div>

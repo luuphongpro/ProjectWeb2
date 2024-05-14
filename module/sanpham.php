@@ -94,16 +94,8 @@
     </div>
 
     <div style = "display : flex ; justify-content: space-between">
-        <div id = "addProduct">
-            <div>
-                <label for ="addIcon"><b>Thêm sản phẩm</b></label>
-            </div>
-            <div>
-                <a id = "addIcon" class = "add_product_detail" ><i class="fa-solid fa-plus"></i> </a>
-            </div>
+        <div Them="CN02">
         </div>
-
-
         <div id ="searchBar">
             <form id = "searchForm" method = "post" >
                 <div id = "nameSP">
@@ -162,14 +154,11 @@
                                 <td style="display:none">'.$row['categoryId'].'</td>
                                 <td style="display:none">'.$row['TTSP'].'</td>
                                 <td class = "custom-icons">
-                                    <div>
-                                        <a class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
+                                    <div Sua="CN02">
+                                        
                                     </div>
-                                    <div >
-                                            <input type="hidden" name="deleteMaSP" id="deleteMaSP" value="'.$row['MaSP'].'">
-                                            <button onclick=deleyesp("'.$row['MaSP'].'",event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                                            <a><i class="fa-solid fa-trash"></i></a>
-                                            </button>
+                                    <div Xoa="CN02">
+                                            
                                     </div>
                                 </td>
                             </tr> ';

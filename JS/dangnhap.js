@@ -189,11 +189,7 @@ function AddFromDetail(masp,event){
             if($(this).children().text().trim()=='My orders'){
                 $(this).children().removeClass("active")
                 $(this).children().addClass("active")
-                RenderDonhang()
             }
         })
     }
 })()
-function RenderDonhang(){
-    
-}
