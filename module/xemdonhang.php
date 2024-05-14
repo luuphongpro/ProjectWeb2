@@ -1,55 +1,30 @@
 <?php
-header("Content-Type: application/json");
-
+    header("Content-Type: application/json");
     include "controller.php";
-    
+
     $xemlaidonhang = new xemlaidonhang();
-    // $input = file_get_contents('php://input');
-    // error_log($input);
 
-    // $data = json_decode(file_get_contents('php://input'), true);
-    // $sdt = $data['SĐT'];
+    $input = file_get_contents('php://input');
+    error_log($input);
 
+    $data = json_decode($input, true);
+    $sdt = $data['SĐT'];
 
-    // $listdonhang = array();
+    $listdonhang = array();
+    $result = $xemlaidonhang->listdonhang($sdt);
 
-    // $result = $xemlaidonhang -> listdonhang($sdt);
-    // if ($result) {
-    //     while($row = $result ->fetch_assoc()){
-    //         $listdonhang[] = $row;
-    //     }
-    //     echo json_encode([
-    //         'message' => 'success',
-    //         'result' => $listdonhang
-    //     ]);
-    //     return;
-    // }
-    // echo json_encode([
-    //     'message' => 'false'
-    // ]);
-    // return;
-
-
-
-    if(isset($_REQUEST['listdonhang'])){
-        $sdt=$_REQUEST['sdt'];
-
-        $listdonhang = array();
-
-        $result = $xemlaidonhang -> listdonhang($sdt);
-        if ($result) {
-            while($row = $result ->fetch_assoc()){
-                $listdonhang[] = $row;
-            }
-            echo json_encode([
-                'message' => 'success',
-                'result' => $listdonhang
-            ]);
-            return;
+    if ($result && $result->num_rows > 0) {
+        while($row = $result->fetch_assoc()){
+            $listdonhang[] = $row;
         }
+        echo json_encode([
+            'message' => 'success',
+            'result' => $listdonhang
+        ]);
+    } else {
         echo json_encode([
             'message' => 'false'
         ]);
-        return;
     }
+
 ?>

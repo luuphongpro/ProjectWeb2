@@ -1,0 +1,56 @@
+
+/* CSS của profile */
+.list-donhang a.donhang-detail {
+    cursor: pointer;
+    color: #7ede38;;
+}
+.list-donhang a.donhang-detail:hover {
+    color: #503dff;;
+}
+
+
+
+.overlay-listdonhang {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(90, 86, 86, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+}
+
+
+.overlay-info-listdonhang{
+    position: absolute;
+    height: 600px;
+    width: 1000px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 20;
+    border-radius: 20px;
+
+}
+
+
+.close-btn{
+    cursor: pointer;
+    position: relative;
+    left: 95%;
+    top: 20px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.overlay-info-listdonhang h2{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.close-btn:hover{
+    color: red;
+}

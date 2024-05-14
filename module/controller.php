@@ -116,6 +116,15 @@
             $this->conn->disconnect();
             return $result;
         }
+
+
+        function getMaImg($masp){
+            $this->conn->constructor();
+            $strSQL="SELECT TenSP , IMG FROM `product` WHERE MaSP = '".$masp."' ";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
 }
 
 
@@ -135,6 +144,22 @@ class xemlaidonhang{
 }
 
 
+class chitiethoadon{
+    private $conn;
+    function __construct(){
+        $this->conn = new connect;
+    }
+
+    function listchitiet($mahd){
+        $this ->conn ->constructor();
+        $strSQL = "SELECT * FROM chitiethoadon WHERE MaHoadon = '".$mahd."' ";
+        $result = $this ->conn -> excuteSQL($strSQL);
+        $this -> conn -> disconnect();
+        return $result;
+    }
+}
+
+
 
 
 class taikhoan{
@@ -144,7 +169,7 @@ class taikhoan{
     }
     function timtaikhoan($SDT){
         $this->conn->constructor();
-        $strSQL="SELECT * FROM `account` WHERE SĐT='".$SDT."'";
+        $strSQL="SELECT * FROM `account` WHERE SĐT = '".$SDT."' ";
         $retult=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $retult;
@@ -181,7 +206,10 @@ class taikhoan{
 
     function suataikhoan2_0($data){
         $this->conn->constructor();
-        $strSQL="UPDATE `account` SET `TenND`='".$data['tennd']."',`Address`='".$data['address']."',`Password`='".$data['password']."' WHERE `SĐT`=".$data['sdt']."";
+        $strSQL="UPDATE `account` SET `TenND`='".$data['tennd']."',
+                        `Address`='".$data['diachi']."',
+                        `Password`='".$data['matkhau']."'
+                        WHERE `SĐT`=".$data['sdt']."";
         $result=$this->conn->excuteSQL($strSQL);
         $this->conn->disconnect();
         return $result;

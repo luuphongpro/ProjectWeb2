@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./CSS/cssDangky.css">
     <link rel="stylesheet" href="./CSS/responsive.css">
     <link rel="stylesheet" href="./CSS/product_detail.css">
+    <link rel="stylesheet" href="./CSS/profile.css">
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet" />
@@ -44,7 +45,7 @@
     <script src="JS/cutom.js"></script>
     <script src="JS/product_detail.js"></script>
     <script src="JS/dangnhap.js"></script>
-    <script src="JS/profile.js"></script>
+    <!-- <script src="JS/profile.js"></script> -->
 
 </body>
 </html>
