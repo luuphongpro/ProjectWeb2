@@ -38,7 +38,7 @@
         echo json_encode($data);
     }
     else if(isset($_REQUEST['xoasp'])){
-        $id=$_REQUEST[''];
+        $id=$_REQUEST['id'];
         $result=$sanpham->xoasanpham($id);
         if($result!=0){
             echo 'success';

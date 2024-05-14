@@ -139,7 +139,7 @@ Validator({
 function CheckQuyen(quyen){
     var html=`<li><a class="option-item" href="index.php?profile">
     <i class="fa fa-user"></i> Trang cá nhân</a></li>
-    <li><a class="option-item" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
+    <li><a class="option-item list-donhang" href="index.php?profile&donhang"><i class="fa fa-book"></i> Lịch sử đơn</a></li>`
     if(quyen!="KH"){
         html+=`<li><a class="option-item" href="admin1.php"><i class="fa fa-book"></i> Vào trang Admin</a></li>`
     }
@@ -189,7 +189,237 @@ function AddFromDetail(masp,event){
             if($(this).children().text().trim()=='My orders'){
                 $(this).children().removeClass("active")
                 $(this).children().addClass("active")
+                listdonhang();
+                loadDataToForm()
             }
         })
     }
 })()
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    listdonhang
+});
+
+
+async function listdonhang() {
+    var sessionData = JSON.parse(sessionStorage.getItem('UseLogin'));
+    var sdt = sessionData.SĐT;
+    console.log(sdt);
+
+    var json = await fetch("./module/xemdonhang.php", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ SĐT: sdt })
+    });
+    
+    var response = await json.json();
+    console.log(response.result);
+    if(response.message === "success"){
+        updateTable(response.result);
+    }
+    if(response.message ==="false") {
+        var tablebody = document.querySelector('.table.list-donhang tbody');
+        tablebody.innerHTML="";
+        var row = document.createElement('tr');
+        row.innerHTML=`
+            <td colspan = 6><h2>Bạn chưa có đơn hàng nào, hãy đặt ngay !!!</h2></td>
+        `;
+        tablebody.appendChild(row);
+    }
+}
+
+
+
+function updateTable(result){
+    var index = 1;
+    var tablebody = document.querySelector('.table.list-donhang tbody');
+    tablebody.innerHTML = "";
+    result.forEach(function(item){
+        var row = document.createElement('tr');
+        row.innerHTML=`
+            <tr>
+                <th scope="row">${index}</th>
+                <td>${item.MaHoadon}</td>
+                <td>${item.CreTime}</td>
+                <td>${item.TongTien}</td>
+                <td style="color: blue">${item.TrangThai}</td>
+                <td>
+                <a  onclick=showchitiethoadon(${item.MaHoadon}) class ="donhang-detail">
+                    <i class="fa-solid fa-eye "></i>
+                </a>
+                </td>
+            </tr>
+        `;
+        tablebody.appendChild(row);
+    });
+}
+
+
+async function loadDataToForm() {
+    const formUser = document.getElementById("form-user");
+    var sessionData = JSON.parse(sessionStorage.getItem('UseLogin'));
+    var sdt = sessionData.SĐT;
+    console.log("Số điện thoại để load Form: " + sdt);
+
+    const json = await fetch("./module/loadDataToForm.php", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ SĐT: sdt })
+    });
+
+   
+    const response = await json.json();
+    console.log(response.result);
+    
+
+    if(response.message==="success"){
+        formUser.innerHTML = "";
+        const result = response.result[0];
+        var content = `
+        <div class="row">   
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-4 col-form-label">Tên đăng nhập</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="loginname"  placeholder="Last Name" value="${result.TenND}" required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputName2" class="col-sm-4 col-form-label">Phone</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" name="phone" readonly placeholder="Phone number" value="${result.SĐT}" required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputExperience" class="col-sm-4 col-form-label">Address</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="address" id="" class="form-control" placeholder="Address" value="${result.Address}" required="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputSkills" class="col-sm-4 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control" name="password" placeholder="Password" value="${result.Password}">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-8">
+                    <input type="submit" class="btn btn-info" value="Submit">
+                </div>
+            </div>
+        </div>
+        `;
+        formUser.innerHTML = content;
+    }
+   
+}
+
+
+
+const formUser = document.getElementById("form-user");
+formUser.addEventListener("submit" , async function(e){
+    e.preventDefault();
+    var userConfirmation = confirm("Bạn có chắc thay đổi nội dung tài khoản không, quá trình này có thể sinh ra lỗi?");
+    if(userConfirmation){
+        const data = new FormData(e.target);
+        console.log(data);
+        for (const pair of data.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        const json = await fetch("./module/updateInfoUser.php",{
+            method : "POST",
+            body : data
+        })
+
+        const response = await json.json();
+
+        if(response.message == "success"){
+            alert("đã cập nhật thông tin tài khoản thành công")
+        }
+    }
+})
+
+
+
+
+async function showchitiethoadon(mahoadon) {
+    const mahd = mahoadon;
+    console.log("đã vào overlay");
+    var overlay = document.querySelector('.overlay-listdonhang');
+    var info = document.querySelector('.overlay-info-listdonhang');
+    var tbody = document.querySelector('.table.table-listchitiet tbody')
+    tbody.innerHTML = "";
+    overlay.style.display = "flex";
+    info.style.display = "block";
+
+    const json = await fetch("./module/showchitiethoadon.php", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ MAHD: mahd })
+    });
+
+    const response = await json.json();
+    var index = 1;
+
+    console.log(response);
+
+    if (response.message == "success") {
+        const result1 = response.result;
+        result1.forEach(async function (child) {
+            const masp = child.MaSP;
+            console.log(masp);
+            const soluong = child.SoLuong;
+            console.log(soluong);
+            const giatien = child.DonGia;
+            console.log(giatien);
+
+            const json2 = await fetch("./module/getdatasanpham.php", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ MASP: masp })
+            })
+
+
+            const response2 = await json2.json();
+
+            if (response2.message == "success") {
+                var result2 = response2.result[0];
+                console.log(result2);
+
+                var row = document.createElement("tr")
+                row.innerHTML = `
+                        <th class="text-center align-middle" scope="row">${index}</th>
+                        <td class="text-center align-middle">${result2.TenSP}</td>
+                        <td class="text-center align-middle">${soluong}</td>
+                        <td class="text-center align-middle">${giatien}</td>
+                        <td class="text-center align-middle">
+                            <img src="./img/${result2.IMG}" alt="" style="max-width : 100px ; max-height :100px">
+                        </td>
+                `;
+                index++;
+                console.log(row);
+                tbody.appendChild(row);
+            }
+        });
+    }
+}
+
+
+var close_btn = document.querySelector('.close-btn')
+close_btn.addEventListener("click",function(){
+    var overlay = document.querySelector('.overlay-listdonhang');
+    var info = document.querySelector('.overlay-info-listdonhang');
+    overlay.style.display = "none";
+    info.style.display = "none";
+})

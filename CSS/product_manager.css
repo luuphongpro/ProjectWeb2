@@ -227,7 +227,7 @@ background-color: #DCF2F1;
 
 #add_detail_Product div {
     flex: 1;
-    padding: 14px;
+    padding: 18px;
     box-sizing: border-box; /* Đảm bảo rằng padding sẽ không làm thay đổi kích thước của các div */
 }
 #fix_detail_Product div {
@@ -338,3 +338,6 @@ ul.pageNumber li a.activePT{
     padding: 5px 12px;
     background-color: #69c6b9;
 }
+
+
+

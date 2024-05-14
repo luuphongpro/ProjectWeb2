@@ -465,6 +465,7 @@ $(".add_product_detail").click(function (e) {
 
         var response = await json.json();
         if (response.message === 'successSearch') {
+            console.log(response.result);
             updateTable(response.result);
             const count = response.result.length;
             removeNoti()
