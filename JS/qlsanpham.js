@@ -343,6 +343,7 @@ function showAddSanPham(){
         var soluong = productRow.querySelector('td:nth-child(4)').innerText;
         var giatien = productRow.querySelector('td:nth-child(5)').innerText;
         var theloai = productRow.querySelector('td:nth-child(6)').innerText;
+        console.log(theloai);
         var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
 
         var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
