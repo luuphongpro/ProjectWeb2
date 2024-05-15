@@ -4,8 +4,10 @@ $("#qlsanpham").click((e) =>{
         
     })
 });
-$(".add_product_detail").click(function (e) { 
-    e.preventDefault();
+
+
+function showAddSanPham(){
+    console.log("đã vào thêm sản phẩm");
     var overlay = document.querySelector('.overlay');
     var info = document.querySelector('.info');
     
@@ -16,7 +18,8 @@ $(".add_product_detail").click(function (e) {
         overlay.style.display = 'none';
         info.style.display = 'none';
     }
-});
+}
+
 
 
 
@@ -27,41 +30,7 @@ $(".add_product_detail").click(function (e) {
         info.style.display = 'none';
     }
 
-
-
-    document.querySelectorAll('.fix_product_detail').forEach(function(element, index) {
-        element.addEventListener('click', function() {
-            console.log("Button clicked");
-            // Lấy chỉ số sản phẩm từ thuộc tính product_index của nút Sửa được nhấn
-            var productIndex = index;
-            
-            // Lấy thông tin của sản phẩm tương ứng với chỉ số này
-            var productRow = document.querySelectorAll('#quanlisp table tbody tr')[productIndex];
-
-            var masp = productRow.querySelector('th').innerText;
-            console.log(masp);
-            var tensp = productRow.querySelector('td:nth-child(2)').innerText;
-            var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
-            var soluong = productRow.querySelector('td:nth-child(4)').innerText;
-            var giatien = productRow.querySelector('td:nth-child(5)').innerText;
-            var theloai = productRow.querySelector('td:nth-child(6)').innerText;
-            var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
-            var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
-
-            document.getElementById('fix_masp').value = masp;
-            document.getElementById('fix_tensp').value = tensp;
-            document.getElementById('display_old_image').src = "./"+relativePath;
-            document.getElementById('fix_soluong').value = soluong;
-            document.getElementById('fix_cost').value = giatien;
-            document.getElementById('fix_theloai').value = theloai;
-            document.getElementById('fix_ttsp').innerText = ttsp;
-
-            document.querySelector('.fix_overlay').style.display = 'flex';
-            document.querySelector('.fix_info').style.display = 'block';
-        });
-    });
-
-
+   
 
     function closeFixProductInfo() {
         var fix_overlay = document.querySelector('.fix_overlay');
@@ -212,30 +181,24 @@ $(".add_product_detail").click(function (e) {
 
 
     function displayImage(input) {
-        // Kiểm tra xem có tệp nào đã được chọn hay không
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                // Hiển thị hình ảnh trong phần tử <input type="image">
                 document.getElementById('display_image').src = e.target.result;
             };
 
-            // Đọc dữ liệu của tệp ảnh đã chọn
             reader.readAsDataURL(input.files[0]);
         }
     }
     function displayNewImage(input) {
-        // Kiểm tra xem có tệp nào đã được chọn hay không
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                // Hiển thị hình ảnh trong phần tử <input type="image">
                 document.getElementById('display_new_image').src = e.target.result;
             };
 
-            // Đọc dữ liệu của tệp ảnh đã chọn
             reader.readAsDataURL(input.files[0]);
         }
     }
@@ -249,7 +212,7 @@ $(".add_product_detail").click(function (e) {
         noti.style.transform = 'translateX(110%)';
     }
 
-
+    
     add_detail_Product.addEventListener("submit", async function (ev) {
         ev.preventDefault();
         var kq =  validateForm();
@@ -335,7 +298,10 @@ $(".add_product_detail").click(function (e) {
     })
 
 
-    function deleyesp(e){
+    
+    function deletesp(e){
+        var masp=$(e.currentTarget).parent().parent().attr("masp");
+        console.log(masp);
         var confirmation = confirm("Are you sure you want to delete this product?"); // Hỏi xác nhận
         if (!confirmation) return; // Nếu không xác nhận, không làm gì cả
         var xhr = new XHR();
@@ -365,91 +331,91 @@ $(".add_product_detail").click(function (e) {
         });
     }
 
-    function bindEditDeleteListeners() {
-        // Edit button
-        document.querySelectorAll('.fix_product_detail').forEach(function(element, index) {
-            element.addEventListener('click', function() {
-                console.log("Button clicked");
-                
-                var productRow = document.querySelectorAll('#quanlisp table tbody tr')[index];
 
-                var masp = productRow.querySelector('th').innerText;
-                var tensp = productRow.querySelector('td:nth-child(2)').innerText;
-                var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
-                var soluong = productRow.querySelector('td:nth-child(4)').innerText;
-                var giatien = productRow.querySelector('td:nth-child(5)').innerText;
-                var theloai = productRow.querySelector('td:nth-child(6)').innerText;
-                var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
+    function getInfoLoadToForm(e) {
+        var index = $(e.currentTarget).parent().parent().attr("index");
+        console.log(index);
 
-                var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
+        var productRow = document.querySelectorAll('#quanlisp table tbody tr')[index];
+        var masp = productRow.querySelector('th').innerText;
+        var tensp = productRow.querySelector('td:nth-child(2)').innerText;
+        var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
+        var soluong = productRow.querySelector('td:nth-child(4)').innerText;
+        var giatien = productRow.querySelector('td:nth-child(5)').innerText;
+        var theloai = productRow.querySelector('td:nth-child(6)').innerText;
+        var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
 
-                document.getElementById('fix_masp').value = masp;
-                document.getElementById('fix_tensp').value = tensp;
-                document.getElementById('display_old_image').src = "./" + relativePath;
-                document.getElementById('fix_soluong').value = soluong;
-                document.getElementById('fix_cost').value = giatien;
-                document.getElementById('fix_theloai').value = theloai;
-                document.getElementById('fix_ttsp').innerText = ttsp;
+        var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
-                document.querySelector('.fix_overlay').style.display = 'flex';
-                document.querySelector('.fix_info').style.display = 'block';
-            });
-        });
+        document.getElementById('fix_masp').value = masp;
+        document.getElementById('fix_tensp').value = tensp;
+        document.getElementById('display_old_image').src = "./" + relativePath;
+        document.getElementById('fix_soluong').value = soluong;
+        document.getElementById('fix_cost').value = giatien;
+        document.getElementById('fix_theloai').value = theloai;
+        document.getElementById('fix_ttsp').innerText = ttsp;
+
+        document.querySelector('.fix_overlay').style.display = 'flex';
+        document.querySelector('.fix_info').style.display = 'block';
     }
 
    
 
 
     $(document).ready(function(){
-
-        // $(document).on('submit', '.deleteForm', function(event) {
-        //     event.preventDefault(); // Prevent default form submission
-        //     var confirmation = confirm("Are you sure you want to delete this product?"); // Ask for confirmation
-        //     if (confirmation) {
-        //         this.submit(); // If confirmed, submit the form
-        //     }
-        // });
-
-
         $('.pageNumber').on('click', '.button-active', function(e){
             e.preventDefault();
             $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
             $(this).addClass('activePT');
-            var url = this.getAttribute('href'); // Get the URL of the new page
+            var url = this.getAttribute('href');
+            console.log(url); 
             loadPage(url);
         });
 
     });
 
 
-    function loadPage(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onload = function() {
-            if (xhr.status >= 200 && xhr.status < 400) {
-                var response = xhr.responseText;
-                var parser = new DOMParser();
-                var newDoc = parser.parseFromString(response, 'text/html');
-                var newTable = newDoc.querySelector('table.table.table-bordered');
-                if (newTable) {
-                    document.querySelector('#quanlisp table.table.table-bordered').innerHTML = newTable.innerHTML;
-                } else {
-                    console.error('Table not found in the response');
-                }
-            } else {
-                console.error('Request failed with status', xhr.status);
-            }
-            bindEditDeleteListeners();
-            // re_useDel();
-        };
-        xhr.onerror = function() {
-            console.error('Request failed');
-        };
-        xhr.send();
+    async function loadPage(url) {
+        var json = await fetch(url,{
+            method : "GET",
+        })
+
+        var response = await json.json();
+
+        console.log(response);
+        var tableBody = document.querySelector(".table tbody");
+        tableBody.innerHTML = ""; 
+        response.result.forEach(function(item,index) {
+            var row = document.createElement("tr");
+            row.style.fontWeight = "bold";
+            row.innerHTML = `
+                <th scope="row">${item.MaSP}</th>
+                <td>${item.TenSP}</td>  
+                <td><img class="img" src="./img/${item.IMG}" alt="Ảnh sản phẩm"></td>
+                <td>${item.SoLuongSP}</td>
+                <td>${item.GiaSP}</td>
+                <td style="display:none">${item.categoryId}</td>
+                <td style="display:none">${item.TTSP}</td>
+                <td index ="${index}" masp="${item.MaSP}" class="custom-icons">
+                    <div Sua="CN02">
+                        <button onclick =getInfoLoadToForm(event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <a><i class="fa-solid fa-wrench"></i> </a>
+                        </button>
+                    </div>
+                    <div Xoa="CN02">
+                        <button onclick =deletesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <a><i class="fa-solid fa-trash"></i></a>
+                        </button>
+                    </div>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        
     }
 
-
-
+    var searchForm = document.getElementById("searchForm");
     searchForm.addEventListener("submit", async function(ev) {
         ev.preventDefault();
 
@@ -479,21 +445,17 @@ $(".add_product_detail").click(function (e) {
             title.innerHTML = 'Error'
             desc.innerHTML = 'Không tìm thấy sản phẩm'
         }
-        bindEditDeleteListeners();
-        // re_useDel();
         noti.style.transform = 'translateX(0)';
         setTimeout(() => {
             removeNoti()
         }, 3000)
     });
     
+    
     function updateTable(result) {
         var tableBody = document.querySelector(".table tbody");
-        tableBody.innerHTML = ""; // Xóa nội dung cũ của bảng
-    
-        // Duyệt qua mỗi đối tượng trong mảng result
+        tableBody.innerHTML = ""; 
         result.forEach(function(item) {
-            // Tạo một hàng mới cho mỗi đối tượng
             var row = document.createElement("tr");
             row.style.fontWeight = "bold";
             row.innerHTML = `
@@ -504,17 +466,16 @@ $(".add_product_detail").click(function (e) {
                 <td>${item.GiaSP}</td>
                 <td style="display:none">${item.categoryId}</td>
                 <td style="display:none">${item.TTSP}</td>
-                <td class="custom-icons">
-                    <div Sua="CN02" masp="${item.TTSP}">
-                        <a class="fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
+                <td masp="${item.MaSP}" class="custom-icons">
+                    <div Sua="CN02">
+                        <button onclick =getInfoLoadToForm(event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <a class="fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
+                        </button>
                     </div>
-                    <div>
-                        <form class="deleteForm" action="./module/process_product_form.php" method="get">
-                            <input type="hidden" name="deleteMaSP" id="deleteMaSP" value="${item.MaSP}">
-                            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
-                                <a><i class="fa-solid fa-trash"></i></a>
-                            </button>
-                        </form>
+                    <div Xoa="CN02">
+                        <button onclick =deletesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <a><i class="fa-solid fa-trash"></i></a>
+                        </button>
                     </div>
                 </td>
             `;
@@ -522,7 +483,6 @@ $(".add_product_detail").click(function (e) {
         });
         
     }
-
 
 
 
