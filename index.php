@@ -30,7 +30,6 @@
     <?php 
         include './pages/front/head_slider.php';
         include './pages/front/content.php';
-        include './module/controller.php';
         include './pages/front/dangky.php';
         // include_once './pages/front/offer.php';
         // include_once './pages/front/food.php';

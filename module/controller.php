@@ -20,6 +20,24 @@
             return $result;
 
         }
+        function timkiem($name,$category,$minPrice,$maxPrice,$begin,$perPage) {
+            $this->conn -> constructor();
+            $strSQL = "SELECT * FROM `product` WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice Limit $begin , $perPage ";
+            $result = $this->conn-> excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
+        function gettongtmkiem($name,$category,$minPrice,$maxPrice){
+            $this->conn->constructor();
+            $strSQL="SELECT COUNT(*) AS total FROM product WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice ";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            if(mysqli_num_rows($result)>0){
+                $row=mysqli_fetch_assoc($result);
+                return $row['total'];
+            }
+            return 0;
+        }
         function locsanpham($tensp, $category){
             $this->conn->constructor();
             $strSQL = "SELECT * FROM product WHERE `TenSP` LIKE '%$tensp%'  && `categoryId` LIKE  '%$category%' ";
@@ -125,6 +143,7 @@
             $this->conn->disconnect();
             return $result;
         }
+        
 }
 
 
@@ -215,34 +234,6 @@ class taikhoan{
         return $result;
     }
 
-}
-class donhang{
-    private $conn;
-    private $madonhang;
-    function __construct(){
-        $this->conn=new connect;
-    }
-    function setHoadon($data) {
-        $this->conn->constructor();
-        $strSQL="SELECT COUNT(*) as total FROM hoadon;";
-        $result=$this->conn->excuteSQL($strSQL);
-        $row=mysqli_fetch_assoc($result);
-        $this->madonhang=$row['total']+1;
-        $strSQL = "INSERT INTO `hoadon` (`MaHoadon`, `CreTime`, `TTHoaDon`, `TongTien`, `MaUser`) 
-        VALUES ('" . ($this->madonhang) . "', NOW(), '0', '" . $data->tong . "','" . $data->SĐT . "')";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
-    
-    function setChiTietDonHang($data){
-        $this->conn->constructor();
-        $strSQL="INSERT INTO `chitiethoadon`(`SoLuong`, `DonGia`,`MaHoadon`, `MaSP`) 
-        VALUES ('".$data->soluong."','".$data->gia."','".($this->madonhang)."','".$data->MaSP."')";
-        $result=$this->conn->excuteSQL($strSQL);
-        $this->conn->disconnect();
-        return $result;
-    }
 }
 class quyen{
     private $conn;
@@ -345,6 +336,51 @@ class chitietquyen {
     function getchitiet($maquyen){
         $this->conn->constructor();
         $strSQL="SELECT * FROM `chitietquyen` WHERE `MaQuyen`='".$maquyen."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        return $result;
+    }
+}
+class donhang {
+    private $conn;    
+    private $madonhang;
+    function __construct(){
+        $this->conn=new connect;
+    }
+    function dshoadon(){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM `hoadon` LEFT JOIN account ON hoadon.MaUser=account.SĐT";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function dschitiet(){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM chitiethoadon LEFT JOIN product ON chitiethoadon.MaSP=product.MaSP ";
+    }
+    function setHoadon($data) {
+        $this->conn->constructor();
+        $strSQL="SELECT COUNT(*) as total FROM hoadon;";
+        $result=$this->conn->excuteSQL($strSQL);
+        $row=mysqli_fetch_assoc($result);
+        $this->madonhang=$row['total']+1;
+        $strSQL = "INSERT INTO `hoadon` (`MaHoadon`, `CreTime`, `TTHoaDon`, `TongTien`, `MaUser`) 
+        VALUES ('" . ($this->madonhang) . "', NOW(), '0', '" . $data->tong . "','" . $data->SĐT . "')";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    
+    function setChiTietDonHang($data){
+        $this->conn->constructor();
+        $strSQL="INSERT INTO `chitiethoadon`(`SoLuong`, `DonGia`,`MaHoadon`, `MaSP`) 
+        VALUES ('".$data->soluong."','".$data->gia."','".($this->madonhang)."','".$data->MaSP."')";
+        $result=$this->conn->excuteSQL($strSQL);
+        $this->conn->disconnect();
+        return $result;
+    }
+    function xulydonhang($madonhang,$flag){
+        $this->conn->constructor();
+        $strSQL="UPDATE `hoadon` SET `TTHoaDon`='$flag' WHERE `MaHoadon`='".$madonhang."'";
         $result=$this->conn->excuteSQL($strSQL);
         return $result;
     }

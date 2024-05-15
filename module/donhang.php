@@ -20,5 +20,18 @@
             echo "fail";
         }
     }
-
+    else if(isset($_REQUEST['xuly'])){
+        $id=$_REQUEST['id'];
+        $result=$donhang->xulydonhang($id,1);
+        if($result!=0)
+            echo 'success';
+        else echo 'fail';
+    }
+    else if(isset($_REQUEST['huy'])){
+        $id=$_REQUEST['id'];
+        $result=$donhang->xulydonhang($id,4);
+        if($result!=0)
+            echo 'success';
+        else echo 'fail';
+    }
 ?>

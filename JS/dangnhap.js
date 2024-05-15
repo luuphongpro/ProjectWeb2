@@ -127,15 +127,15 @@ function LogOut(){
 //     console.log("cmmm")
 //     e.preventDefault()
 // }
-Validator({
-    form: ".filter",
-    rules: [],
-    onSubmit: function(value){
-        console.log(value)
-        $(".container-product").load("./module/timkiem.php?timkiem&minPrice="
-        +value.minPrice+"&maxPrice="+value.maxPrice+"&txtTimkiem="+value.txtTimkiem+"&category="+value.category)
-    }
-})
+// Validator({
+//     form: ".filter",
+//     rules: [],
+//     onSubmit: function(value){
+//         console.log(value)
+//         $(".container-product").load("./module/timkiem.php?timkiem&minPrice="
+//         +value.minPrice+"&maxPrice="+value.maxPrice+"&txtTimkiem="+value.txtTimkiem+"&category="+value.category)
+//     }
+// })
 function CheckQuyen(quyen){
     var html=`<li><a class="option-item" href="index.php?profile">
     <i class="fa fa-user"></i> Trang cá nhân</a></li>

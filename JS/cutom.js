@@ -84,13 +84,13 @@ $(document).ready(() =>{
     //     console.log("cmmm")
     //     e.preventDefault()
     // }
-    Validator({
-        form: ".filter",
-        rules: [],
-        onSubmit: function(value){
-            console.log(value)
-            $(".container-product").load("./module/timkiem.php?timkiem&minPrice="
-            +value.minPrice+"&maxPrice="+value.maxPrice+"&txtTimkiem="+value.txtTimkiem+"&category="+value.category)
-        }
-    })
+    // Validator({
+    //     form: ".filter",
+    //     rules: [],
+    //     onSubmit: function(value){
+    //         console.log(value)
+    //         $(".container-product").load("./module/timkiem.php?timkiem&minPrice="
+    //         +value.minPrice+"&maxPrice="+value.maxPrice+"&txtTimkiem="+value.txtTimkiem+"&category="+value.category)
+    //     }
+    // })
 })
