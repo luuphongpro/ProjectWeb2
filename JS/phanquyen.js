@@ -8,18 +8,21 @@ function initQuanlyQuyen(){
                 $(".container_modal-quyen").removeClass("active")
             })
             SubmitFormQuyen()
-            $("input[type='checkbox']").change(function(){
-                if($(this).is(":checked")){
-                    console.log($(this).parent())
-                    $(this).parent().parent().find(".them").prop("checked",true)
-                }
-                else {
-                    if($(this).parent().parent().find("input:checked").length==1){
-                        $(this).parent().parent().find(".them").prop("checked",false)
-                    }
-                }
-            })
+            Checked_Unchecked()
         })
+    })
+}
+function Checked_Unchecked(){
+    $("input[type='checkbox']").change(function(){
+        if($(this).is(":checked")){
+            console.log($(this).parent())
+            $(this).parent().parent().find(".them").prop("checked",true)
+        }
+        else {
+            if($(this).parent().parent().find("input:checked").length==1){
+                $(this).parent().parent().find(".them").prop("checked",false)
+            }
+        }
     })
 }
 function SubmitFormQuyen(choice='them',maquyen=null){
@@ -72,6 +75,7 @@ function SuaQuyen(e){
             $(".icon_close-quyen").on("click",function(){
                 $(".container_modal-quyen").removeClass("active")
             })
+            Checked_Unchecked()
             SubmitFormQuyen('sua',maquyen)
         })
     })
