@@ -62,16 +62,20 @@
                     SET TenSP = '".$data['tensp']."', 
                         SoLuongSP = ".$data['soluong'].", 
                         GiaSP = ".$data['cost'].", 
-                        TTSP = '".$data['ttsp']."', 
-                        IMG = '".$data['img']."', 
-                        categoryID = ".$data['theloai']." 
+                        TTSP = '".$data['ttsp']."',";
+        
+            if (!empty($data['img'])) {
+                $strSQL .= " IMG = '".$data['img']."',";
+            }
+        
+            $strSQL .= " categoryID = ".$data['theloai']." 
                     WHERE MaSP = '".$data['masp']."' ";  
-
-
+        
             $result = $this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
+        
         
 
         function themsanpham($data){

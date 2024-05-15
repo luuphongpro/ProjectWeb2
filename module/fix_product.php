@@ -12,13 +12,15 @@
     }
 
     $target_dir = "../img/";
-    $target_file = $target_dir . basename($_FILES["fix_img"]["name"]);   
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    $file_name = uuidv4().".".$imageFileType;
-    move_uploaded_file($_FILES["fix_img"]["tmp_name"],$target_dir.$file_name);
 
-
-
+    if (!empty($_FILES["fix_img"]["name"])) {
+        $target_file = $target_dir . basename($_FILES["fix_img"]["name"]);   
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $file_name = uuidv4() . "." . $imageFileType;
+        move_uploaded_file($_FILES["fix_img"]["tmp_name"], $target_dir . $file_name);
+    } else {
+        $file_name = "";
+    }
 
     $masp = $_POST["fix_masp"];
     $tensp = $_POST["fix_tensp"];
@@ -38,7 +40,6 @@
         "ttsp" => $ttsp
     );
 
-
     $result = $sanpham->suasanpham($data);
     if ($result) {
         echo json_encode([
@@ -50,4 +51,5 @@
         'message' => 'falseFix'
     ]);
     return;
+
 ?>
