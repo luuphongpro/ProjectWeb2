@@ -26,8 +26,9 @@
 
 .overlay-info-listdonhang{
     position: absolute;
-    height: 600px;
-    width: 1000px;
+    overflow: hidden;
+    max-height: 600px;
+    max-width: 1000px;
     background-color: #ffffff;
     position: relative;
     z-index: 20;
@@ -46,6 +47,7 @@
 }
 
 .overlay-info-listdonhang h2{
+    color: red;
     display: flex;
     justify-content: center;
     margin: 20px 0;

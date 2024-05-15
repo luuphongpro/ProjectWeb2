@@ -12,10 +12,14 @@ function Chucnang() {
               <span class="badge badge-info right"></span></p></a></li>`
     };
     this.htmlThem = {
-        CN01: `<div class="addQuyen"><label for="addIcon"><b>Thêm quyền</b></label><a id="addIcon" class="add_quyen">
-                <i class="fa-solid fa-plus"></i> </a></div>`,
-        CN02: `<div id = "addProduct"><div><label for ="addIcon"><b>Thêm sản phẩm</b></label></div><div>
-                <a id = "addIcon" class = "add_product_detail" ><i class="fa-solid fa-plus"></i> </a></div></div>`,
+        CN01: `<div class="addQuyen">
+                    <label for="addIcon"><b>Thêm quyền</b></label>
+                    <a id="addIcon" class="add_quyen"><i class="fa-solid fa-plus"></i></a>
+                </div>`,
+        CN02: `<div id = "addProduct">
+                    <label for ="addIcon"><b>Thêm sản phẩm</b></label>
+                    <a id = "addIcon" onclick=showAddSanPham() class = "add_product_detail" ><i class="fa-solid fa-plus"></i> </a>
+                </div>`,
         CN03: ``,
         CN04: `<button class="btn btn-primary js_themtk" onclick="ThemTaiKhoan()">Thêm <i class="ti-plus"></i> </button>`,
         CN05: ``,
@@ -25,7 +29,11 @@ function Chucnang() {
 
     this.htmlSua = {
         CN01: `<button class="btn" onclick=SuaQuyen(event)><a class= "fix_quyen_detail"><i class="fa-solid fa-wrench"></i> </a></button>`,
-        CN02: `<a class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>`,
+        CN02: `   
+            <button onclick = "getInfoLoadToForm(event)"  style="background: none; border: none; padding: 0; cursor: pointer;">
+                <a  class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
+            </button>
+            `,
         CN03: `<button class="detailed btn btn-infor disabled btn-sm" onclick="XuLyDH(event)"> <i class="fa-solid fa-wrench"></i> Xử lý </button>`,
         CN04: `<button class="btn-info mx-1" onclick="SuaTaiKhoan(event)">Sửa</button>`,
         CN05: ``,
@@ -37,10 +45,11 @@ function Chucnang() {
         CN02: `<input type="hidden" name="deleteMaSP" id="deleteMaSP">
         <button onclick=deleyesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
         <a><i class="fa-solid fa-trash"></i></a></button>`,
-        CN03: `<button class="delete btn disabled btn-sm" onclick=HuyDH(event)> <i class="fa-solid fa-trash" ></i> Hủy đơn </button>`,
+        CN03: ``,
         CN04: `<button class="btn-danger" onclick="XoaTaiKhoan(event)">Xóa </button>`,
         CN05: ``,
     };
+    
     this.RenderChucNang=function(chucnang){
         console.log(chucnang)
         if(chucnang['Them']==1)

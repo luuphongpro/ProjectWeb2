@@ -2,8 +2,8 @@
 
 <?php
     $servername = "localhost";
-    $username = "root"; // Thay username bằng tên người dùng của bạn
-    $password = ""; // Thay password bằng mật khẩu của bạn
+    $username = "root"; 
+    $password = ""; 
     $dbname = "web2";
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -27,7 +27,6 @@
 
     $sql = "SELECT * FROM product ORDER BY MaSP  LIMIT $begin , $perPage ";
     $result = mysqli_query($conn, $sql);
-
 ?>
 
 <section id="quanlisp">
@@ -94,8 +93,10 @@
     </div>
 
     <div style = "display : flex ; justify-content: space-between">
+
         <div Them="CN02">
         </div>
+
         <div id ="searchBar">
             <form id = "searchForm" method = "post" >
                 <div id = "nameSP">
@@ -112,7 +113,6 @@
                     </select>
                 </div>
                 <div>
-                    <!-- <input type="submit" id="sbm_search" name="btn_Search" value = "Tìm kiếm"> -->
                     <button type="submit" id="sbm_search" name="btn_Search" >Tìm kiếm</button>
                 </div>
             </form>
@@ -122,7 +122,7 @@
     <ul class="pageNumber">
         <?php
         for ($i = 1; $i <= $pageTotal; $i++) {
-            echo '<li><a class="button-active' . (($i == 1) ? ' activePT' : '') . '" data-page="' . $i . '" href="./module/sanpham.php?trang='.$i.'">'.$i.'</a></li>';
+            echo '<li><a class="button-active' . (($i == 1) ? ' activePT' : '') . '" data-page="' . $i . '" href="./module/loadphantrang.php?trang='.$i.'">'.$i.'</a></li>';
         }
         ?>
     </ul>
@@ -141,8 +141,8 @@
         </thead>
         <tbody>
             <?php
+                $index=0;
                 if($result->num_rows > 0){
-                    $i=0;
                     while($row = $result->fetch_assoc()){
                         echo '
                             <tr  style="color: #222222; font-weight: bold;">
@@ -153,7 +153,7 @@
                                 <td>'.$row['GiaSP'].'</td>
                                 <td style="display:none">'.$row['categoryId'].'</td>
                                 <td style="display:none">'.$row['TTSP'].'</td>
-                                <td class = "custom-icons">
+                                <td index = "'.$index.'"  masp="'.$row['MaSP'].'" class = "custom-icons">
                                     <div Sua="CN02">
                                         
                                     </div>
@@ -162,6 +162,7 @@
                                     </div>
                                 </td>
                             </tr> ';
+                        $index++;
                     }
                 }
             ?>
