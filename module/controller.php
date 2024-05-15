@@ -138,8 +138,6 @@
             $this->conn->disconnect();
             return $result;
         }
-
-
         function getMaImg($masp){
             $this->conn->constructor();
             $strSQL="SELECT TenSP , IMG FROM `product` WHERE MaSP = '".$masp."' ";
@@ -147,10 +145,22 @@
             $this->conn->disconnect();
             return $result;
         }
-        
+        function gettonkho($masp){
+            $this->conn->constructor();
+            $strSQL="SELECT * FROM product WHERE MaSP='".$masp."'";
+            $result=$this->conn->excuteSQL($strSQL);
+            $tonkho=mysqli_fetch_assoc($result);
+            $this->conn->disconnect();
+            return $tonkho['SoLuongSP'];
+        }
+        function settonkho($masp,$tonkho){
+            $this->conn->constructor();
+            $strSQL="UPDATE `product` SET `SoLuongSP`='".$tonkho."' WHERE `MaSP`='".$masp."'";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
 }
-
-
 class xemlaidonhang{
     private $conn;
     function __construct(){
@@ -385,6 +395,13 @@ class donhang {
     function xulydonhang($madonhang,$flag){
         $this->conn->constructor();
         $strSQL="UPDATE `hoadon` SET `TTHoaDon`='$flag' WHERE `MaHoadon`='".$madonhang."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        return $result;
+    }
+    function getdssanpham($madonhang){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM `chitiethoadon` 
+        LEFT JOIN hoadon ON chitiethoadon.MaHoadon=hoadon.MaHoadon WHERE hoadon.MaHoadon='".$madonhang."'";
         $result=$this->conn->excuteSQL($strSQL);
         return $result;
     }

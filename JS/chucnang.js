@@ -42,10 +42,12 @@ function Chucnang() {
     this.htmlXoa = {
         CN01: `<div class="deleteFormQuyen" onclick=XoaQuyen(event)><button class="btn"><a><i class="fa-solid fa-trash"></i></a>
         </button></div>`,
-        CN02: `<input type="hidden" name="deleteMaSP" id="deleteMaSP">
-        <button onclick=deleyesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-        <a><i class="fa-solid fa-trash"></i></a></button>`,
-        CN03: ``,
+        CN02: ` 
+            <button onclick= deletesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
+                <a><i class="fa-solid fa-trash"></i></a>
+            </button>
+            `,
+        CN03: `<button class="delete btn disabled btn-sm" onclick=HuyDH(event)> <i class="fa-solid fa-trash" ></i> Hủy đơn </button>`,
         CN04: `<button class="btn-danger" onclick="XoaTaiKhoan(event)">Xóa </button>`,
         CN05: ``,
     };
