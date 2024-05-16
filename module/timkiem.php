@@ -9,7 +9,7 @@ if (isset($_GET['page'])) {
 } else {
     $page = 1;
 }
-$strURL= "./module/timkiem.php?timkiem=".$_REQUEST['timkiem']."&category=".$_REQUEST['category']."&minPrice=".$_REQUEST['minPrice']."&maxPrice=".$_REQUEST['maxPrice'];
+$strURL= "./module/timkiem.php?timkiem=".$data->timkiem."&category=".$data->category."&minPrice=".$data->minPrice."&maxPrice=".$data->maxPrice;
 // echo $strURL;
 // Tạo kết nối
 if (isset($_GET['timkiem'])) {

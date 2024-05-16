@@ -25,7 +25,7 @@
     }
     $begin = ($page - 1) * $perPage;
 
-    $sql = "SELECT * FROM product ORDER BY MaSP  LIMIT $begin , $perPage ";
+    $sql = "SELECT * FROM product WHERE enable = 1 ORDER BY MaSP LIMIT $begin, $perPage";
     $result = mysqli_query($conn, $sql);
 ?>
 
@@ -39,7 +39,7 @@
 
     <div class="overlay">
         <div class="info">
-            <button type="button" class="close" onClick="closeAddProductInfo()">x</button>
+            <button type="button" class="close" onclick="closeAddProductInfor()">x</button>
             <h2 style="font-family: \'Roboto Mono\', monospace; margin-left : 340px">Thêm Mới Sản Phẩm</h2>
             <div>
                 <form id = "add_detail_Product" method = "post"  onsubmit = "return validateForm()">
@@ -215,7 +215,8 @@
                     </div>
                     <div class="display_img">
                         <label><b>Hình ảnh cũ: </b></label><br>
-                        <img id="display_old_image" alt="Hình ảnh cũ" src="" style="max-width: 240px; max-height: 140px;" name = "display_old_image">
+                        <img id="display_old_image" alt="Hình ảnh cũ" src="" style="max-width: 140px; max-height: 100px;" name = "display_old_image">
+                        <button type="button" id="removeImg" onclick="removeImage()">Gỡ hình ảnh</button>
                     </div>
                     <div class = "display_img">
                         <label><b>Hình ảnh mới: </b></label><br>

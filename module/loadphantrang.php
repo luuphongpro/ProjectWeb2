@@ -23,7 +23,7 @@
     }
     $begin = ($page - 1) * $perPage;
 
-    $sql = "SELECT * FROM product ORDER BY MaSP  LIMIT $begin , $perPage ";
+    $sql = "SELECT * FROM product WHERE enable = 1 ORDER BY MaSP  LIMIT $begin , $perPage ";
     $result = mysqli_query($conn, $sql);
     $list = array();
     if($result){
