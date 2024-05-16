@@ -34,7 +34,7 @@ function RenderTableChiTietQuyen()
             echo '<tr>
                 <td>'.$row['TenChucnang'].'</td>
                 <td>
-                    <input type="checkbox" id="'.$row['MaChucnang'].'_Xem" name="'.$row['MaChucnang'].'" value="1"> 
+                    <input type="checkbox" id="'.$row['MaChucnang'].'_Xem" name="'.$row['MaChucnang'].'" value="1" class="them"> 
                 </td>
                 <td>
                     <input type="checkbox" id="'.$row['MaChucnang'].'_Them" name="'.$row['MaChucnang'].'" value="1">

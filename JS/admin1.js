@@ -55,7 +55,9 @@ function InitMenu() {
     $(".js_qldh").click(function (e) {
         $(".nav-link.active").removeClass("active")
         $(this).find("> a").addClass("active")
-        $(".content-wrapper").load("./module/qldonhang.php", function () {
+        $(".content-wrapper").load("./pages/admin/qldonhang.php", function () {
+            chucnang.QLBanHang(ChucNangs);
+            initQuanlyDonhang()
         })
     });
 }

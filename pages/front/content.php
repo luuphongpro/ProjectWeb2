@@ -26,6 +26,9 @@
     else if(isset($_GET['profile'])){
         include_once './pages/front/profile.php';
     }
+    else if(isset($_REQUEST['timkiem'])){
+        include_once './module/timkiem.php';
+    }
     else{
         include './pages/front/product.php';
     }

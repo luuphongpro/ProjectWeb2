@@ -34,7 +34,7 @@ function Chucnang() {
                 <a  class= "fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
             </button>
             `,
-        CN03: ``,
+        CN03: `<button class="detailed btn btn-infor disabled btn-sm" onclick="XuLyDH(event)"> <i class="fa-solid fa-wrench"></i> Xử lý </button>`,
         CN04: `<button class="btn-info mx-1" onclick="SuaTaiKhoan(event)">Sửa</button>`,
         CN05: ``,
     };
@@ -47,7 +47,7 @@ function Chucnang() {
                 <a><i class="fa-solid fa-trash"></i></a>
             </button>
             `,
-        CN03: ``,
+        CN03: `<button class="delete btn disabled btn-sm" onclick=HuyDH(event)> <i class="fa-solid fa-trash" ></i> Hủy đơn </button>`,
         CN04: `<button class="btn-danger" onclick="XoaTaiKhoan(event)">Xóa </button>`,
         CN05: ``,
     };
@@ -95,4 +95,10 @@ Chucnang.prototype.QLSanPham = function(ChucNangs) {
         }
     })
 }
-
+Chucnang.prototype.QLBanHang=function(ChucNangs){
+    ChucNangs.forEach((ChucNang) => {
+        if(ChucNang.MaChucnang=='CN03'){
+            this.RenderChucNang(ChucNang)
+        }
+    })
+}
