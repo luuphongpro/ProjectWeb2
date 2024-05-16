@@ -40,6 +40,7 @@ $(".client_owl-carousel").owlCarousel({
     }
 });
 $(document).ready(() =>{
+    // console.log("cmmm")
     // if(UserLogin?.flag){
     //     console.log('dn thanh cong');
     //     $('.ten-dn').html(`<p>${UserLogin.name}</p>`);
@@ -84,13 +85,18 @@ $(document).ready(() =>{
     //     console.log("cmmm")
     //     e.preventDefault()
     // }
-    // Validator({
-    //     form: ".filter",
-    //     rules: [],
-    //     onSubmit: function(value){
-    //         console.log(value)
-    //         $(".container-product").load("./module/timkiem.php?timkiem&minPrice="
-    //         +value.minPrice+"&maxPrice="+value.maxPrice+"&txtTimkiem="+value.txtTimkiem+"&category="+value.category)
-    //     }
-    // })
+    Validator({
+        form: ".filter",
+        rules: [],
+        onSubmit: function(value){
+            console.log(value);
+            // var xhr=new XHR();
+            // return xhr.connect(undefined,"./pagesfront/product.php?timkiem="+value?.timkiem+"&minPrice="
+            // +value?.minPrice+"&maxPrice="+value?.maxPrice+"&txtTimkiem="+value?.timkiem+"&category="+value?.category+"")
+            var xhr=new XHR();
+            return xhr.connect("POST","./module/timkiem.php",value)
+            // $(".container-product").load("./module/timkiem.php?timkiem="+value?.timkiem+"&minPrice="
+            // +value?.minPrice+"&maxPrice="+value?.maxPrice+"&txtTimkiem="+value?.timkiem+"&category="+value?.category)
+        }
+    })
 })

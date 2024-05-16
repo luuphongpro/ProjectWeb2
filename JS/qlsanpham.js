@@ -331,21 +331,20 @@ function showAddSanPham(){
         });
     }
 
-    function bindEditDeleteListeners() {
-        // Edit button
-        document.querySelectorAll('.fix_product_detail').forEach(function(element, index) {
-            element.addEventListener('click', function() {
-                console.log("Button clicked");
-                
-                var productRow = document.querySelectorAll('#quanlisp table tbody tr')[index];
 
-                var masp = productRow.querySelector('th').innerText;
-                var tensp = productRow.querySelector('td:nth-child(2)').innerText;
-                var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
-                var soluong = productRow.querySelector('td:nth-child(4)').innerText;
-                var giatien = productRow.querySelector('td:nth-child(5)').innerText;
-                var theloai = productRow.querySelector('td:nth-child(6)').innerText;
-                var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
+    function getInfoLoadToForm(e) {
+        var index = $(e.currentTarget).parent().parent().attr("index");
+        console.log(index);
+
+        var productRow = document.querySelectorAll('#quanlisp table tbody tr')[index];
+        var masp = productRow.querySelector('th').innerText;
+        var tensp = productRow.querySelector('td:nth-child(2)').innerText;
+        var imgSrc = productRow.querySelector('td:nth-child(3) img').src;
+        var soluong = productRow.querySelector('td:nth-child(4)').innerText;
+        var giatien = productRow.querySelector('td:nth-child(5)').innerText;
+        var theloai = productRow.querySelector('td:nth-child(6)').innerText;
+        console.log(theloai);
+        var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
 
         var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
@@ -400,21 +399,14 @@ function showAddSanPham(){
                 <td style="display:none">${item.TTSP}</td>
                 <td index ="${index}" masp="${item.MaSP}" class="custom-icons">
                     <div Sua="CN02">
-                        <button onclick =getInfoLoadToForm(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                            <a><i class="fa-solid fa-wrench"></i> </a>
-                        </button>
                     </div>
                     <div Xoa="CN02">
-                        <button onclick =deletesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                            <a><i class="fa-solid fa-trash"></i></a>
-                        </button>
                     </div>
                 </td>
             `;
             tableBody.appendChild(row);
         });
-
-        
+        chucnang.QLSanPham(ChucNangs);
     }
 
     var searchForm = document.getElementById("searchForm");
@@ -470,20 +462,14 @@ function showAddSanPham(){
                 <td style="display:none">${item.TTSP}</td>
                 <td masp="${item.MaSP}" class="custom-icons">
                     <div Sua="CN02">
-                        <button onclick =getInfoLoadToForm(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                            <a class="fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
-                        </button>
                     </div>
                     <div Xoa="CN02">
-                        <button onclick =deletesp(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                            <a><i class="fa-solid fa-trash"></i></a>
-                        </button>
                     </div>
                 </td>
             `;
             tableBody.appendChild(row);
         });
-        
+        chucnang.QLSanPham(ChucNangs);
     }
 
 

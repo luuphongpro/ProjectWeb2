@@ -128,7 +128,7 @@
     </ul>
 
 
-    <table class="table table-bordered" style="text-align: center ; display: grid">
+    <table class="table table-bordered" style="text-align: center">
         <thead>
             <tr>
                 <th scope="col">Mã Sản Phẩm</th>
@@ -229,9 +229,4 @@
     
 
 </section>
-
-<link rel="stylesheet" href="./CSS/product_manager.css"/>
-
 <script src="./JS/qlsanpham.js"></script>
-<script>
-</script>

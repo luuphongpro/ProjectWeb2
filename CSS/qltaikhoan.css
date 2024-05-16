@@ -16,9 +16,6 @@
     color: aliceblue;
     width: 200px; 
 }
-.table tbody td {
-    width: 200px; 
-}
 .modal.active {
     display: block;
     background-color: rgba(50, 49, 49, 0.422);

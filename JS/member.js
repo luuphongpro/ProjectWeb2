@@ -22,7 +22,7 @@ function RenderTableAccount(data=false){
                 <td>${value['SĐT']}</td>
                 <td>${value['MaQuyen']}</td>
                 <td>******</td>
-                <td matk="${value['SĐT']}">
+                <td matk="${value['SĐT']}" class="d-flex justify-content-center">
                     <div Sua="CN04"></div>
                     <div Xoa="CN04"></div>
                 </td>
@@ -39,7 +39,7 @@ function RenderTableAccount(data=false){
             <td>${value['SĐT']}</td>
             <td>${value['MaQuyen']}</td>
             <td>******</td>
-            <td matk="${value['SĐT']}">
+            <td matk="${value['SĐT']}" class="d-flex justify-content-center">
                     <div Sua="CN04"></div>
                     <div Xoa="CN04"></div>
             </td>
@@ -66,6 +66,7 @@ function DataForm(data){
     $("#Address").val(data['Address'])
 }
 function SuaTaiKhoan(e){
+    // console.log(e)
     var dataTK
     var sdt=$(e.currentTarget).parent().parent().attr("matk")
     dataAccount.forEach(data => {

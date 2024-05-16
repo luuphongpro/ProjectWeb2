@@ -1,22 +1,9 @@
 <?php
-    include 'filter.php';
-    $servername = "localhost";
-    $username = "root"; // Thay username bằng tên người dùng của bạn
-    $password = ""; // Thay password bằng mật khẩu của bạn
-    $dbname = "web2";
-
-    // Tạo kết nối
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Truy vấn để lấy tổng số sản phẩm
+    include_once 'filter.php';
+    include './module/controller.php';
+    $sanpham=new sanpham;
     $perPage = 9;
-    $sqltotal = "SELECT * FROM product";
-    $tongsotrang = $conn->query($sqltotal);
-    $leng = $tongsotrang->num_rows;
+    $leng = $sanpham->gettongsanpham();
     $pageTotal = ceil($leng / $perPage);
 
     // Xác định trang hiện tại
@@ -26,10 +13,7 @@
         $page = 1;
     }
     $begin = ($page - 1) * $perPage;
-
-    // Truy vấn để lấy thông tin sản phẩm
-    $sql = "SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
-    $result = mysqli_query($conn, $sql);
+    $result=$sanpham->dssanphamphantrang($begin,$perPage);
 
 
 
@@ -137,18 +121,14 @@ echo '<section class="food_section layout_padding-bottom" id="data-container">
         echo "Không có sản phẩm nào.";
     }
     
+    echo '<ul class="pagination justify-content-center mt-5 phantrang">
+    <li class="page-item '.($page==1 ? "disabled" : "").'"><a class="page-link" href="index.php?trang='.($page-1).'">Previous</a></li>';
+    for ($i = 1; $i <= $pageTotal; $i++) {
+        echo '<li class="page-item"><a class="page-link '.($page==$i ? "active" : "").'" href="index.php?trang='.$i.'">' . $i . '</a></li>';
+    }
+    echo '<li class="page-item '.($page== $pageTotal? "disabled" : "").'"><a class="page-link" href="index.php?trang= '.($page+1).'">Next</a></li></ul>';
     echo '</div></div></section>';
 
-    echo '<div style="display: flex; justify-content: center; align-items: center;">';
-        echo '<ul class ="pageNumber">';
-        for ($i = 1; $i <= $pageTotal; $i++) {
-            echo '<li ><a  class=" button-active '. (($i == 1) ? ' activePT' : '') .' " data-page="'.$i.'" href="index.php?trang=' . $i . '">' . $i . '</a></li>';
-        }
-        echo '</ul>';
-    echo '</div>';
-
-    // Đóng kết nối
-    $conn->close();
 ?>
 <script src="JS/product_detail.js"></script>
     
@@ -186,11 +166,23 @@ echo '<section class="food_section layout_padding-bottom" id="data-container">
 <script>
 
 $(document).ready(function(){
-    $('.pageNumber').on('click', '.button-active', function(e){
+    $('.phantrang').on('click', function(e){
         e.preventDefault();
-        $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
-        $(this).addClass('activePT');
-        var url = this.getAttribute('href'); // Lấy URL của trang mới
+        // $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
+        var url = $(e.target).attr('href'); 
+        $(e.target).addClass('active');
+        if(url.split("=")[1]==1){
+            $(".page-item").first().addClass("disabled");
+        } else {
+
+            $(".page-item").removeClass("disabled");
+        }
+        if(<?php echo $pageTotal; ?> == url.split("=")[1]==1) {
+            $(".phantrang > .page-item").last().addClass("disabled");
+        } else {
+            $(".phantrang > .page-item").last().removeClass("disabled");
+        }
+        // Lấy URL của trang mới
         loadPage(url);
         handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
     });
@@ -198,6 +190,7 @@ $(document).ready(function(){
         var dataContainer = document.getElementById('data-container');
         dataContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
 });
 
     

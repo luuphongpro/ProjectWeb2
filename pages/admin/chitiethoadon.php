@@ -1,25 +1,7 @@
-<?php 
-    include './module/qldonhangCTL.php';
-?>
 <div class="detail">
     <div id="ctdh" class="ctdh">
         <div>
-            <h1> Chi tiết đơn hàng</h1>
-            <table class="list" style="text-align: center ; display: grid">
-                <thead>
-                    <tr class="list-name">
-                        <th>Mã sản phẩm</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Số lượng</th>
-                        <th>Đơn giá</th>
-                        <th>Thành tiền</th>
-                    </tr>
-                </thead>
-
-                <?php
-                RenderTableChiTietHD();
-                ?>
-            </table>
+            
 
             <div>
                 <div id="xulydonhang">

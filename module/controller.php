@@ -12,6 +12,13 @@
             $this->conn->disconnect();
             return $result;
         }
+        function dssanphamphantrang($begin,$perPage){
+            $this->conn->constructor();
+            $strSQL="SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
+            $result=$this->conn->excuteSQL($strSQL);
+            $this->conn->disconnect();
+            return $result;
+        }
         function timsanpham($id){
             $this->conn -> constructor();
             $strSQL = "SELECT * FROM product WHERE MaSP = '".$id."' ";
@@ -159,6 +166,14 @@
             $result=$this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
+        }
+        function gettongsanpham(){
+            $this->conn->constructor();
+            $strSQL="SELECT COUNT(*) AS total FROM `product`";
+            $result=$this->conn->excuteSQL($strSQL);
+            $row=mysqli_fetch_assoc($result);
+            $this->conn->disconnect();
+            return $row['total'];
         }
 }
 class xemlaidonhang{
@@ -402,6 +417,24 @@ class donhang {
         $this->conn->constructor();
         $strSQL="SELECT * FROM `chitiethoadon` 
         LEFT JOIN hoadon ON chitiethoadon.MaHoadon=hoadon.MaHoadon WHERE hoadon.MaHoadon='".$madonhang."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        return $result;
+    }
+    function chitietdon($mahd){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM chitiethoadon
+        LEFT JOIN product ON product.MaSP=chitiethoadon.MaSP
+        LEFT JOIN hoadon on hoadon.MaHoadon=chitiethoadon.MaHoadon
+        LEFT JOIN account on account.SĐT=hoadon.MaUser
+        WHERE hoadon.MaHoadon='".$mahd."'";
+        $result=$this->conn->excuteSQL($strSQL);
+        return $result;
+    }
+    function lochoadon($data){
+        $this->conn->constructor();
+        $strSQL="SELECT * FROM hoadon
+        LEFT JOIN account on account.SĐT=hoadon.MaUser
+        WHERE hoadon.CreTime BETWEEN '".$data->dateStart."' AND '".$data->dateEnd."'";
         $result=$this->conn->excuteSQL($strSQL);
         return $result;
     }

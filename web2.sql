@@ -287,7 +287,8 @@ CREATE TABLE `product` (
   `GiaSP` int(10) NOT NULL,
   `TTSP` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `IMG` varchar(100) NOT NULL,
-  `categoryId` varchar(20) NOT NULL
+  `categoryId` varchar(20) NOT NULL,
+  `enable` tinyint NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --

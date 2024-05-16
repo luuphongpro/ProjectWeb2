@@ -12,7 +12,7 @@ function RenderTableQuyen()
                     <td>' . $row['TenQuyen'] . '</td>
                     <td>' . $row['TenND'] . '</td>
                     <td>' . $row['ThoiGian'] . '</td>
-                    <td class = "custom-icons" id="' . $row['MaQuyen'] . '">
+                    <td class = "custom-icons d-flex justify-content-center" id="' . $row['MaQuyen'] . '">
                         <div Sua="CN01">
                             
                         </div>

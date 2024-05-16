@@ -54,4 +54,26 @@
             echo 'success';
         else echo 'fail';
     }
+    else if(isset($_REQUEST['xemchitiet'])){
+        $id=$_REQUEST['id'];
+        $result=$donhang->chitietdon($id);
+        $array=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
+        }
+        echo json_encode($array);
+    }
+    else if(isset($_REQUEST['filter'])){
+        $data=json_decode($_REQUEST['dataJSON']);
+        $result=$donhang->lochoadon($data);
+        $array=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_assoc($result)){
+                $array[]=$row;
+            }
+        }
+        echo json_encode($array);
+    }
 ?>

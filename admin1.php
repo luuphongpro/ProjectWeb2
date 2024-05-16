@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <!-- <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
-  <link rel="stylesheet" href="css/bootstrap-v5.3.3.min.css">
+  <link rel="stylesheet" href="CSS/bootstrap-v5.3.3.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
@@ -27,13 +27,13 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="CSS/font-awesome.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./fonts/themify-icons-font/themify-icons/themify-icons.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/2.0.4/css/dataTables.bootstrap5.css">
-  <link rel="stylesheet" href="css/product_manager.css">
-  <link rel="stylesheet" href="css/cssDangky.css">
-  <link rel="stylesheet" href="css/qltaikhoan.css">
-  <link rel="stylesheet" href="css/phanquyen.css">
+  <link rel="stylesheet" href="CSS/product_manager.css">
+  <link rel="stylesheet" href="CSS/cssDangky.css">
+  <link rel="stylesheet" href="CSS/qltaikhoan.css">
+  <link rel="stylesheet" href="CSS/phanquyen.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

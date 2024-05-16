@@ -245,7 +245,7 @@ function updateTable(result){
                 <td>${item.MaHoadon}</td>
                 <td>${item.CreTime}</td>
                 <td>${item.TongTien}</td>
-                <td style="color: blue">${item.TrangThai}</td>
+                <td style="color: blue">${item.TTHoaDon ==0 ? "Chưa xử lý" : ""} ${item.TTHoaDon ==1 ? "Đã xử lý" : ""}${item.TTHoaDon ==4 ? "Đã xóa" : ""}</td>
                 <td>
                 <a  onclick=showchitiethoadon(${item.MaHoadon}) class ="donhang-detail">
                     <i class="fa-solid fa-eye "></i>

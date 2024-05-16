@@ -15,7 +15,7 @@ include_once 'xlquyen.php';
 
     </div>
 
-    <table class="table table-bordered" style="text-align: center ; display: grid">
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">Mã quyền</th>

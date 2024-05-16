@@ -6,7 +6,7 @@
         $result=$donhang->dshoadon();
         if(mysqli_num_rows($result)>0){
             while($row=mysqli_fetch_assoc($result)){
-                echo '<tr font-weight="bold" xl="'.$row["TTHoaDon"].'">
+                echo '<tr font-weight="bold" xl="'.$row["TTHoaDon"].'" id_f="'.$row["MaHoadon"].'" onclick=XemChiTietDH(event)>
                         <th scope="row">'.$row["MaHoadon"].'</th>
                         <td>'.$row["TenND"] .'</td>
                         <td>'.$row["MaUser"] .'</td>
@@ -19,8 +19,8 @@
                             '.($row["TTHoaDon"] == 3 ?'Đã giao hàng' :"").'
                             '.($row["TTHoaDon"] == 4 ?'Hủy đơn' :"").'
                         </td>
-                        <td madh="'.$row["MaHoadon"].'">
-                            <div Sua="CN03">
+                        <td madh="'.$row["MaHoadon"].'" class="d-flex justify-content-center">
+                            <div Sua="CN03" >
                             </div>
                             <div Xoa="CN03">
                             </div>

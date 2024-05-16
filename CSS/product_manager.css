@@ -108,24 +108,24 @@
 
 
 
-table {
+/* table {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 /* Các dòng của bảng */
-tr {
+/* tr {
     display: flex;
-}
+} */
 
 /* Các ô trong bảng */
-td, th {
+/* td, th {
     display: flex   ;
     flex: 1; 
     align-items: center;
     justify-content: center;
-}
+}  */
 
 
 .img {

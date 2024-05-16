@@ -5,19 +5,19 @@
     <form class="filter">
         <div id="dateStart">
             <label><b>Ngày bắt đầu: </b></label>
-            <input type="datetime-local" name="dateStart" value="
+            <input type="date" name="dateStart" value="
             <?php if (isset($_GET['dateStart'])) {
                 echo $_GET['dateStart'];
             } ?>">
         </div>
         <div id="dateEnd">
             <label><b>Ngày kết thúc: </b></label>
-            <input type="datetime-local" name="dateEnd" value="
+            <input type="date" name="dateEnd" value="
             <?php if (isset($_GET['dateEnd'])) {
                 echo $_GET['dateEnd'];
             } ?>">
         </div>
-        <div id="xulydonhang">
+        <!-- <div id="xulydonhang">
             <label><b>Xử lý: </b></label>
             <select id="luachon" name="filter">
                 <option value="">Lựa chọn</option>
@@ -27,7 +27,7 @@
                 <option value="3">Đã giao hàng</option>
                 <option value="4">Hủy đơn</option>
             </select>
-        </div>
+        </div> -->
         <div class="submit">
             <button type="submit" id="btn" name="timkiem">Tìm kiếm</button>
         </div>
@@ -35,7 +35,7 @@
 </div>
 
 
-<table class="list" style="text-align: center ; display: grid">
+<table class="table table-hover table-bordered ">
     <thead>
         <tr class="list-name">
             <th>Mã đơn hàng</th>
@@ -53,6 +53,4 @@
         ?>
     </tbody>
 </table>
-
-
 <link rel="stylesheet" href="./CSS/qldonhangCSS.css">

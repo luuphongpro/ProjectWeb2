@@ -1,20 +1,21 @@
 <?php
 include 'controller.php';
-include './pages/front/filter.php';
+// include '../pages/front/filter.php';
 $sanpham = new sanpham;
+$data=json_decode($_REQUEST['dataJSON']);
 $perPage = 9;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 1;
 }
-$strURL= "./index.php?timkiem=".$_REQUEST['timkiem']."&category=".$_REQUEST['category']."&minPrice=".$_REQUEST['minPrice']."&maxPrice=".$_REQUEST['maxPrice'];
-echo $strURL;
+$strURL= "./module/timkiem.php?timkiem=".$_REQUEST['timkiem']."&category=".$_REQUEST['category']."&minPrice=".$_REQUEST['minPrice']."&maxPrice=".$_REQUEST['maxPrice'];
+// echo $strURL;
 // Tạo kết nối
 if (isset($_GET['timkiem'])) {
     $name = $_GET['timkiem'];
     $category = $_GET['category'];
-
+    
     if (empty($_GET['minPrice'])) {
         $minPrice = 0;
     } else {
@@ -31,9 +32,7 @@ if (isset($_GET['timkiem'])) {
     $leng = $sanpham->gettongtmkiem($name, $category, $minPrice, $maxPrice);
     $pageTotal = ceil($leng / $perPage);
     if (mysqli_num_rows($filterdata) > 0) {
-        echo '<section class="food_section layout_padding-bottom" id="data-container">
-            <div class="container"><div class="heading_container heading_center"><h2>
-            Our Menu</h2></div><div class="row container-product">';
+
         foreach ($filterdata as $row) {
             $productIndex = 0;
             echo "<div class='col-sm-6 col-lg-4'>";
@@ -123,71 +122,49 @@ if (isset($_GET['timkiem'])) {
     }
     echo '</div></div></section>';
 
-    echo '<ul class="pagination justify-content-center"><li class="page-item '.($_REQUEST['page']==1 ? "disabled" : "").'"><a class="page-link" href="'.$strURL . "&page=" . ($_REQUEST['page']-1).'">Previous</a></li>';
+    echo '<ul class="pagination justify-content-center mt-5"><li class="page-item '.($page==1 ? "disabled" : "").'"><a class="page-link" href="'.$strURL . "&page=" . ($page-1).'">Previous</a></li>';
     for ($i = 1; $i <= $pageTotal; $i++) {
         $pageUrl = $strURL . "&page=" . $i;
-        echo '<li class="page-item"><a class="page-link '.($_REQUEST['page']==$i ? "active" : "").'" href="' . $pageUrl . '">' . $i . '</a></li>';
+        echo '<li class="page-item"><a class="page-link '.($page==$i ? "active" : "").'" href="' . $pageUrl . '">' . $i . '</a></li>';
     }
-    echo '<li class="page-item '.($_REQUEST['page']== $pageTotal? "disabled" : "").'"><a class="page-link" href="'.$strURL . "&page=" . ($_REQUEST['page']+1).'">Next</a></li></ul>';
+    echo '<li class="page-item '.($page== $pageTotal? "disabled" : "").'"><a class="page-link" href="'.$strURL . "&page=" . ($page+1).'">Next</a></li></ul>';
     echo '<div style="display: flex; justify-content: center; align-items: center;">';
 }
 ?>
 <script>
-    $(document).ready(function() {
-        $('.pageNumber').on('click', '.button-active', function(e) {
-            e.preventDefault();
-            $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
-            $(this).addClass('activePT');
-            var url = this.getAttribute('href'); // Lấy URL của trang mới
-            loadPage(url);
-            handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
-        });
-
-        function handlePage(page) {
-            var dataContainer = document.getElementById('data-container');
-            dataContainer.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    $(document).ready(function(){
+    $('.pagination').on('click', function(e){
+        e.preventDefault();
+        console.log(e.target);
+        // $(this).closest('.pageNumber').find('.button-active').removeClass('activePT');
+        var url = $(e.target).attr('href'); 
+        $(e.target).addClass('active');
+        if(url.split("=")[1]==1){
+            $(".page-item").removeClass("disabled");
+            $(".page-item").first().addClass("disabled");
+        } else {
+            
         }
+        if(<?php echo $pageTotal; ?> == url.split("=")[1]==1) {
+            $(".phantrang > .page-item").last().addClass("disabled");
+        } else {
+            $(".phantrang > .page-item").last().removeClass("disabled");
+        }
+        // Lấy URL của trang mới
+        loadPage(url);
+        handlePage($(this).data('page')); // Gọi hàm để tải trang mới bằng AJAX
     });
-
-
-    // Hàm để tải nội dung của trang mới bằng AJAX
+    function handlePage(page){
+        var dataContainer = document.getElementById('data-container');
+        dataContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     function loadPage(url) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onload = function() {
-            if (xhr.status >= 200 && xhr.status < 400) {
-                var response = xhr.responseText;
-                var parser = new DOMParser();
-                var newDoc = parser.parseFromString(response, 'text/html');
-                var newContent = newDoc.querySelector('.food_section');
-                $('.food_section').html(newContent);
-                bindDetailButtons(); // Gắn kết sự kiện click với nút chi tiết sản phẩm mới
-            } else {
-                console.error('Request failed with status', xhr.status);
-            }
-        };
-        xhr.onerror = function() {
-            console.error('Request failed');
-        };
-        xhr.send();
-    }
-
-    // Hàm để gắn kết sự kiện click với các nút chi tiết sản phẩm mới
-    function bindDetailButtons() {
-        var detailButtons = document.querySelectorAll('.detail-button');
-        detailButtons.forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                var productIndex = this.getAttribute('data-product-index');
-                var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
-                overlay.style.display = "flex"; // Hiển thị overlay
-                var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
-                info.style.display = "flex"; // Hiển thị overlay
-            });
-        });
-
-    }
-    bindDetailButtons();
+    var xhr=new XHR();
+    console.log(url)
+    return xhr.connect(undefined,url)
+    .then((data)=>{
+        $('.container-product').html(data);
+    })
+}
+});
 </script>
