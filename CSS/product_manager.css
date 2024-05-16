@@ -107,25 +107,25 @@
 }
 
 
-
+/* 
 table {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
+} */
 
 /* Các dòng của bảng */
-tr {
+/* tr {
     display: flex;
-}
+} */
 
 /* Các ô trong bảng */
-td, th {
+/* td, th {
     display: flex   ;
     flex: 1; 
     align-items: center;
     justify-content: center;
-}
+} */
 
 
 .img {
@@ -339,5 +339,30 @@ ul.pageNumber li a.activePT{
     background-color: #69c6b9;
 }
 
+/* css cho infor them san pham */
 
+input#masp_detail,
+input#tensp_detail,
+input#img_detail,
+input#soluong_detail,
+input#cost_detail,
+select#theloai_detail,
+textarea#ttsp_detail
+/* button#removeImg */
+{
+    padding: 5px;
+    border-radius: 5px;
+}
+input#fix_masp,
+input#fix_tensp,
+input#fix_img,
+input#fix_soluong,
+input#fix_cost,
+select#fix_theloai,
+textarea#fix_ttsp,
+button#removeImg
+{
+    padding: 5px;
+    border-radius: 5px;
+}
 

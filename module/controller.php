@@ -7,14 +7,14 @@
         }
         function dssanpham(){
             $this->conn->constructor();
-            $strSQL="SELECT * FROM product WHERE 1";
+            $strSQL="SELECT * FROM product WHERE enable = 1";
             $result=$this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
         function timsanpham($id){
             $this->conn -> constructor();
-            $strSQL = "SELECT * FROM product WHERE MaSP = '".$id."' ";
+            $strSQL = "SELECT * FROM product WHERE MaSP = '$id' AND `enable` = 1 ";
             $result = $this->conn-> excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
@@ -22,48 +22,55 @@
         }
         function locsanpham($tensp, $category){
             $this->conn->constructor();
-            $strSQL = "SELECT * FROM product WHERE `TenSP` LIKE '%$tensp%'  && `categoryId` LIKE  '%$category%' ";
+            $strSQL = "SELECT * FROM product WHERE `TenSP` LIKE '%$tensp%' AND `categoryId` = '$category' AND `enable` = 1";
             $result = $this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
+        
         
         
         function xoasanpham($id){
             $this->conn->constructor();
-            $strSQL = "DELETE FROM product WHERE MaSP = '" . $id . "'";
+            $strSQL = "UPDATE product SET enable = 0 WHERE MaSP = '$id' ";
             $result = $this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
+        
         
 
         function suasanpham($data){
             $this->conn->constructor();
-            $strSQL = "UPDATE product 
-                    SET TenSP = '".$data['tensp']."', 
-                        SoLuongSP = ".$data['soluong'].", 
-                        GiaSP = ".$data['cost'].", 
-                        TTSP = '".$data['ttsp']."',";
         
+            // Định dạng mã thể loại với hai số 0 ở đằng trước
+            $theloai = sprintf("%02d", $data['theloai']);
+        
+            $strSQL = "UPDATE product 
+                        SET TenSP = '".$data['tensp']."', 
+                            SoLuongSP = ".$data['soluong'].", 
+                            GiaSP = ".$data['cost'].", 
+                            TTSP = '".$data['ttsp']."',";
+            
             if (!empty($data['img'])) {
                 $strSQL .= " IMG = '".$data['img']."',";
             }
-        
-            $strSQL .= " categoryID = ".$data['theloai']." 
-                    WHERE MaSP = '".$data['masp']."' ";  
+            
+            $strSQL .= " categoryID = '".$theloai."' 
+                        WHERE MaSP = '".$data['masp']."' ";  
         
             $result = $this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
+        
         
         
 
         function themsanpham($data){
             $this->conn -> constructor();
-            $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId`)
-                        VALUE ('".$data['masp']."', '".$data['tensp']."', '".$data['soluong']."', '".$data['cost']."', '".$data['ttsp']."', '".$data['img']."', '".$data['theloai']."')  ";
+            $strSQL = "INSERT INTO `product` (`MaSP` ,`TenSP` , `SoLuongSP` , `GiaSP` , `TTSP` , `IMG` , `categoryId` , `enable`)
+                        VALUE ('".$data['masp']."', '".$data['tensp']."', '".$data['soluong']."', '".$data['cost']."', '".$data['ttsp']."', '".$data['img']."', '".$data['theloai']."' ,'1')  ";
             $result = $this->conn-> excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;

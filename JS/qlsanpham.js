@@ -6,28 +6,33 @@ $("#qlsanpham").click((e) =>{
 });
 
 
-function showAddSanPham(){
-    console.log("đã vào thêm sản phẩm");
-    var overlay = document.querySelector('.overlay');
-    var info = document.querySelector('.info');
-    
-    if (overlay.style.display === 'none' || info.style.display === 'none') {
-        overlay.style.display = 'flex';
-        info.style.display = 'block';
-    } else {
-        overlay.style.display = 'none';
-        info.style.display = 'none';
+    function showAddSanPham(){
+        console.log("đã vào thêm sản phẩm");
+        var overlay = document.querySelector('.overlay');
+        var info = document.querySelector('.info');
+        
+        if (overlay.style.display === 'none' || info.style.display === 'none') {
+            overlay.style.display = 'flex';
+            info.style.display = 'block';
+        } else {
+            overlay.style.display = 'none';
+            info.style.display = 'none';
+        }
     }
-}
 
 
 
 
-    function closeAddProductInfo() {
+    function closeAddProductInfor() {
+        console.log("đã vào");
         var overlay = document.querySelector('.overlay');
         var info = document.querySelector('.info');
         overlay.style.display = 'none';
         info.style.display = 'none';
+        document.getElementById("tensp_detail").value="";
+        document.getElementById("soluong_detail").value="";
+        document.getElementById("cost_detail").value="";
+        document.getElementById("ttsp_detail").value="";
     }
 
    
@@ -37,6 +42,11 @@ function showAddSanPham(){
         var fix_info = document.querySelector('.fix_info');
         fix_overlay.style.display = 'none';
         fix_info.style.display = 'none';
+        document.getElementById("fix_tensp").value="";
+        document.getElementById("fix_soluong").value="";
+        document.getElementById("fix_cost").value="";
+        document.getElementById("fix_ttsp").value="";
+        document.getElementById('display_new_image').src = "";
     }
 
 
@@ -203,6 +213,11 @@ function showAddSanPham(){
         }
     }
 
+    function removeImage(){
+        console.log("remove");
+        document.getElementById('display_old_image').src = "";
+    }
+
 
 
     var add_detail_Product = document.getElementById("add_detail_Product");
@@ -333,7 +348,7 @@ function showAddSanPham(){
 
 
     function getInfoLoadToForm(e) {
-        var index = $(e.currentTarget).parent().parent().attr("index");
+        const index = $(e.currentTarget).parent().parent().attr("index");
         console.log(index);
 
         var productRow = document.querySelectorAll('#quanlisp table tbody tr')[index];
@@ -345,6 +360,7 @@ function showAddSanPham(){
         var theloai = productRow.querySelector('td:nth-child(6)').innerText;
         console.log(theloai);
         var ttsp = productRow.querySelector('td:nth-child(7)').innerText;
+        console.log(ttsp);
 
         var relativePath = imgSrc.replace("http://localhost/ProjectWeb2/", "");
 
@@ -354,8 +370,7 @@ function showAddSanPham(){
         document.getElementById('fix_soluong').value = soluong;
         document.getElementById('fix_cost').value = giatien;
         document.getElementById('fix_theloai').value = theloai;
-        document.getElementById('fix_ttsp').innerText = ttsp;
-
+        document.getElementById('fix_ttsp').value = ttsp;
         document.querySelector('.fix_overlay').style.display = 'flex';
         document.querySelector('.fix_info').style.display = 'block';
     }
@@ -456,7 +471,7 @@ function showAddSanPham(){
     function updateTable(result) {
         var tableBody = document.querySelector(".table tbody");
         tableBody.innerHTML = ""; 
-        result.forEach(function(item) {
+        result.forEach(function(item,index) {
             var row = document.createElement("tr");
             row.style.fontWeight = "bold";
             row.innerHTML = `
@@ -467,10 +482,10 @@ function showAddSanPham(){
                 <td>${item.GiaSP}</td>
                 <td style="display:none">${item.categoryId}</td>
                 <td style="display:none">${item.TTSP}</td>
-                <td masp="${item.MaSP}" class="custom-icons">
+                <td index ="${index}" masp="${item.MaSP}" class="custom-icons">
                     <div Sua="CN02">
                         <button onclick =getInfoLoadToForm(event) style="background: none; border: none; padding: 0; cursor: pointer;">
-                            <a class="fix_product_detail"><i class="fa-solid fa-wrench"></i> </a>
+                            <a><i class="fa-solid fa-wrench"></i> </a>
                         </button>
                     </div>
                     <div Xoa="CN02">
@@ -484,9 +499,7 @@ function showAddSanPham(){
         });
         
     }
-
-
-
+ 
     
     
     
