@@ -1,4 +1,5 @@
 function XuLyDH(event){
+    event.stopPropagation()
     var xhr=new XHR();
     var flag=confirm("Bạn thực xự muốn duyệt đơn hàng này?")
     if(flag){
@@ -14,6 +15,7 @@ function XuLyDH(event){
     }
 }
 function HuyDH(event){
+    event.stopPropagation()
     var xhr=new XHR();
     var flag=confirm("Bạn thực xự muốn hủy đơn hàng này?")
     if(flag){
@@ -80,14 +82,15 @@ function RenderTableHD(data){
     chucnang.QLBanHang(ChucNangs);
 }
 function XemChiTietDH(e){
-    e.stopPropagation()
-    var madh=$(e.currentTarget).attr("id_f")
-    var xhr=new XHR();
-    return xhr.connect(undefined,"./module/donhang.php?xemchitiet&id="+madh)
-    .then(function(data){
-        console.log(JSON.parse(data))
-        RenderTableChitietDH(JSON.parse(data))
-    })
+    if (!$(e.target).is(".d-flex")) {
+        var madh=$(e.currentTarget).attr("id_f")
+        var xhr=new XHR();
+        return xhr.connect(undefined,"./module/donhang.php?xemchitiet&id="+madh)
+        .then(function(data){
+            console.log(JSON.parse(data))
+            RenderTableChitietDH(JSON.parse(data))
+        })
+    }
 }
 function RenderTableChitietDH(data){
     var html=`<h1> Chi tiết đơn hàng số ${data[0].MaHoadon}</h1>
@@ -95,6 +98,7 @@ function RenderTableChitietDH(data){
     <p>Địa chỉ: ${data[0].Address}</p>
     <p>Tên người dùng: ${data[0].TenND}</p>
     <p>Tình trạng đơn hàng: ${data[0].TTHoaDon ==0 ? "Chưa xử lý" : ""} ${data[0].TTHoaDon ==1 ? "Đã xử lý" : ""}${data[0].TTHoaDon ==4 ? "Đã xóa" : ""}</p>
+    <p>Tổng đơn hàng: ${data[0].TongTien}</p>
     <table class="table table-bordered">
         <thead>
             <tr class="list-name">
@@ -110,11 +114,11 @@ function RenderTableChitietDH(data){
         `;
     data.forEach(item => {
         html+=`<tr font-weight: bold">
-            <th scope="row">${item.MaHoadon}</th>
+            <th scope="row">${item.MaSP}</th>
             <td>${item.TenSP}</td>
             <td>${item.SoLuong}</td>
             <td>${item.DonGia}</td>
-            <td>${item.MaHoadon*item.SoLuong}</td>
+            <td>${Number(item.SoLuong)*Number(item.DonGia)}</td>
         </tr> `;
     })
     html+=`</tbody>

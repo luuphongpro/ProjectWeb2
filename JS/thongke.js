@@ -8,6 +8,7 @@ function GetValue(){
 }
 function RenderThongKe(flag=false){
     var html="";
+    var tong=0;
     if(!flag){
         GetValue()
         .then(function(){
@@ -18,14 +19,15 @@ function RenderThongKe(flag=false){
                 <td><img src="./img/${data['IMG']}" alt="Image" style="width: 100px"></td>
                 <td>${data['totalSL']}</td>
                 <td>${data['DonGia']}</td>
-                <td>${data['totalTong']}</td>
+                <td>${Number(data['DonGia'])*Number(data['totalSL'])}</td>
               </tr>`;
+              tong+=Number(data['DonGia'])*Number(data['totalSL']);
             })
+            $(".js_danhthu").html(`Tổng doanh thu: ${tong.toLocaleString('vi-VN')}`)
             $(".js_table-thongke").html(html)
         })
     }
     else {
-        console.log(dataThongKe)
         flag.forEach((data)=>{
             html+=`<tr>
             <td>${data['MaSP']}</td>
@@ -33,10 +35,12 @@ function RenderThongKe(flag=false){
             <td><img src="./img/${data['IMG']}" alt="Image" style="width: 100px"></td>
             <td>${data['totalSL']}</td>
             <td>${data['DonGia']}</td>
-            <td>${data['totalTong']}</td>
+            <td>${Number(data['DonGia'])*Number(data['totalSL'])}</td>
           </tr>`;
+          tong+=Number(data['DonGia'])*Number(data['totalSL']);
         })
         $(".js_table-thongke").html(html)
+        $(".js_danhthu").html(`Tổng doanh thu: ${tong.toLocaleString('vi-VN')}`)
     }
 }
 function RenderSelector(){

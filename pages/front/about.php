@@ -40,9 +40,7 @@
     align-items: center; 
     cursor: pointer;
   }
-  p{
-    font-size: 20px;
-  }
+
 </style>
 <script>
   document.querySelector('.read-more').addEventListener('click', function() {

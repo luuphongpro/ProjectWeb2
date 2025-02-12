@@ -117,7 +117,7 @@ function DonHang() {
                 alert("Đơn hàng bị lỗi, vui lòng kiểm tra kết nối mạng")
             Cart['arr'] = null
             localStorage.setItem("CartWeb2", JSON.stringify(Cart))
-            // location.reload()
+            location.reload()
         }
     }
     else {

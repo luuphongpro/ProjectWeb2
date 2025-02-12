@@ -2,14 +2,14 @@
 include 'controller.php';
 // include '../pages/front/filter.php';
 $sanpham = new sanpham;
-$data=json_decode($_REQUEST['dataJSON']);
+// $data=json_decode($_REQUEST['dataJSON']);
 $perPage = 9;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 1;
 }
-$strURL= "./module/timkiem.php?timkiem=".$data->timkiem."&category=".$data->category."&minPrice=".$data->minPrice."&maxPrice=".$data->maxPrice;
+$strURL= "./module/timkiem.php?timkiem=".$_REQUEST['timkiem']."&category=".$_REQUEST['category']."&minPrice=".$_REQUEST['minPrice']."&maxPrice=".$_REQUEST['maxPrice'];
 // echo $strURL;
 // Tạo kết nối
 if (isset($_GET['timkiem'])) {
@@ -33,8 +33,8 @@ if (isset($_GET['timkiem'])) {
     $pageTotal = ceil($leng / $perPage);
     if (mysqli_num_rows($filterdata) > 0) {
 
+        $productIndex = 0;
         foreach ($filterdata as $row) {
-            $productIndex = 0;
             echo "<div class='col-sm-6 col-lg-4'>";
             echo "<div class='filters-content'>";
             echo "<div class='box'>";
@@ -114,7 +114,6 @@ if (isset($_GET['timkiem'])) {
             echo "</div>";
             echo "</div>";
             echo "</div>";
-
             $productIndex++;
         }
     } else {
@@ -165,6 +164,19 @@ if (isset($_GET['timkiem'])) {
     .then((data)=>{
         $('.container-product').html(data);
     })
-}
-});
+    }
+    function bindDetailButtons() {
+    var detailButtons = document.querySelectorAll('.detail-button');
+    detailButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            var productIndex = this.getAttribute('data-product-index');
+            var overlay = document.querySelector('.overlay[data-product-index="' + productIndex + '"]');
+            overlay.style.display = "flex"; // Hiển thị overlay
+            var info = document.querySelector('.info[data-product-index="' + productIndex + '"]');
+            info.style.display = "flex"; // Hiển thị overlay
+        });
+    });
+    }   
+    bindDetailButtons(); 
+    });
 </script>

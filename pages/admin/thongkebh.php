@@ -20,3 +20,4 @@
     <tbody class="js_table-thongke">
     </tbody>
 </table>
+<h5 class="js_danhthu">Tổng doanh thu:</h5>

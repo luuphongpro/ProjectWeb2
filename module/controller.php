@@ -14,7 +14,7 @@
         }
         function dssanphamphantrang($begin,$perPage){
             $this->conn->constructor();
-            $strSQL="SELECT * FROM product ORDER BY MaSP DESC LIMIT $begin , $perPage ";
+            $strSQL="SELECT * FROM product WHERE enable = 1 ORDER BY MaSP DESC LIMIT $begin , $perPage ";
             $result=$this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
@@ -29,14 +29,14 @@
         }
         function timkiem($name,$category,$minPrice,$maxPrice,$begin,$perPage) {
             $this->conn -> constructor();
-            $strSQL = "SELECT * FROM `product` WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice Limit $begin , $perPage ";
+            $strSQL = "SELECT * FROM `product` WHERE enable = 1 AND `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice Limit $begin , $perPage ";
             $result = $this->conn-> excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
         }
         function gettongtmkiem($name,$category,$minPrice,$maxPrice){
             $this->conn->constructor();
-            $strSQL="SELECT COUNT(*) AS total FROM product WHERE `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice ";
+            $strSQL="SELECT COUNT(*) AS total FROM product WHERE enable = 1 AND `TenSP` LIKE '%$name%' && `MaSP` LIKE '%$category%' && GiaSP BETWEEN $minPrice AND $maxPrice ";
             $result=$this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             if(mysqli_num_rows($result)>0){
@@ -47,7 +47,7 @@
         }
         function locsanpham($tensp, $category){
             $this->conn->constructor();
-            $strSQL = "SELECT * FROM product WHERE `TenSP` LIKE '%$tensp%' AND `categoryId` = '$category' AND `enable` = 1";
+            $strSQL = "SELECT * FROM product WHERE enable = 1 AND `TenSP` LIKE '%$tensp%' AND `categoryId` = '$category' AND `enable` = 1";
             $result = $this->conn->excuteSQL($strSQL);
             $this->conn->disconnect();
             return $result;
@@ -69,7 +69,7 @@
             $this->conn->constructor();
         
             // Định dạng mã thể loại với hai số 0 ở đằng trước
-            $theloai = sprintf("%02d", $data['theloai']);
+            $theloai = sprintf("%03d", $data['theloai']);
         
             $strSQL = "UPDATE product 
                         SET TenSP = '".$data['tensp']."', 
@@ -135,9 +135,9 @@
                             hoadon ON chitiethoadon.MaHoadon = hoadon.MaHoadon";
         
             if (!empty($conditions)) {
-                $strSQL .= " WHERE " . implode(" AND ", $conditions);
+                $strSQL .= " WHERE " . implode(" AND ", $conditions) . "AND hoadon.TTHoaDon='1'";
             } else {
-                $strSQL .= " WHERE 1";
+                $strSQL .= " WHERE hoadon.TTHoaDon='1'";
             }
             $strSQL .= " GROUP BY product.MaSP, chitiethoadon.DonGia, product.TenSP, product.IMG";
             $result = $this->conn->excuteSQL($strSQL);

@@ -20,4 +20,4 @@ class connect{
         $this->conn->close();
     }
 }
-?>
+?> 

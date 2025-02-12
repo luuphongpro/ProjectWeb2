@@ -93,10 +93,12 @@ $(document).ready(() =>{
             // var xhr=new XHR();
             // return xhr.connect(undefined,"./pagesfront/product.php?timkiem="+value?.timkiem+"&minPrice="
             // +value?.minPrice+"&maxPrice="+value?.maxPrice+"&txtTimkiem="+value?.timkiem+"&category="+value?.category+"")
-            var xhr=new XHR();
-            return xhr.connect("POST","./module/timkiem.php",value)
-            // $(".container-product").load("./module/timkiem.php?timkiem="+value?.timkiem+"&minPrice="
-            // +value?.minPrice+"&maxPrice="+value?.maxPrice+"&txtTimkiem="+value?.timkiem+"&category="+value?.category)
+            // var xhr=new XHR();
+            // return xhr.connect("POST","./module/timkiem.php",value)
+            $(".container-product").load("./module/timkiem.php?timkiem="+value?.timkiem+"&minPrice="
+            +value?.minPrice+"&maxPrice="+value?.maxPrice+"&txtTimkiem="+value?.timkiem+"&category="+value?.category)
         }
     })
+    $(".btnSearch").click();
+    
 })

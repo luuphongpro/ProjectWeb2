@@ -317,8 +317,8 @@ $("#qlsanpham").click((e) =>{
     function deletesp(e){
         var masp=$(e.currentTarget).parent().parent().attr("masp");
         console.log(masp);
-        var confirmation = confirm("Are you sure you want to delete this product?"); // Hỏi xác nhận
-        if (!confirmation) return; // Nếu không xác nhận, không làm gì cả
+        var confirmation = confirm("Are you sure you want to delete this product?"); 
+        if (!confirmation) return; 
         var xhr = new XHR();
         return xhr.connect(undefined,"./module/sanphams.php?xoasp&id="+masp)
         .then(function(data){
@@ -335,7 +335,7 @@ $("#qlsanpham").click((e) =>{
             }
             else {
                 removeNoti();
-                title.innerHTML = "FAILURE" // Sửa lỗi chính tả
+                title.innerHTML = "FAILURE" 
                 desc.innerHTML = "Xóa sản phẩm thất bại"
                 noti.style.backgroundColor = "red"
                 noti.style.transform = "translateX(0)"
